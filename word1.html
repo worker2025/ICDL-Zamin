@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آموزش کامل مایکروسافت ورد — رمان زمین خواهد شنید | تیروتیر</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --earth: #8b5e3c;
+    --earth-dark: #5c3b22;
+    --earth-light: #b8865b;
+    --water: #2a9d8f;
+    --water-dark: #1a6b62;
+    --water-light: #4ecdc4;
+    --gold: #d4a24c;
+    --gold-dark: #a67c2e;
+    --blood: #9b2c2c;
+    --sand: #f5e9d7;
+    --sand-light: #fbf6ee;
+    --ink: #2b2118;
+    --blue: #2563eb;
+    --blue-dark: #1e40af;
+    --purple: #7c3aed;
+    --green: #16a34a;
+    --shadow-sm: 0 4px 15px rgba(92, 59, 34, 0.08);
+    --shadow-md: 0 10px 30px rgba(92, 59, 34, 0.12);
+    --shadow-lg: 0 20px 50px rgba(92, 59, 34, 0.18);
+  }
+
+  body {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    background: linear-gradient(135deg, #fbf6ee 0%, #f0e4d0 100%);
+    color: var(--ink);
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, #1a1a2e 0%, var(--earth-dark) 50%, var(--earth) 100%);
+    color: #fff;
+    padding: 70px 20px 110px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.25), transparent 70%);
+    border-radius: 50%;
+    animation: float 9s ease-in-out infinite;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(212, 162, 76, 0.3), transparent 70%);
+    border-radius: 50%;
+    animation: float 11s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-25px, 25px); }
+  }
+
+  header .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 9px 26px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 4px 25px rgba(0,0,0,0.4);
+    line-height: 1.3;
+  }
+
+  header h1 .highlight {
+    background: linear-gradient(90deg, #60a5fa, #93c5fd, #bfdbfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header p {
+    font-size: 1.15rem;
+    opacity: 0.92;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    font-weight: 300;
+  }
+
+  .word-icon-bar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+  }
+
+  .word-icon-bar span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    backdrop-filter: blur(10px);
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1200px;
+    margin: -55px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ===== LEVEL NAV ===== */
+  .level-nav {
+    background: #fff;
+    border-radius: 22px;
+    padding: 30px 25px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border: 1px solid rgba(139, 94, 60, 0.08);
+  }
+
+  .level-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+  }
+
+  .level-nav a.basic {
+    background: rgba(22, 163, 74, 0.1);
+    color: var(--green);
+    border-color: rgba(22, 163, 74, 0.2);
+  }
+  .level-nav a.basic:hover {
+    background: var(--green);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
+  }
+
+  .level-nav a.inter {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--blue);
+    border-color: rgba(37, 99, 235, 0.2);
+  }
+  .level-nav a.inter:hover {
+    background: var(--blue);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  }
+
+  .level-nav a.adv {
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--purple);
+    border-color: rgba(124, 58, 237, 0.2);
+  }
+  .level-nav a.adv:hover {
+    background: var(--purple);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+  }
+
+  /* ===== SECTION ===== */
+  section {
+    background: #fff;
+    border-radius: 22px;
+    padding: 45px 40px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(139, 94, 60, 0.08);
+    animation: fadeUp 0.7s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 35px;
+    padding-bottom: 22px;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--water), var(--gold), transparent) 1;
+  }
+
+  .section-header .level-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    font-size: 1.8rem;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    font-weight: 900;
+  }
+
+  .level-badge.basic { background: linear-gradient(135deg, var(--green), #059669); }
+  .level-badge.inter { background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
+  .level-badge.adv { background: linear-gradient(135deg, var(--purple), #5b21b6); }
+
+  .section-header h2 {
+    font-size: 1.7rem;
+    color: var(--earth-dark);
+    font-weight: 800;
+    line-height: 1.4;
+  }
+
+  .section-header .sub {
+    font-size: 0.95rem;
+    color: #8b7355;
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  /* ===== PROJECT CARD ===== */
+  .project {
+    background: linear-gradient(135deg, #fff 0%, var(--sand-light) 100%);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border: 1px solid rgba(139, 94, 60, 0.12);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+  }
+
+  .project:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .project-header {
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth));
+    color: #fff;
+    padding: 24px 30px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-header::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .project-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 14px;
+    font-size: 1.3rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-title {
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-title h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .project-title .meta {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .project-title .meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .project-body {
+    padding: 30px;
+  }
+
+  /* ===== SKILLS TAGS ===== */
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .skills span {
+    background: linear-gradient(135deg, var(--sand), #fff);
+    color: var(--earth-dark);
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 94, 60, 0.2);
+    transition: all 0.2s;
+  }
+
+  .skills span:hover {
+    background: linear-gradient(135deg, var(--water), var(--water-dark));
+    color: #fff;
+    border-color: var(--water);
+  }
+
+  /* ===== STEPS ===== */
+  .steps {
+    counter-reset: step;
+    margin-top: 20px;
+  }
+
+  .step {
+    display: flex;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px dashed rgba(139, 94, 60, 0.15);
+    position: relative;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step::before {
+    counter-increment: step;
+    content: counter(step);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--water), var(--water-dark));
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(42, 157, 143, 0.3);
+    margin-top: 2px;
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  .step-content strong {
+    color: var(--earth-dark);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+
+  .step-content p {
+    color: #5a4a3a;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+
+  /* ===== SHORTCUT KEY ===== */
+  .kbd {
+    display: inline-block;
+    background: linear-gradient(180deg, #fff, #e8e8e8);
+    color: #333;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 0 #bbb;
+    margin: 0 3px;
+    direction: ltr;
+  }
+
+  .path {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e1e2e, #2a2a3e);
+    color: #a5d6ff;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    direction: ltr;
+    margin: 3px 0;
+    border: 1px solid #313244;
+  }
+
+  .path .sep {
+    color: #7ee787;
+    margin: 0 4px;
+  }
+
+  /* ===== HINT BOX ===== */
+  .hint {
+    background: linear-gradient(135deg, rgba(212, 162, 76, 0.12), rgba(212, 162, 76, 0.05));
+    border-right: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 0.92rem;
+    color: #6b4f1a;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .hint .hint-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .hint strong { color: var(--gold-dark); }
+
+  .warn {
+    background: linear-gradient(135deg, rgba(155, 44, 44, 0.1), rgba(155, 44, 44, 0.04));
+    border-right: 4px solid var(--blood);
+    color: #6b1a1a;
+  }
+  .warn strong { color: var(--blood); }
+
+  .info {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.04));
+    border-right: 4px solid var(--blue);
+    color: #1e3a8a;
+  }
+  .info strong { color: var(--blue-dark); }
+
+  /* ===== VISUAL MOCKUP ===== */
+  .word-mockup {
+    background: #f3f3f3;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid #d0d0d0;
+    box-shadow: var(--shadow-sm);
+    direction: ltr;
+  }
+
+  .word-mockup .title-bar {
+    background: linear-gradient(90deg, #2b579a, #1e3a8a);
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+  }
+
+  .word-mockup .title-bar .dots {
+    display: flex;
+    gap: 5px;
+  }
+
+  .word-mockup .title-bar .dots span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .word-mockup .title-bar .dots .r { background: #ff5f56; }
+  .word-mockup .title-bar .dots .y { background: #ffbd2e; }
+  .word-mockup .title-bar .dots .g { background: #27c93f; }
+
+  .word-mockup .ribbon {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px 12px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 0.75rem;
+  }
+
+  .word-mockup .ribbon .tab {
+    padding: 5px 12px;
+    border-radius: 6px 6px 0 0;
+    color: #555;
+    cursor: default;
+  }
+  .word-mockup .ribbon .tab.active {
+    background: #fff;
+    color: #2b579a;
+    font-weight: 700;
+    border: 1px solid #e0e0e0;
+    border-bottom-color: #fff;
+  }
+
+  .word-mockup .ribbon .tools {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 0;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 5px;
+    flex-wrap: wrap;
+  }
+
+  .word-mockup .ribbon .tool {
+    padding: 6px 12px;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    color: #333;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .word-mockup .ribbon .tool.primary {
+    background: #2b579a;
+    color: #fff;
+    border-color: #1e3a8a;
+  }
+
+  .word-mockup .doc-area {
+    background: #e8e8e8;
+    padding: 25px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .word-mockup .doc-page {
+    background: #fff;
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-family: 'Times New Roman', serif;
+    font-size: 0.85rem;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .word-mockup .doc-page .h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2b579a;
+    text-align: center;
+  }
+
+  .word-mockup .doc-page .h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 12px 0 6px;
+    color: #444;
+  }
+
+  .word-mockup .doc-page p {
+    margin-bottom: 6px;
+    text-align: justify;
+  }
+
+  .word-mockup .doc-page .highlight {
+    background: #fff3cd;
+    padding: 1px 4px;
+  }
+
+  /* ===== PATH VISUAL ===== */
+  .path-visual {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 15px 0;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #f8f9fa, #eef1f5);
+    border-radius: 12px;
+    border: 1px dashed #b0c4de;
+    direction: ltr;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 0.85rem;
+  }
+
+  .path-visual .node {
+    background: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid #2b579a;
+    color: #2b579a;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(43, 87, 154, 0.15);
+  }
+
+  .path-visual .arrow {
+    color: #888;
+    font-weight: 700;
+  }
+
+  /* ===== SUMMARY ===== */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+  }
+
+  .summary-card {
+    background: linear-gradient(135deg, #fff, var(--sand-light));
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid rgba(139, 94, 60, 0.12);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--water), var(--gold));
+  }
+
+  .summary-card h4 {
+    font-size: 1.1rem;
+    color: var(--earth-dark);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .summary-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .summary-card ul li {
+    padding: 5px 0;
+    font-size: 0.9rem;
+    color: #5a4a3a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .summary-card ul li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 900;
+    font-size: 0.95rem;
+  }
+
+  /* ===== PROJECT TEMPLATE ===== */
+  .template-card {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    border-radius: 20px;
+    padding: 35px;
+    margin: 25px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .template-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--water), var(--gold), var(--purple));
+  }
+
+  .template-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+    color: var(--water-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .template-card .content-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 0.95rem;
+    line-height: 2;
+    color: #d0d0e0;
+  }
+
+  .template-card .content-box strong { color: var(--gold); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0d1117 100%);
+    color: #fff;
+    padding: 55px 20px 35px;
+    text-align: center;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--water), var(--gold));
+  }
+
+  footer .brand {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #60a5fa, var(--water-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  footer .tagline {
+    font-size: 1rem;
+    opacity: 0.75;
+    margin-bottom: 28px;
+    font-weight: 300;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(42, 157, 143, 0.15);
+    border: 1px solid var(--water);
+    color: var(--water-light);
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
+
+  footer .site-link:hover {
+    background: var(--water);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(42, 157, 143, 0.4);
+  }
+
+  footer .divider {
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--water));
+    margin: 28px auto;
+    border-radius: 2px;
+  }
+
+  footer .copyright {
+    font-size: 0.85rem;
+    opacity: 0.5;
+    margin-top: 15px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    header h1 { font-size: 1.9rem; }
+    header p { font-size: 1rem; }
+    section { padding: 28px 20px; }
+    .section-header h2 { font-size: 1.3rem; }
+    .section-header .level-badge { width: 55px; height: 55px; font-size: 1.5rem; }
+    .project-header { padding: 18px 20px; }
+    .project-body { padding: 22px; }
+    .project-title h3 { font-size: 1.05rem; }
+    .step { gap: 12px; }
+    .step::before { width: 32px; height: 32px; font-size: 0.9rem; }
+    .level-nav { padding: 20px; }
+    .level-nav a { padding: 10px 16px; font-size: 0.85rem; }
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--sand); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--blue), var(--water));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--water-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">📄 آموزش کامل مایکروسافت ورد — از مبتدی تا حرفه‌ای</div>
+  <h1>پروژه‌های ورد با <span class="highlight">رمان زمین خواهد شنید</span></h1>
+  <p>۱۵ پروژه‌ی گام‌به‌گام از سطح ابتدایی تا پیشرفته، با راهنمای بصری و تصویرسازی مسیرهای ورد</p>
+
+  <div class="word-icon-bar">
+    <span>🟢 مبتدی — ۵ پروژه</span>
+    <span>🔵 متوسط — ۵ پروژه</span>
+    <span>🟣 پیشرفته — ۵ پروژه</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ===== LEVEL NAV ===== -->
+  <nav class="level-nav">
+    <a href="#basic" class="basic">🟢 سطح مبتدی</a>
+    <a href="#inter" class="inter">🔵 سطح متوسط</a>
+    <a href="#adv" class="adv">🟣 سطح پیشرفته</a>
+    <a href="#summary" class="basic" style="background:rgba(212,162,76,0.1);color:#a67c2e;border-color:rgba(212,162,76,0.2);">📋 جمع‌بندی</a>
+  </nav>
+
+  <!-- ==================================================== -->
+  <!-- ============ LEVEL 1: BASIC ======================== -->
+  <!-- ==================================================== -->
+  <section id="basic">
+    <div class="section-header">
+      <div class="level-badge basic">🟢</div>
+      <div>
+        <h2>سطح مبتدی — پروژه‌های ۱ تا ۵</h2>
+        <div class="sub">آشنایی با محیط ورد، تایپ، قالب‌بندی پایه، جدول و تصویر</div>
+      </div>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۱</div>
+        <div class="project-title">
+          <h3>خلاصه‌ی رمان — آشنایی با محیط ورد</h3>
+          <div class="meta">
+            <span>⏱ ۲۰ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: تایپ و ذخیره</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>محیط ورد</span><span>تایپ فارسی</span><span>ذخیره فایل</span><span>فونت</span><span>ترازبندی</span>
+        </div>
+
+        <div class="info hint">
+          <span class="hint-icon">💡</span>
+          <div><strong>سناریو:</strong> می‌خواهیم خلاصه‌ی رمان «زمین خواهد شنید» را در ورد تایپ کنیم و با فونت زیبا ذخیره کنیم.</div>
+        </div>
+
+        <div class="word-mockup">
+          <div class="title-bar">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span>Document1 - Word</span>
+          </div>
+          <div class="ribbon">
+            <span class="tab active">Home</span>
+            <span class="tab">Insert</span>
+            <span class="tab">Design</span>
+            <span class="tab">Layout</span>
+            <span class="tab">References</span>
+            <div class="tools">
+              <span class="tool primary">Bold</span>
+              <span class="tool">Italic</span>
+              <span class="tool">Underline</span>
+              <span class="tool">Font: Vazirmatn</span>
+              <span class="tool">Size: 14</span>
+            </div>
+          </div>
+          <div class="doc-area">
+            <div class="doc-page">
+              <div class="h1">زمین خواهد شنید</div>
+              <p style="text-align:center;font-size:0.75rem;color:#888;">نوشته‌ی داریوش علیپور</p>
+              <div class="h2">خلاصه</div>
+              <p>نیکا، نوازنده‌ی چنگ از روستای <span class="highlight">کُهباد</span>، با آوازهایش صدای مردم ستمدیده می‌شود...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>باز کردن ورد</strong>
+              <p>روی آیکون Word کلیک کنید یا از منوی Start آن را جستجو کنید. یک سند خالی باز می‌شود.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تنظیم جهت راست‌به‌چپ</strong>
+              <p>از تب <span class="path">Home <span class="sep">›</span> Paragraph <span class="sep">›</span> Right-to-Left Text Direction</span> را کلیک کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تایپ عنوان</strong>
+              <p>بنویسید: «زمین خواهد شنید». سپس با <span class="kbd">Ctrl</span> + <span class="kbd">E</span> آن را وسط‌چین کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>بزرگ کردن عنوان</strong>
+              <p>عنوان را انتخاب کنید و از قسمت Font Size، اندازه‌ی ۲۰ را انتخاب کنید. سپس <span class="kbd">Ctrl</span> + <span class="kbd">B</span> برای پررنگ کردن.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>نوشتن نام نویسنده</strong>
+              <p>در خط بعد بنویسید: «نوشته‌ی داریوش علیپور» و با <span class="kbd">Ctrl</span> + <span class="kbd">E</span> وسط‌چین کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>نوشتن خلاصه</strong>
+              <p>یک پاراگراف ۵ خطی از خلاصه‌ی رمان بنویسید. با <span class="kbd">Ctrl</span> + <span class="kbd">J</span> آن را دوطرفه کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ذخیره کردن فایل</strong>
+              <p>از <span class="path">File <span class="sep">›</span> Save As <span class="sep">›</span> Browse</span> مسیر را انتخاب کنید و نام فایل را <strong>خلاصه_رمان.docx</strong> بگذارید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint">
+          <span class="hint-icon">⌨️</span>
+          <div><strong>میانبرهای مهم:</strong> <span class="kbd">Ctrl</span>+<span class="kbd">S</span> ذخیره، <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> بازگردانی، <span class="kbd">Ctrl</span>+<span class="kbd">A</span> انتخاب همه.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۲</div>
+        <div class="project-title">
+          <h3>لیست شخصیت‌ها — قالب‌بندی متن</h3>
+          <div class="meta">
+            <span>⏱ ۲۵ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: Bold، Italic، Underline</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>پررنگ</span><span>کج</span><span>زیرخط</span><span>رنگ متن</span><span>لیست</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>عنوان صفحه</strong>
+              <p>بنویسید: «شخصیت‌های رمان زمین خواهد شنید» و با Heading 1 قالب‌بندی کنید.</p>
+              <span class="path">Home <span class="sep">›</span> Styles <span class="sep">›</span> Heading 1</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن لیست نقطه‌دار</strong>
+              <p>۱۰ شخصیت اصلی را بنویسید و با <span class="path">Home <span class="sep">›</span> Bullets</span> به لیست نقطه‌دار تبدیل کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>پررنگ کردن نام‌ها</strong>
+              <p>هر نام (مثلاً <strong>نیکا</strong>، <strong>هانی</strong>، <strong>شوترورو</strong>) را انتخاب و با <span class="kbd">Ctrl</span>+<span class="kbd">B</span> پررنگ کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>کج کردن ویژگی‌ها</strong>
+              <p>ویژگی‌های هر شخصیت را با <span class="kbd">Ctrl</span>+<span class="kbd">I</span> کج کنید. مثلاً: <em>شجاع، هنرمند</em>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>زیرخط‌دار کردن جمله‌ی کلیدی</strong>
+              <p>جمله‌ی «آب راهش را پیدا می‌کند» را انتخاب و با <span class="kbd">Ctrl</span>+<span class="kbd">U</span> زیرخط‌دار کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تغییر رنگ متن</strong>
+              <p>روی نام <strong>نیکا</strong> کلیک کنید و از <span class="path">Home <span class="sep">›</span> Font Color</span> رنگ قرمز انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ذخیره</strong>
+              <p>فایل را با نام <strong>شخصیت‌ها.docx</strong> ذخیره کنید.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۳</div>
+        <div class="project-title">
+          <h3>جدول شخصیت‌ها — جدول ساده</h3>
+          <div class="meta">
+            <span>⏱ ۳۰ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: ساخت جدول</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Insert Table</span><span>Merge Cells</span><span>Shading</span><span>Table Style</span>
+        </div>
+
+        <div class="word-mockup">
+          <div class="title-bar">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span>جدول_شخصیت‌ها - Word</span>
+          </div>
+          <div class="ribbon">
+            <span class="tab">Home</span>
+            <span class="tab">Insert</span>
+            <span class="tab active">Table Design</span>
+            <span class="tab active">Layout</span>
+            <div class="tools">
+              <span class="tool primary">Table Styles</span>
+              <span class="tool">Merge Cells</span>
+              <span class="tool">Shading</span>
+            </div>
+          </div>
+          <div class="doc-area">
+            <div class="doc-page" style="max-width:100%;">
+              <table style="width:100%;border-collapse:collapse;font-size:0.75rem;">
+                <tr style="background:#2b579a;color:#fff;">
+                  <th style="border:1px solid #ccc;padding:6px;">نام</th>
+                  <th style="border:1px solid #ccc;padding:6px;">نقش</th>
+                  <th style="border:1px solid #ccc;padding:6px;">وضعیت</th>
+                </tr>
+                <tr>
+                  <td style="border:1px solid #ccc;padding:6px;">نیکا</td>
+                  <td style="border:1px solid #ccc;padding:6px;">نوازنده</td>
+                  <td style="border:1px solid #ccc;padding:6px;">کشته شده</td>
+                </tr>
+                <tr style="background:#f8f9fa;">
+                  <td style="border:1px solid #ccc;padding:6px;">هانی</td>
+                  <td style="border:1px solid #ccc;padding:6px;">فرمانروا</td>
+                  <td style="border:1px solid #ccc;padding:6px;">ناپدید</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>درج جدول</strong>
+              <p>از <span class="path">Insert <span class="sep">›</span> Table</span> یک جدول ۴ ستونی و ۱۱ ردیفی بسازید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>پر کردن سرستون‌ها</strong>
+              <p>ردیف اول: نام | نقش | جنسیت | وضعیت</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>وارد کردن داده‌ها</strong>
+              <p>۱۰ شخصیت را با اطلاعات کامل وارد کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>رنگ‌آمیزی سرستون</strong>
+              <p>ردیف اول را انتخاب کنید و از <span class="path">Table Design <span class="sep">›</span> Shading</span> رنگ قهوه‌ای انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>اعمال استایل جدول</strong>
+              <p>از <span class="path">Table Design <span class="sep">›</span> Table Styles</span> یک استایل زیبا مثل Grid Table 4 انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>مرتب‌سازی</strong>
+              <p>جدول را انتخاب و از <span class="path">Layout <span class="sep">›</span> Sort</span> بر اساس ستون «نام» به ترتیب الفبا مرتب کنید.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۴</div>
+        <div class="project-title">
+          <h3>درج تصویر سنگ‌نگاره — تصویر و متن</h3>
+          <div class="meta">
+            <span>⏱ ۲۰ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: درج تصویر</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Insert Picture</span><span>Wrap Text</span><span>Resize</span><span>Crop</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>درج تصویر</strong>
+              <p>از <span class="path">Insert <span class="sep">›</span> Pictures <span class="sep">›</span> This Device</span> یک تصویر از سنگ‌نگاره یا کول‌فرح انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تنظیم اندازه</strong>
+              <p>گوشه‌های تصویر را بکشید تا به اندازه‌ی مناسب برسد. یا از <span class="path">Format <span class="sep">›</span> Size</span> عرض ۸ سانتی‌متر وارد کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تنظیم متن دور تصویر</strong>
+              <p>روی تصویر کلیک کنید و از <span class="path">Format <span class="sep">›</span> Wrap Text <span class="sep">›</span> Square</span> انتخاب کنید تا متن دور تصویر بچرخد.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>درج زیرنویس</strong>
+              <p>زیر تصویر یک پاراگراف بنویسید: «سنگ‌نگاره‌ی کول‌فرح — محل دستگیری نیکا».</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>برش تصویر (اختیاری)</strong>
+              <p>اگر بخشی از تصویر لازم نیست، از <span class="path">Format <span class="sep">›</span> Crop</span> استفاده کنید.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۵</div>
+        <div class="project-title">
+          <h3>نامه‌ی نیکا — قالب‌بندی حرفه‌ای</h3>
+          <div class="meta">
+            <span>⏱ ۳۰ دقیقه</span>
+            <span>📊 سطح: مبتدی+</span>
+            <span>🎯 هدف: حاشیه و چیدمان</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Margins</span><span>Line Spacing</span><span>Text Box</span><span>Border</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>تنظیم حاشیه</strong>
+              <p>از <span class="path">Layout <span class="sep">›</span> Margins <span class="sep">›</span> Custom Margins</span> حاشیه‌ها را ۲.۵ سانتی‌متر تنظیم کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تنظیم فاصله خطوط</strong>
+              <p>کل متن را انتخاب و از <span class="path">Home <span class="sep">›</span> Line and Paragraph Spacing <span class="sep">›</span> 1.5</span> را انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>نوشتن نامه</strong>
+              <p>متن نامه را با فونت Vazirmatn اندازه ۱۴ بنویسید. با «ای مردم زاگرس،» شروع کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن کادر تزئینی</strong>
+              <p>از <span class="path">Design <span class="sep">›</span> Page Borders</span> یک کادر ساده برای کل صفحه انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>درج شکل جداکننده</strong>
+              <p>از <span class="path">Insert <span class="sep">›</span> Shapes <span class="sep">›</span> Line</span> یک خط افقی برای امضا بکشید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ذخیره</strong>
+              <p>فایل را با نام <strong>نامه_نیکا.docx</strong> ذخیره کنید.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ LEVEL 2: INTERMEDIATE ================= -->
+  <!-- ==================================================== -->
+  <section id="inter">
+    <div class="section-header">
+      <div class="level-badge inter">🔵</div>
+      <div>
+        <h2>سطح متوسط — پروژه‌های ۶ تا ۱۰</h2>
+        <div class="sub">سرصفحه، پاصفحه، سبک‌ها، فهرست خودکار، واترمارک و SmartArt</div>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۶</div>
+        <div class="project-title">
+          <h3>گزارش شورای خشت‌ها — Header و Footer</h3>
+          <div class="meta">
+            <span>⏱ ۳۵ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: سرصفحه و پاصفحه</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Insert Header</span><span>Insert Footer</span><span>Page Number</span><span>Date & Time</span>
+        </div>
+
+        <div class="path-visual">
+          <span class="node">Insert</span>
+          <span class="arrow">›</span>
+          <span class="node">Header</span>
+          <span class="arrow">›</span>
+          <span class="node">Edit Header</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>درج سرصفحه</strong>
+              <p>از <span class="path">Insert <span class="sep">›</span> Header <span class="sep">›</span> Blank</span> یک سرصفحه بسازید و بنویسید: «رمان زمین خواهد شنید — داریوش علیپور».</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>درج پاصفحه</strong>
+              <p>از <span class="path">Insert <span class="sep">›</span> Footer <span class="sep">›</span> Blank</span> و در پاصفحه شماره صفحه را اضافه کنید: <span class="path">Insert <span class="sep">›</span> Page Number <span class="sep">›</span> Bottom of Page</span>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن تاریخ</strong>
+              <p>در پاصفحه، تاریخ را اضافه کنید: <span class="path">Insert <span class="sep">›</span> Date &amp; Time</span> و فرمت دلخواه را انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>نوشتن متن گزارش</strong>
+              <p>متن گزارش را در ۵ پاراگراف بنویسید: مقدمه، روش رأی‌گیری، موضوعات، مخالفان، نتیجه.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ذخیره</strong>
+              <p>با نام <strong>گزارش_شورا.docx</strong> ذخیره کنید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint info">
+          <span class="hint-icon">🎨</span>
+          <div><strong>ترفند:</strong> می‌توانید از سرصفحه‌های آماده‌ی ورد (Built-in) مثل «Facet» یا «Banded» استفاده کنید که طراحی زیبایی دارند.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 7 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۷</div>
+        <div class="project-title">
+          <h3>تحلیل نمادها — فهرست خودکار (TOC)</h3>
+          <div class="meta">
+            <span>⏱ ۴۰ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: سبک‌ها و TOC</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Heading Styles</span><span>Table of Contents</span><span>Update Field</span>
+        </div>
+
+        <div class="word-mockup">
+          <div class="title-bar">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span>تحلیل_نمادها - Word</span>
+          </div>
+          <div class="ribbon">
+            <span class="tab">Home</span>
+            <span class="tab">Insert</span>
+            <span class="tab">Design</span>
+            <span class="tab active">References</span>
+            <div class="tools">
+              <span class="tool primary">Table of Contents</span>
+              <span class="tool">Add Text</span>
+              <span class="tool">Update Table</span>
+            </div>
+          </div>
+          <div class="doc-area">
+            <div class="doc-page">
+              <div style="border-bottom:2px solid #2b579a;padding-bottom:8px;margin-bottom:12px;">
+                <div class="h2" style="color:#2b579a;">فهرست مطالب</div>
+                <p style="font-size:0.75rem;">۱. نماد آب .............. ۱</p>
+                <p style="font-size:0.75rem;">۲. نماد خشت ............ ۲</p>
+                <p style="font-size:0.75rem;">۳. نماد چنگ ............. ۳</p>
+              </div>
+              <div class="h2">۱. نماد آب</div>
+              <p>آب در رمان نماد زندگی و عدالت است...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>عنوان اصلی با Heading 1</strong>
+              <p>عنوان «تحلیل نمادهای رمان» را با <span class="path">Home <span class="sep">›</span> Styles <span class="sep">›</span> Heading 1</span> قالب‌بندی کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ساخت بخش‌ها با Heading 2</strong>
+              <p>برای هر نماد (آب، خشت، چنگ، قایق، بلوط، نان، سنگ‌نگاره) یک Heading 2 بسازید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>نوشتن توضیح زیر هر بخش</strong>
+              <p>زیر هر Heading، یک پاراگراف توضیح بنویسید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>درج TOC</strong>
+              <p>مکان‌نما را در ابتدای سند قرار دهید و از <span class="path">References <span class="sep">›</span> Table of Contents <span class="sep">›</span> Automatic Table 1</span> استفاده کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>به‌روزرسانی TOC</strong>
+              <p>اگر متن تغییر کرد، روی TOC راست‌کلیک و <strong>Update Field</strong> را انتخاب کنید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint warn">
+          <span class="hint-icon">⚠️</span>
+          <div><strong>مهم:</strong> بدون استفاده از سبک‌ها (Heading)، فهرست خودکار کار نمی‌کند. پس همه‌ی عنوان‌ها را با سبک قالب‌بندی کنید.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 8 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۸</div>
+        <div class="project-title">
+          <h3>نقشه‌ی تعاملی — Text Box و Shapes</h3>
+          <div class="meta">
+            <span>⏱ ۴۵ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: شکل‌ها و ترازبندی</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Shapes</span><span>Text Box</span><span>Align</span><span>Group</span><span>Layer</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>درج تصویر نقشه</strong>
+              <p>تصویر نقشه‌ی ایذه یا زاگرس را از <span class="path">Insert <span class="sep">›</span> Pictures</span> وارد کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>درج Text Box</strong>
+              <p>از <span class="path">Insert <span class="sep">›</span> Text Box <span class="sep">›</span> Draw Text Box</span> یک کادر بکشید و نام مکان (مثلاً «کول‌فرح») را در آن بنویسید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>رنگ‌آمیزی کادرها</strong>
+              <p>روی کادر راست‌کلیک و <strong>Format Shape</strong> را انتخاب کنید. رنگ پس‌زمینه (Fill) و خط دور (Line) را تنظیم کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن ۸ مکان</strong>
+              <p>برای مکان‌های زیر کادر بسازید: کول‌فرح، اشکفت‌سلمان، خونگ‌آژدر، گلِ شور، شیل‌هی‌تی، آیاپیر، زاپوالسیمی، کُهباد.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ترازبندی</strong>
+              <p>کادرها را انتخاب و از <span class="path">Shape Format <span class="sep">›</span> Align</span> برای مرتب‌سازی استفاده کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>گروه‌بندی</strong>
+              <p>با نگه داشتن <span class="kbd">Shift</span>، همه‌ی کادرها را انتخاب و با راست‌کلیک <strong>Group</strong> کنید.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 9 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۹</div>
+        <div class="project-title">
+          <h3>خط زمان رویدادها — SmartArt</h3>
+          <div class="meta">
+            <span>⏱ ۳۰ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: SmartArt</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>SmartArt</span><span>Timeline</span><span>Colors</span><span>Layout</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>درج SmartArt</strong>
+              <p>از <span class="path">Insert <span class="sep">›</span> SmartArt <span class="sep">›</span> Process</span> یک قالب خط زمان انتخاب کنید (مثل «Basic Timeline»).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>وارد کردن رویدادها</strong>
+              <p>در پنل متن، ۸ رویداد اصلی رمان را وارد کنید:</p>
+              <p>۱. دستگیری نیکا — ۲. فرار و مرگ هیش — ۳. ورود به گلِ شور — ۴. خبر در بازار — ۵. مرگ نیکا — ۶. شورای خشت‌ها — ۷. آتش‌بس — ۸. مرگ کورو</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تغییر رنگ</strong>
+              <p>از <span class="path">SmartArt Design <span class="sep">›</span> Change Colors</span> یک پالت رنگی انتخاب کنید. برای رویدادهای دراماتیک، قرمز و برای آرام، سبز.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تغییر چیدمان</strong>
+              <p>اگر چیدمان افقی بهتر است، از <span class="path">SmartArt Design <span class="sep">›</span> Layouts</span> یک طرح دیگر انتخاب کنید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint">
+          <span class="hint-icon">🎨</span>
+          <div><strong>ترفند:</strong> با راست‌کلیک روی هر شکل SmartArt می‌توانید <strong>Add Shape</strong> یا <strong>Remove Shape</strong> کنید تا رویداد کم یا زیاد شود.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 10 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۱۰</div>
+        <div class="project-title">
+          <h3>کارت پستال — واترمارک و حاشیه</h3>
+          <div class="meta">
+            <span>⏱ ۳۵ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: طراحی خلاقانه</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Watermark</span><span>Page Borders</span><span>Page Color</span><span>Orientation</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>تغییر جهت صفحه</strong>
+              <p>از <span class="path">Layout <span class="sep">›</span> Orientation <span class="sep">›</span> Landscape</span> صفحه را افقی کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن حاشیه</strong>
+              <p>از <span class="path">Design <span class="sep">›</span> Page Borders</span> یک حاشیه‌ی تزئینی مثل «Art» انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>واترمارک متنی</strong>
+              <p>از <span class="path">Design <span class="sep">›</span> Watermark <span class="sep">›</span> Custom Watermark</span> یک واترمارک با متن «زمین خواهد شنید» اضافه کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>درج تصویر</strong>
+              <p>یک تصویر از سنگ‌نگاره یا کاروان خشت‌ها در وسط صفحه درج کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن کادر متن</strong>
+              <p>یک Text Box با جمله‌ی «آب راهش را پیدا می‌کند» در گوشه اضافه کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>درج نماد</strong>
+              <p>از <span class="path">Insert <span class="sep">›</span> Symbol <span class="sep">›</span> More Symbols <span class="sep">›</span> Font: Wingdings</span> یک نماد زیبا اضافه کنید.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ LEVEL 3: ADVANCED ===================== -->
+  <!-- ==================================================== -->
+  <section id="adv">
+    <div class="section-header">
+      <div class="level-badge adv">🟣</div>
+      <div>
+        <h2>سطح پیشرفته — پروژه‌های ۱۱ تا ۱۵</h2>
+        <div class="sub">پانویس، ارجاع متقابل، Track Changes، Mail Merge و کتابچه‌ی نهایی</div>
+      </div>
+    </div>
+
+    <!-- Project 11 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۱۱</div>
+        <div class="project-title">
+          <h3>پانویس و ارجاع — واژه‌نامه‌ی خدایان</h3>
+          <div class="meta">
+            <span>⏱ ۴۰ دقیقه</span>
+            <span>📊 سطح: پیشرفته</span>
+            <span>🎯 هدف: Footnotes & Cross-reference</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Footnote</span><span>Endnote</span><span>Cross-reference</span><span>Bookmark</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>نوشتن متن اصلی</strong>
+              <p>متن زیر را بنویسید: «هانی در معبد نارسینا با کاهن اعظم دیدار کرد. هوهین همسر هانی، در کاخ زاپوالسیمی منتظر بود.»</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن پانویس</strong>
+              <p>بعد از کلمه‌ی «نارسینا» کلیک کنید و از <span class="path">References <span class="sep">›</span> Insert Footnote</span> (یا <span class="kbd">Ctrl</span>+<span class="kbd">Alt</span>+<span class="kbd">F</span>) استفاده کنید. توضیح بنویسید: «نارسینا: الهه‌ی کوهستان در ایلام باستان.»</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن پاصفحه</strong>
+              <p>بعد از «زاپوالسیمی» از <span class="path">References <span class="sep">›</span> Insert Endnote</span> استفاده کنید و توضیح دهید: «زاپوالسیمی: کاخ سنگی هانی در آیاپیر.»</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>بوکمارک‌گذاری</strong>
+              <p>کلمه‌ی «هوهین» را انتخاب و از <span class="path">Insert <span class="sep">›</span> Bookmark</span> یک بوکمارک به نام <strong>Hohin</strong> بسازید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ارجاع متقابل</strong>
+              <p>در جای دیگر متن، از <span class="path">References <span class="sep">›</span> Cross-reference</span> به بوکمارک Hohin ارجاع بدهید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint info">
+          <span class="hint-icon">📌</span>
+          <div><strong>تفاوت پانویس و پاصفحه:</strong> پانویس (Footnote) در پایین همان صفحه ظاهر می‌شود؛ پاصفحه (Endnote) در پایان سند جمع می‌شود.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 12 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۱۲</div>
+        <div class="project-title">
+          <h3>ویرایش گروهی — Track Changes</h3>
+          <div class="meta">
+            <span>⏱ ۳۵ دقیقه</span>
+            <span>📊 سطح: پیشرفته</span>
+            <span>🎯 هدف: ردیابی تغییرات</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Track Changes</span><span>Comments</span><span>Accept/Reject</span><span>Compare</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>فعال‌سازی Track Changes</strong>
+              <p>از <span class="path">Review <span class="sep">›</span> Track Changes</span> یا با میانبر <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">E</span> آن را فعال کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ویرایش متن</strong>
+              <p>یک پاراگراف از رمان را وارد کنید و چند کلمه را تغییر دهید. تغییرات با رنگ قرمز نمایش داده می‌شوند.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن کامنت</strong>
+              <p>یک جمله را انتخاب و از <span class="path">Review <span class="sep">›</span> New Comment</span> یک کامنت اضافه کنید: «این جمله نماد امید است.»</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>پذیرش تغییرات</strong>
+              <p>از <span class="path">Review <span class="sep">›</span> Accept <span class="sep">›</span> Accept All Changes</span> برای پذیرش همه‌ی تغییرات.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>رد تغییرات</strong>
+              <p>یا از <span class="path">Review <span class="sep">›</span> Reject <span class="sep">›</span> Reject All Changes</span> برای رد کردن همه.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>مقایسه دو نسخه</strong>
+              <p>از <span class="path">Review <span class="sep">›</span> Compare <span class="sep">›</span> Compare Documents</span> دو نسخه از متن را مقایسه کنید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint warn">
+          <span class="hint-icon">⚠️</span>
+          <div><strong>مهم:</strong> پیش از ارسال فایل به دیگران، تغییرات را بپذیرید یا رد کنید و از <span class="path">Review <span class="sep">›</span> Track Changes <span class="sep">›</span> Off</span> آن را خاموش کنید تا تغییرات بعدی ثبت نشود.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 13 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۱۳</div>
+        <div class="project-title">
+          <h3>ادغام ایمیل (Mail Merge) — دعوت به شورا</h3>
+          <div class="meta">
+            <span>⏱ ۵۰ دقیقه</span>
+            <span>📊 سطح: پیشرفته</span>
+            <span>🎯 هدف: Mail Merge</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Mail Merge</span><span>Recipient List</span><span>Insert Field</span><span>Preview</span>
+        </div>
+
+        <div class="info hint">
+          <span class="hint-icon">📧</span>
+          <div><strong>سناریو:</strong> می‌خواهیم به سران ۱۰ آبادی نامه‌ی دعوت به شورای اشکفت‌سلمان بفرستیم. با Mail Merge می‌توانیم یک نامه بنویسیم که برای همه شخصی‌سازی شود.</div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>آماده‌سازی فهرست</strong>
+              <p>در Excel یک جدول با ستون‌های: نام، آبادی، تعداد خشت بسازید و ذخیره کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>شروع Mail Merge</strong>
+              <p>در Word یک نامه بنویسید. از <span class="path">Mailings <span class="sep">›</span> Start Mail Merge <span class="sep">›</span> Letters</span> انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>انتخاب گیرندگان</strong>
+              <p>از <span class="path">Mailings <span class="sep">›</span> Select Recipients <span class="sep">›</span> Use an Existing List</span> فایل Excel را انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>درج فیلدها</strong>
+              <p>در نامه، از <span class="path">Mailings <span class="sep">›</span> Insert Merge Field</span> فیلد «نام» و «آبادی» را در جای مناسب قرار دهید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>پیش‌نمایش</strong>
+              <p>از <span class="path">Mailings <span class="sep">›</span> Preview Results</span> نتیجه را برای هر گیرنده ببینید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تکمیل ادغام</strong>
+              <p>از <span class="path">Mailings <span class="sep">›</span> Finish &amp; Merge <span class="sep">›</span> Edit Individual Documents</span> یک سند جدید با ۱۰ نامه بسازید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-card">
+          <h4>📝 نمونه متن نامه</h4>
+          <div class="content-box">
+            به سرور گرامی <strong>«نام»</strong> از آبادی <strong>«آبادی»</strong>،<br><br>
+            با احترام، شما را به شورای خشت‌ها در اشکفت‌سلمان دعوت می‌کنیم.<br>
+            موضوع: تقسیم آب، نوبت بیل و انبار مشترک.<br>
+            تعداد خشت‌های ثبت‌شده برای آبادی شما: <strong>«تعداد خشت»</strong>.<br><br>
+            — شورای اشکفت‌سلمان
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 14 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۱۴</div>
+        <div class="project-title">
+          <h3>کتابچه‌ی رمان — بخش‌بندی و جلد</h3>
+          <div class="meta">
+            <span>⏱ ۶۰ دقیقه</span>
+            <span>📊 سطح: پیشرفته</span>
+            <span>🎯 هدف: Section Breaks و Cover Page</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Section Break</span><span>Cover Page</span><span>Different First Page</span><span>Export PDF</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>ساخت جلد</strong>
+              <p>از <span class="path">Insert <span class="sep">›</span> Cover Page</span> یک قالب جلد انتخاب کنید و عنوان و نام نویسنده را پر کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن Section Break</strong>
+              <p>بعد از جلد، از <span class="path">Layout <span class="sep">›</span> Breaks <span class="sep">›</span> Next Page</span> یک بخش جدید بسازید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ساخت ۱۰ بخش</strong>
+              <p>برای هر بخش (معرفی، خلاصه، شخصیت‌ها، خط زمان، نقشه، واژه‌نامه، تحلیل، نتیجه) یک Section Break بگذارید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>شماره‌گذاری از بخش دوم</strong>
+              <p>روی پاصفحه‌ی بخش دوم کلیک کنید و از <span class="path">Insert <span class="sep">›</span> Page Number <span class="sep">›</span> Format Page Numbers <span class="sep">›</span> Start at 1</span> استفاده کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>Different First Page</strong>
+              <p>برای اینکه جلد شماره صفحه نداشته باشد، از <span class="path">Design <span class="sep">›</span> Different First Page</span> فعال کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>درج فهرست مطالب</strong>
+              <p>در بخش دوم، یک TOC خودکار اضافه کنید: <span class="path">References <span class="sep">›</span> Table of Contents</span>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>خروجی PDF</strong>
+              <p>از <span class="path">File <span class="sep">›</span> Export <span class="sep">›</span> Create PDF/XPS</span> فایل نهایی را به PDF تبدیل کنید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint info">
+          <span class="hint-icon">📚</span>
+          <div><strong>نکته:</strong> با Section Breaks می‌توانید برای هر بخش، سرصفحه و پاصفحه‌ی متفاوت داشته باشید. مثلاً بخش اول بدون شماره، بخش دوم با شماره‌ی لاتین و بخش سوم با شماره‌ی فارسی.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 15 -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-num">۱۵</div>
+        <div class="project-title">
+          <h3>پروژه‌ی نهایی — کتاب کامل رمان</h3>
+          <div class="meta">
+            <span>⏱ ۹۰ دقیقه</span>
+            <span>📊 سطح: پیشرفته</span>
+            <span>🎯 هدف: ترکیب همه مهارت‌ها</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>همه‌ی مهارت‌ها</span><span>Styles</span><span>TOC</span><span>Header/Footer</span><span>PDF</span><span>Protection</span>
+        </div>
+
+        <div class="info hint">
+          <span class="hint-icon">🎯</span>
+          <div><strong>هدف نهایی:</strong> یک کتابچه‌ی کامل از تحلیل رمان «زمین خواهد شنید» بسازید که شامل تمام بخش‌های تمرین‌شده باشد.</div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>طراحی ساختار</strong>
+              <p>ساختار کتاب را مشخص کنید: جلد، فهرست، پیش‌گفتار، خلاصه، شخصیت‌ها، خط زمان، نقشه، واژه‌نامه، تحلیل نمادها، شواهد، نتیجه‌گیری، منابع.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ایجاد سبک سفارشی</strong>
+              <p>از <span class="path">Home <span class="sep">›</span> Styles <span class="sep">›</span> Create a Style</span> یک سبک سفارشی به نام «عنوان فصل» بسازید: فونت B Nazanin، اندازه ۱۸، رنگ قهوه‌ای، وسط‌چین.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>نوشتن فصل‌ها</strong>
+              <p>هر فصل را با سبک سفارشی بنویسید. کلمات کلیدی را پررنگ، تعریف‌ها را کج و نقل‌قول‌ها را با Quote قالب‌بندی کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>افزودن جدول و تصویر</strong>
+              <p>در بخش‌های مرتبط، جدول شخصیت‌ها و تصاویر سنگ‌نگاره‌ها را درج کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>فهرست مطالب خودکار</strong>
+              <p>در ابتدای کتاب، یک TOC با چند سطح (Heading 1, 2, 3) بسازید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>سرصفحه و پاصفحه</strong>
+              <p>سرصفحه: «زمین خواهد شنید — تحلیل جامع». پاصفحه: شماره صفحه و تاریخ.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>پانویس‌ها و ارجاعات</strong>
+              <p>برای واژه‌های ایلامی پانویس بگذارید. برای ارجاع به فصل‌های دیگر، از Cross-reference استفاده کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>بازبینی نهایی</strong>
+              <p>از <span class="path">Review <span class="sep">›</span> Spelling &amp; Grammar</span> برای بررسی املا و دستور زبان استفاده کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>محافظت از سند</strong>
+              <p>از <span class="path">Review <span class="sep">›</span> Restrict Editing</span> می‌توانید سند را در برابر ویرایش محافظت کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>خروجی PDF</strong>
+              <p>در پایان، فایل را با نام <strong>کتاب_زمین_خواهد_شنید.pdf</strong> ذخیره کنید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint">
+          <span class="hint-icon">🏆</span>
+          <div><strong>جایزه:</strong> اگر این پروژه را کامل کنید، به تمام مهارت‌های ورد از مبتدی تا پیشرفته مسلط شده‌اید. می‌توانید این کتابچه را به عنوان نمونه‌کار خود ارائه دهید.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ SUMMARY =============================== -->
+  <!-- ==================================================== -->
+  <section id="summary">
+    <div class="section-header">
+      <div class="level-badge" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));">📋</div>
+      <div>
+        <h2>جمع‌بندی و نقشه‌ی راه یادگیری</h2>
+        <div class="sub">مرور کلی ۱۵ پروژه و مهارت‌های کسب‌شده</div>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h4>🟢 سطح مبتدی (۱-۵)</h4>
+        <ul>
+          <li>آشنایی با محیط ورد</li>
+          <li>تایپ فارسی و راست‌به‌چپ</li>
+          <li>پررنگ، کج، زیرخط</li>
+          <li>لیست نقطه‌دار و شماره‌دار</li>
+          <li>ساخت جدول ساده</li>
+          <li>درج تصویر</li>
+          <li>حاشیه و ذخیره</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>🔵 سطح متوسط (۶-۱۰)</h4>
+        <ul>
+          <li>سرصفحه و پاصفحه</li>
+          <li>شماره صفحه و تاریخ</li>
+          <li>سبک‌ها (Heading)</li>
+          <li>فهرست خودکار (TOC)</li>
+          <li>Text Box و Shapes</li>
+          <li>SmartArt</li>
+          <li>واترمارک و حاشیه</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>🟣 سطح پیشرفته (۱۱-۱۵)</h4>
+        <ul>
+          <li>پانویس و پاصفحه</li>
+          <li>ارجاع متقابل و بوکمارک</li>
+          <li>Track Changes</li>
+          <li>Mail Merge</li>
+          <li>Section Breaks</li>
+          <li>Cover Page</li>
+          <li>خروجی PDF و محافظت</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>⌨️ میانبرهای طلایی</h4>
+        <ul>
+          <li><span class="kbd">Ctrl</span>+<span class="kbd">S</span> ذخیره</li>
+          <li><span class="kbd">Ctrl</span>+<span class="kbd">B</span> پررنگ</li>
+          <li><span class="kbd">Ctrl</span>+<span class="kbd">I</span> کج</li>
+          <li><span class="kbd">Ctrl</span>+<span class="kbd">U</span> زیرخط</li>
+          <li><span class="kbd">Ctrl</span>+<span class="kbd">E</span> وسط‌چین</li>
+          <li><span class="kbd">Ctrl</span>+<span class="kbd">J</span> دوطرفه</li>
+          <li><span class="kbd">Ctrl</span>+<span class="kbd">K</span> هایپرلینک</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:35px;background:linear-gradient(135deg,rgba(42,157,143,0.1),rgba(212,162,76,0.1));border-right:5px solid var(--water);border-radius:14px;padding:25px 30px;">
+      <p style="font-size:1.05rem;line-height:2;color:var(--earth-dark);margin:0;">
+        <strong style="color:var(--water-dark);">🎯 نتیجه:</strong>
+        با انجام این ۱۵ پروژه، از یک کاربر مبتدی ورد به یک کاربر حرفه‌ای تبدیل می‌شوید.
+        تمام مهارت‌ها با محتوای رمان «زمین خواهد شنید» تمرین شده‌اند تا یادگیری شما هم آموزشی و هم لذت‌بخش باشد.
+        در پایان، یک کتابچه‌ی کامل در دست دارید که می‌توانید به عنوان نمونه‌کار ارائه دهید.
+      </p>
+    </div>
+
+    <p style="text-align:center;font-size:1.15rem;color:var(--earth-dark);font-weight:700;margin-top:35px;">
+      «آب راهش را پیدا می‌کند؛ مهارت هم.»
+    </p>
+  </section>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="brand">آموزشگاه هوش مصنوعی تیروتیر</div>
+  <p class="tagline">
+    آموزش مهارت‌های دیجیتال با الهام از تاریخ و ادبیات ایران<br>
+    بر اساس رمان «زمین خواهد شنید» نوشته‌ی داریوش علیپور
+  </p>
+  <a href="https://tirotir.ir" class="site-link" target="_blank" rel="noopener">
+    🌐 tirotir.ir
+  </a>
+  <div class="divider"></div>
+  <p class="copyright">© ۱۴۰۵ — تمامی حقوق برای آموزشگاه تیروتیر محفوظ است.</p>
+</footer>
+
+</body>
+</html>

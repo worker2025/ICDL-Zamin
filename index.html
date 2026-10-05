@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICDL زمین خواهد شنید — آموزشگاه هوش مصنوعی تیروتیر</title>
+<meta name="description" content="مجموعه‌ی کامل تمرین‌های ICDL بر اساس رمان زمین خواهد شنید — اکسل، اکセス، پاورپوینت، ورد، ویندوز و پایتون">
+<meta property="og:title" content="ICDL زمین خواهد شنید | تیروتیر">
+<meta property="og:description" content="آموزش مهارت‌های دیجیتال با الهام از رمان زمین خواهد شنید">
+<meta property="og:image" content="logo.jpg">
+<link rel="icon" type="image/jpeg" href="logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --earth: #8b5e3c;
+    --earth-dark: #5c3b22;
+    --water: #2a9d8f;
+    --water-dark: #1a6b62;
+    --gold: #d4a24c;
+    --gold-dark: #a67c2e;
+    --blood: #9b2c2c;
+    --sand: #f5e9d7;
+    --sand-light: #fbf6ee;
+    --ink: #2b2118;
+    --blue: #3776ab;
+    --blue-dark: #1e40af;
+    --yellow: #ffd43b;
+    --green: #16a34a;
+    --green-dark: #14532d;
+    --purple: #7c3aed;
+    --purple-dark: #4c1d95;
+    --access: #a4373a;
+    --access-dark: #7a2829;
+    --powerpoint: #d24726;
+    --powerpoint-dark: #a13317;
+    --word: #2b579a;
+    --word-dark: #1e3a8a;
+    --windows: #0078d4;
+    --windows-dark: #005a9e;
+    --shadow-sm: 0 4px 15px rgba(92, 59, 34, 0.08);
+    --shadow-md: 0 10px 30px rgba(92, 59, 34, 0.12);
+    --shadow-lg: 0 20px 50px rgba(92, 59, 34, 0.18);
+  }
+
+  body {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    background: linear-gradient(135deg, #fbf6ee 0%, #f0e4d0 100%);
+    color: var(--ink);
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2a9d8f 100%);
+    color: #fff;
+    padding: 70px 20px 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(212, 162, 76, 0.25), transparent 70%);
+    border-radius: 50%;
+    animation: float 9s ease-in-out infinite;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(42, 157, 143, 0.3), transparent 70%);
+    border-radius: 50%;
+    animation: float 11s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-25px, 25px); }
+  }
+
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo-wrap {
+    display: inline-block;
+    background: #fff;
+    border-radius: 50%;
+    padding: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    margin-bottom: 25px;
+    animation: logoFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .logo-wrap img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .brand-name {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    opacity: 0.95;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .brand-name strong {
+    color: var(--gold);
+    font-weight: 800;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 18px;
+    text-shadow: 0 4px 25px rgba(0,0,0,0.4);
+    line-height: 1.3;
+  }
+
+  header h1 .highlight {
+    background: linear-gradient(90deg, #ffd43b, #4ecdc4, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header p {
+    font-size: 1.15rem;
+    opacity: 0.92;
+    margin: 0 auto 30px;
+    font-weight: 300;
+    max-width: 700px;
+  }
+
+  .header-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .header-actions a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 26px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-primary {
+    background: rgba(255, 212, 59, 0.15);
+    border: 1.5px solid rgba(255, 212, 59, 0.5);
+    color: #ffd43b;
+  }
+  .btn-primary:hover {
+    background: #ffd43b;
+    color: #1a1a2e;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 212, 59, 0.4);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1200px;
+    margin: -60px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ===== STATS ===== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 40px;
+    border: 1px solid rgba(139, 94, 60, 0.08);
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 10px;
+    border-left: 1px solid rgba(139, 94, 60, 0.1);
+  }
+
+  .stat-item:last-child { border-left: none; }
+
+  .stat-item .stat-num {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--water), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+
+  .stat-item .stat-label {
+    font-size: 0.85rem;
+    color: #8b7355;
+    margin-top: 5px;
+  }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+    color: var(--earth-dark);
+    font-weight: 800;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title h2 .accent-line {
+    display: inline-block;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--water), var(--gold));
+    border-radius: 3px;
+  }
+
+  .section-title p {
+    color: #8b7355;
+    font-size: 1rem;
+  }
+
+  /* ===== CARDS GRID ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(139, 94, 60, 0.1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .card-header {
+    padding: 30px 25px 20px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  .card-header::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 130px;
+    height: 130px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+
+  .card-header.access { background: linear-gradient(135deg, var(--access-dark), var(--access)); }
+  .card-header.excel { background: linear-gradient(135deg, var(--green-dark), var(--green)); }
+  .card-header.powerpoint { background: linear-gradient(135deg, var(--powerpoint-dark), var(--powerpoint)); }
+  .card-header.word { background: linear-gradient(135deg, var(--word-dark), var(--word)); }
+  .card-header.windows { background: linear-gradient(135deg, var(--windows-dark), var(--windows)); }
+  .card-header.python { background: linear-gradient(135deg, #1e293b, var(--blue)); }
+  .card-header.novel { background: linear-gradient(135deg, var(--earth-dark), var(--earth)); }
+
+  .card-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.18);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 16px;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.4;
+  }
+
+  .card-subtitle {
+    font-size: 0.88rem;
+    opacity: 0.92;
+    position: relative;
+    z-index: 1;
+    font-weight: 400;
+  }
+
+  .card-body {
+    padding: 22px 25px 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-desc {
+    font-size: 0.92rem;
+    color: #5a4a3a;
+    line-height: 1.85;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .card-tags span {
+    background: var(--sand-light);
+    color: var(--earth-dark);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 94, 60, 0.15);
+  }
+
+  .card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(139, 94, 60, 0.15);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--water-dark);
+    transition: all 0.3s;
+  }
+
+  .card-link .arrow {
+    transition: transform 0.3s;
+    font-size: 1.1rem;
+  }
+
+  .card:hover .card-link .arrow {
+    transform: translateX(-6px);
+  }
+
+  .card:hover .card-link { color: var(--gold-dark); }
+
+  /* ===== SPECIAL FEATURED CARD ===== */
+  .card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+    background: linear-gradient(135deg, #fff 0%, var(--sand-light) 100%);
+  }
+
+  .card.featured .card-header {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 25px;
+    text-align: center;
+  }
+
+  .card.featured .card-body {
+    padding: 35px 40px;
+  }
+
+  .card.featured .card-title { font-size: 1.4rem; }
+  .card.featured .card-desc { font-size: 1rem; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: linear-gradient(135deg, #0f172a 0%, #0d1117 100%);
+    color: #fff;
+    padding: 60px 20px 35px;
+    text-align: center;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--water), var(--gold), var(--powerpoint), var(--blue));
+  }
+
+  .footer-logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 4px;
+    margin: 0 auto 18px;
+    display: block;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  }
+
+  footer .brand {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #60a5fa, #4ecdc4, #ffd43b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  footer .tagline {
+    font-size: 1rem;
+    opacity: 0.75;
+    margin-bottom: 28px;
+    font-weight: 300;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  footer .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+
+  .link-site {
+    background: rgba(42, 157, 143, 0.15);
+    border: 1.5px solid var(--water);
+    color: #4ecdc4;
+  }
+  .link-site:hover {
+    background: var(--water);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(42, 157, 143, 0.4);
+  }
+
+  .link-github {
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: #fff;
+  }
+  .link-github:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-3px);
+  }
+
+  footer .divider {
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--water));
+    margin: 28px auto;
+    border-radius: 2px;
+  }
+
+  footer .quote {
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+
+  footer .copyright {
+    font-size: 0.85rem;
+    opacity: 0.5;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    header { padding: 50px 20px 100px; }
+    header h1 { font-size: 1.9rem; }
+    header p { font-size: 1rem; }
+    .logo-wrap img { width: 85px; height: 85px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .card.featured {
+      grid-template-columns: 1fr;
+    }
+    .card.featured .card-header {
+      padding: 30px 25px 20px;
+      text-align: right;
+      align-items: flex-start;
+    }
+    .card.featured .card-body { padding: 22px 25px 25px; }
+    .stats { padding: 18px; }
+    .stat-item { padding: 8px; }
+    .stat-item .stat-num { font-size: 1.5rem; }
+    footer .brand { font-size: 1.5rem; }
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--sand); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--water), var(--gold));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--water-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <img src="logo.jpg" alt="لوگوی کبک تیروتیر">
+    </div>
+    <div class="brand-name">آموزشگاه هوش مصنوعی <strong>تیروتیر</strong></div>
+    <h1>ICDL با <span class="highlight">رمان زمین خواهد شنید</span></h1>
+    <p>مجموعه‌ی کامل تمرین‌های مهارت‌های هفت‌گانه‌ی ICDL بر اساس رمان «زمین خواهد شنید» نوشته‌ی داریوش علیپور — از اکسل تا پایتون، همه با محتوای یک رمان ایرانی.</p>
+
+    <div class="header-actions">
+      <a href="https://tirotir.ir" target="_blank" rel="noopener" class="btn-primary">
+        🌐 tirotir.ir
+      </a>
+      <a href="zamin-tir-1405.pdf" target="_blank" class="btn-secondary">
+        📖 دانلود رمان (PDF)
+      </a>
+      <a href="https://github.com/worker2025/icdl-zamin" target="_blank" rel="noopener" class="btn-secondary">
+        🐙 GitHub Repo
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ===== STATS ===== -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">۷</div>
+      <div class="stat-label">ماژول ICDL</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">۱۰</div>
+      <div class="stat-label">فایل آموزشی</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">۵۰+</div>
+      <div class="stat-label">پروژه‌ی عملی</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">۱</div>
+      <div class="stat-label">رمان الهام‌بخش</div>
+    </div>
+  </div>
+
+  <!-- ===== FEATURED: NOVEL ===== -->
+  <div class="cards-grid" style="margin-bottom: 40px;">
+    <a href="zamin-tir-1405.pdf" target="_blank" class="card featured">
+      <div class="card-header novel">
+        <div class="card-icon-wrap">📖</div>
+        <div class="card-title">زمین خواهد شنید</div>
+        <div class="card-subtitle">اصل رمان — داریوش علیپور</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          رمانی تاریخی از دوره‌ی ایلام نو، حدود ۲۷۰۰ سال پیش، در زاگرس و دشت ایذه. داستان نیکا نوازنده، هانی فرمانروا، و مردمانی که با خشت‌های رأی، شورا ساختند. این رمان، منبع الهام تمام تمرین‌های ICDL این ریپو است.
+        </div>
+        <div class="card-tags">
+          <span>رمان تاریخی</span>
+          <span>ایلام نو</span>
+          <span>زاگرس</span>
+          <span>PDF</span>
+          <span>۱۴۰۵</span>
+        </div>
+        <div class="card-link">
+          <span>مطالعه‌ی رمان</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ===== TITLE ===== -->
+  <div class="section-title">
+    <h2><span class="accent-line"></span> ماژول‌های آموزشی <span class="accent-line"></span></h2>
+    <p>۹ فایل آموزشی تعاملی، هر کدام با پروژه‌های گام‌به‌گام بر اساس رمان</p>
+  </div>
+
+  <!-- ===== CARDS ===== -->
+  <div class="cards-grid">
+
+    <!-- Excel 1 -->
+    <a href="excel-kohbad.html" class="card">
+      <div class="card-header excel">
+        <div class="card-icon-wrap">📊</div>
+        <div class="card-title">اکسل — خراج کُهباد</div>
+        <div class="card-subtitle">فصل اول رمان</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          مدیریت انبار روستای کُهباد با اکسل — از ورود داده‌های پشم و خُمه تا محاسبه‌ی خراج و گزارش نهایی به شوش.
+        </div>
+        <div class="card-tags">
+          <span>Excel</span><span>SUM</span><span>IF</span><span>نمودار</span>
+        </div>
+        <div class="card-link">
+          <span>مشاهده‌ی تمرین</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Excel 2 -->
+    <a href="excel-novel.html" class="card">
+      <div class="card-header excel">
+        <div class="card-icon-wrap">📊</div>
+        <div class="card-title">هفت تمرین اکسل</div>
+        <div class="card-subtitle">شخصیت‌ها و رویدادها</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          هفت تمرین اکسل با شخصیت‌های رمان — از ورود داده و قالب‌بندی تا Pivot Table و گزارش نهایی ویژه‌ی کلاس ICDL.
+        </div>
+        <div class="card-tags">
+          <span>Pivot Table</span><span>COUNTIF</span><span>Sort</span>
+        </div>
+        <div class="card-link">
+          <span>مشاهده‌ی تمرین</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Excel 3 -->
+    <a href="excel2.html" class="card">
+      <div class="card-header excel">
+        <div class="card-icon-wrap">🌊</div>
+        <div class="card-title">خشت، لوح و سُکُت</div>
+        <div class="card-subtitle">آبادی‌های زاگرس</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          آموزش توابع اکسل با داده‌های ۱۶ آبادی زاگرس — از کُهباد تا اشکفت‌سلمان. VLOOKUP، SUMIF و نمودارهای حرفه‌ای.
+        </div>
+        <div class="card-tags">
+          <span>VLOOKUP</span><span>SUMIF</span><span>Charts</span>
+        </div>
+        <div class="card-link">
+          <span>مشاهده‌ی تمرین</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Access -->
+    <a href="access1.html" class="card">
+      <div class="card-header access">
+        <div class="card-icon-wrap">🗄️</div>
+        <div class="card-title">اکسس — پایگاه داده</div>
+        <div class="card-subtitle">ساخت DB رمان</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          ساخت پایگاه داده‌ی رمان — از جدول شخصیت‌ها و مکان‌ها تا کوئری، فرم و گزارش خراج. تمرین جامع Microsoft Access.
+        </div>
+        <div class="card-tags">
+          <span>Access</span><span>Table</span><span>Query</span><span>Form</span>
+        </div>
+        <div class="card-link">
+          <span>مشاهده‌ی تمرین</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Word -->
+    <a href="word1.html" class="card">
+      <div class="card-header word">
+        <div class="card-icon-wrap">📄</div>
+        <div class="card-title">آموزش کامل ورد</div>
+        <div class="card-subtitle">از مبتدی تا حرفه‌ای</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          ۱۵ پروژه‌ی گام‌به‌گام ورد از سطح ابتدایی تا پیشرفته — با راهنمای بصری، ماکاپ محیط Word و تصویرسازی مسیرها.
+        </div>
+        <div class="card-tags">
+          <span>Word</span><span>Styles</span><span>TOC</span><span>Mail Merge</span>
+        </div>
+        <div class="card-link">
+          <span>مشاهده‌ی آموزش</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- PowerPoint 1 -->
+    <a href="powerpoint1.html" class="card">
+      <div class="card-header powerpoint">
+        <div class="card-icon-wrap">📽️</div>
+        <div class="card-title">پاورپوینت‌های آماده</div>
+        <div class="card-subtitle">چهار ارائه‌ی کامل</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          چهار ارائه‌ی آماده: معرفی رمان، شخصیت‌ها، مضامین و تاریخ — مناسب برای کلاس ICDL و ارائه‌های ادبی.
+        </div>
+        <div class="card-tags">
+          <span>PowerPoint</span><span>Presentation</span><span>4 اسلایدشو</span>
+        </div>
+        <div class="card-link">
+          <span>مشاهده‌ی ارائه‌ها</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- PowerPoint 2 -->
+    <a href="powerpoint2.html" class="card">
+      <div class="card-header powerpoint">
+        <div class="card-icon-wrap">🔍</div>
+        <div class="card-title">ارباب، شاه و کاهن</div>
+        <div class="card-subtitle">تحلیل مضامین</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          تحلیل عمیق مضامین رمان: چرا ارباب، شاه و کاهن از یک قماشند؟ با شواهد از متن و ۵ پروژه‌ی HTML تعاملی.
+        </div>
+        <div class="card-tags">
+          <span>تحلیل</span><span>مضامین</span><span>شواهد</span>
+        </div>
+        <div class="card-link">
+          <span>مشاهده‌ی تحلیل</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Windows -->
+    <a href="windows1.html" class="card">
+      <div class="card-header windows">
+        <div class="card-icon-wrap">🪟</div>
+        <div class="card-title">ویندوز، فایل و CMD</div>
+        <div class="card-subtitle">مهارت‌های سیستم‌عامل</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          ۱۰ پروژه‌ی ویندوز: از دسکتاپ و مدیریت فایل تا خط فرمان CMD و فایل‌های Batch برای اتوماسیون کارها.
+        </div>
+        <div class="card-tags">
+          <span>Windows</span><span>File Manager</span><span>CMD</span><span>Batch</span>
+        </div>
+        <div class="card-link">
+          <span>مشاهده‌ی آموزش</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Python -->
+    <a href="python1.html" class="card">
+      <div class="card-header python">
+        <div class="card-icon-wrap">🐍</div>
+        <div class="card-title">پایتون ۱ — مقدماتی</div>
+        <div class="card-subtitle">اولین گام برنامه‌نویسی</div>
+      </div>
+      <div class="card-body">
+        <div class="card-desc">
+          یادگیری برنامه‌نویسی از صفر — از print() و متغیرها تا توابع و حلقه‌ها، با پروژه‌ی نهایی «سیستم شورای خشت‌ها».
+        </div>
+        <div class="card-tags">
+          <span>Python</span><span>Basics</span><span>Functions</span><span>Project</span>
+        </div>
+        <div class="card-link">
+          <span>شروع یادگیری</span>
+          <span class="arrow">←</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <img src="logo.jpg" alt="لوگوی تیروتیر" class="footer-logo">
+  <div class="brand">آموزشگاه هوش مصنوعی تیروتیر</div>
+  <p class="tagline">
+    آموزش مهارت‌های دیجیتال با الهام از تاریخ و ادبیات ایران<br>
+    بر اساس رمان «زمین خواهد شنید» نوشته‌ی داریوش علیپور
+  </p>
+
+  <div class="footer-links">
+    <a href="https://tirotir.ir" target="_blank" rel="noopener" class="link-site">
+      🌐 tirotir.ir
+    </a>
+    <a href="https://github.com/worker2025/icdl-zamin" target="_blank" rel="noopener" class="link-github">
+      🐙 GitHub Repository
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="quote">«آب راهش را پیدا می‌کند؛ مهارت هم.»</p>
+  <p class="copyright">© ۱۴۰۵ — تمامی حقوق برای آموزشگاه هوش مصنوعی تیروتیر محفوظ است.</p>
+</footer>
+
+</body>
+</html>

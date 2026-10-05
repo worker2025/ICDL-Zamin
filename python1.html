@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آموزش پایتون سطح ۱ — رمان زمین خواهد شنید | تیروتیر</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --earth: #8b5e3c;
+    --earth-dark: #5c3b22;
+    --water: #2a9d8f;
+    --water-dark: #1a6b62;
+    --gold: #d4a24c;
+    --gold-dark: #a67c2e;
+    --blood: #9b2c2c;
+    --sand: #f5e9d7;
+    --sand-light: #fbf6ee;
+    --ink: #2b2118;
+    --blue: #3776ab;
+    --blue-dark: #1e40af;
+    --yellow: #ffd43b;
+    --green: #16a34a;
+    --purple: #7c3aed;
+    --code-bg: #1e1e2e;
+    --code-bg-2: #282a36;
+    --code-header: #181825;
+    --shadow-sm: 0 4px 15px rgba(92, 59, 34, 0.08);
+    --shadow-md: 0 10px 30px rgba(92, 59, 34, 0.12);
+    --shadow-lg: 0 20px 50px rgba(92, 59, 34, 0.18);
+  }
+
+  body {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    background: linear-gradient(135deg, #fbf6ee 0%, #f0e4d0 100%);
+    color: var(--ink);
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2b3a5f 50%, #3776ab 100%);
+    color: #fff;
+    padding: 70px 20px 110px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 212, 59, 0.2), transparent 70%);
+    border-radius: 50%;
+    animation: float 9s ease-in-out infinite;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(55, 118, 171, 0.4), transparent 70%);
+    border-radius: 50%;
+    animation: float 11s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-25px, 25px); }
+  }
+
+  header .badge {
+    display: inline-block;
+    background: rgba(255, 212, 59, 0.12);
+    border: 1px solid rgba(255, 212, 59, 0.3);
+    color: #fde68a;
+    padding: 9px 26px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 4px 25px rgba(0,0,0,0.4);
+    line-height: 1.3;
+  }
+
+  header h1 .highlight {
+    background: linear-gradient(90deg, #ffd43b, #60a5fa, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header p {
+    font-size: 1.15rem;
+    opacity: 0.92;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    font-weight: 300;
+  }
+
+  .py-bar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+  }
+
+  .py-bar span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    backdrop-filter: blur(10px);
+    color: #fff;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1200px;
+    margin: -55px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ===== NAV ===== */
+  .level-nav {
+    background: #fff;
+    border-radius: 22px;
+    padding: 30px 25px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border: 1px solid rgba(139, 94, 60, 0.08);
+  }
+
+  .level-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+  }
+
+  .level-nav a.basics {
+    background: rgba(55, 118, 171, 0.1);
+    color: var(--blue);
+    border-color: rgba(55, 118, 171, 0.2);
+  }
+  .level-nav a.basics:hover {
+    background: var(--blue);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(55, 118, 171, 0.3);
+  }
+
+  .level-nav a.data {
+    background: rgba(22, 163, 74, 0.1);
+    color: var(--green);
+    border-color: rgba(22, 163, 74, 0.2);
+  }
+  .level-nav a.data:hover {
+    background: var(--green);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
+  }
+
+  .level-nav a.flow {
+    background: rgba(212, 162, 76, 0.1);
+    color: var(--gold-dark);
+    border-color: rgba(212, 162, 76, 0.2);
+  }
+  .level-nav a.flow:hover {
+    background: var(--gold);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(212, 162, 76, 0.3);
+  }
+
+  .level-nav a.project {
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--purple);
+    border-color: rgba(124, 58, 237, 0.2);
+  }
+  .level-nav a.project:hover {
+    background: var(--purple);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+  }
+
+  /* ===== SECTION ===== */
+  section {
+    background: #fff;
+    border-radius: 22px;
+    padding: 45px 40px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(139, 94, 60, 0.08);
+    animation: fadeUp 0.7s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 35px;
+    padding-bottom: 22px;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--blue), var(--gold), transparent) 1;
+  }
+
+  .section-header .level-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    font-size: 1.6rem;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    font-weight: 900;
+  }
+
+  .level-badge.basics { background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
+  .level-badge.data { background: linear-gradient(135deg, var(--green), #059669); }
+  .level-badge.flow { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); }
+  .level-badge.project { background: linear-gradient(135deg, var(--purple), #5b21b6); }
+
+  .section-header h2 {
+    font-size: 1.7rem;
+    color: var(--earth-dark);
+    font-weight: 800;
+    line-height: 1.4;
+  }
+
+  .section-header .sub {
+    font-size: 0.95rem;
+    color: #8b7355;
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  /* ===== PROJECT ===== */
+  .project {
+    background: linear-gradient(135deg, #fff 0%, var(--sand-light) 100%);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border: 1px solid rgba(139, 94, 60, 0.12);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+  }
+
+  .project:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .project-header {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+    color: #fff;
+    padding: 24px 30px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-header.py { background: linear-gradient(135deg, #1e293b, #3776ab); }
+  .project-header.data { background: linear-gradient(135deg, #14532d, #16a34a); }
+  .project-header.flow { background: linear-gradient(135deg, #78350f, #d4a24c); }
+  .project-header.final { background: linear-gradient(135deg, #4c1d95, #7c3aed); }
+
+  .project-header::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .project-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 14px;
+    font-size: 1.3rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-title { position: relative; z-index: 1; }
+
+  .project-title h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .project-title .meta {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .project-title .meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .project-body { padding: 30px; }
+
+  /* ===== SKILLS ===== */
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .skills span {
+    background: linear-gradient(135deg, var(--sand), #fff);
+    color: var(--earth-dark);
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 94, 60, 0.2);
+    transition: all 0.2s;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .skills span:hover {
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color: #fff;
+    border-color: var(--blue);
+  }
+
+  /* ===== HINT ===== */
+  .hint {
+    background: linear-gradient(135deg, rgba(212, 162, 76, 0.12), rgba(212, 162, 76, 0.05));
+    border-right: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 0.92rem;
+    color: #6b4f1a;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .hint .hint-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .hint strong { color: var(--gold-dark); }
+
+  .warn {
+    background: linear-gradient(135deg, rgba(155, 44, 44, 0.1), rgba(155, 44, 44, 0.04));
+    border-right: 4px solid var(--blood);
+    color: #6b1a1a;
+  }
+  .warn strong { color: var(--blood); }
+
+  .info {
+    background: linear-gradient(135deg, rgba(55, 118, 171, 0.1), rgba(55, 118, 171, 0.04));
+    border-right: 4px solid var(--blue);
+    color: #1e3a8a;
+  }
+  .info strong { color: var(--blue-dark); }
+
+  .success {
+    background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(22, 163, 74, 0.04));
+    border-right: 4px solid var(--green);
+    color: #14532d;
+  }
+  .success strong { color: var(--green); }
+
+  /* ===== CODE BLOCK (NEW STRUCTURE) ===== */
+  .code-block {
+    background: var(--code-bg);
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 22px 0;
+    border: 1px solid #313244;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    direction: ltr;
+  }
+
+  .code-header {
+    background: linear-gradient(180deg, #2a2a3e, var(--code-header));
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #313244;
+    flex-wrap: wrap;
+  }
+
+  .code-header .dots { display: flex; gap: 6px; flex-shrink: 0; }
+  .code-header .dots span {
+    width: 12px; height: 12px; border-radius: 50%;
+  }
+  .code-header .dots .r { background: #ff5f56; }
+  .code-header .dots .y { background: #ffbd2e; }
+  .code-header .dots .g { background: #27c93f; }
+
+  .code-header .py-tag {
+    background: rgba(55, 118, 171, 0.2);
+    color: #60a5fa;
+    padding: 3px 12px;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid rgba(55, 118, 171, 0.35);
+    flex-shrink: 0;
+  }
+
+  .code-header .file-name {
+    color: #a6adc8;
+    font-size: 0.82rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .copy-btn {
+    background: rgba(55, 118, 171, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(55, 118, 171, 0.35);
+    padding: 5px 14px;
+    border-radius: 8px;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover {
+    background: rgba(55, 118, 171, 0.3);
+    color: #93c5fd;
+    transform: translateY(-1px);
+  }
+
+  .copy-btn.copied {
+    background: rgba(22, 163, 74, 0.2);
+    color: #4ade80;
+    border-color: rgba(22, 163, 74, 0.4);
+  }
+
+  .copy-btn svg {
+    width: 13px;
+    height: 13px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .code-body {
+    padding: 18px 0;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.75;
+    color: #f8f8f2;
+    text-align: left;
+  }
+
+  .code-line {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 22px;
+    min-height: 1.75em;
+    white-space: pre;
+  }
+
+  .code-line:hover {
+    background: rgba(255,255,255,0.03);
+  }
+
+  .line-num {
+    display: inline-block;
+    width: 30px;
+    min-width: 30px;
+    color: #4a5568;
+    user-select: none;
+    margin-right: 20px;
+    text-align: right;
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    padding-top: 2px;
+  }
+
+  .code-text {
+    white-space: pre;
+    flex: 1;
+  }
+
+  /* Syntax Highlighting */
+  .kw { color: #ff79c6; font-weight: 700; }
+  .fn { color: #50fa7b; }
+  .str { color: #f1fa8c; }
+  .num { color: #bd93f9; }
+  .cm { color: #6272a4; font-style: italic; }
+  .op { color: #ff79c6; }
+  .var { color: #8be9fd; }
+  .cls { color: #8be9fd; font-weight: 700; }
+  .bool { color: #bd93f9; font-weight: 700; }
+  .builtin { color: #8be9fd; }
+
+  /* ===== OUTPUT TERMINAL ===== */
+  .output-terminal {
+    background: #0c0c0c;
+    border-radius: 12px;
+    padding: 0;
+    margin: 15px 0;
+    overflow: hidden;
+    border: 2px solid #1a1a1a;
+    direction: ltr;
+  }
+
+  .output-terminal .out-header {
+    background: linear-gradient(180deg, #1a1a1a, #0f0f0f);
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .output-terminal .out-header .out-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+
+  .output-terminal .out-header .r { background: #ff5f56; }
+  .output-terminal .out-header .y { background: #ffbd2e; }
+  .output-terminal .out-header .g { background: #27c93f; }
+
+  .output-terminal .out-header .out-title {
+    color: #888;
+    font-size: 0.78rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-left: auto;
+  }
+
+  .output-terminal .out-body {
+    padding: 18px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: #e5e5e5;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .output-terminal .out-body .prompt { color: #0f0; font-weight: 700; }
+  .output-terminal .out-body .out { color: #b0b0b0; }
+  .output-terminal .out-body .success { color: #4ade80; }
+  .output-terminal .out-body .error { color: #ff6b6b; }
+
+  /* ===== STEPS ===== */
+  .steps {
+    counter-reset: step;
+    margin-top: 20px;
+  }
+
+  .step {
+    display: flex;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px dashed rgba(139, 94, 60, 0.15);
+    position: relative;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step::before {
+    counter-increment: step;
+    content: counter(step);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(55, 118, 171, 0.3);
+    margin-top: 2px;
+  }
+
+  .step-content { flex: 1; }
+
+  .step-content strong {
+    color: var(--earth-dark);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+
+  .step-content p {
+    color: #5a4a3a;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+
+  /* ===== TABLE ===== */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
+    margin: 20px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    min-width: 550px;
+  }
+
+  thead {
+    background: linear-gradient(135deg, #1e293b, var(--blue));
+    color: #fff;
+  }
+
+  thead th {
+    padding: 15px 14px;
+    text-align: right;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-left: 1px solid rgba(255,255,255,0.08);
+  }
+
+  tbody td {
+    padding: 13px 14px;
+    border-bottom: 1px solid #f0e4d0;
+    font-size: 0.9rem;
+    color: #4a3d30;
+  }
+
+  tbody tr:nth-child(even) { background: var(--sand-light); }
+  tbody tr:hover { background: #e8f4fd; }
+
+  tbody td code {
+    background: var(--code-bg);
+    color: #50fa7b;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    direction: ltr;
+    display: inline-block;
+    border: 1px solid #313244;
+  }
+
+  /* ===== SUMMARY GRID ===== */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+  }
+
+  .summary-card {
+    background: linear-gradient(135deg, #fff, var(--sand-light));
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid rgba(139, 94, 60, 0.12);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--blue), var(--gold));
+  }
+
+  .summary-card h4 {
+    font-size: 1.1rem;
+    color: var(--earth-dark);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .summary-card ul { list-style: none; padding: 0; }
+
+  .summary-card ul li {
+    padding: 5px 0;
+    font-size: 0.9rem;
+    color: #5a4a3a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .summary-card ul li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 900;
+    font-size: 0.95rem;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0d1117 100%);
+    color: #fff;
+    padding: 55px 20px 35px;
+    text-align: center;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--yellow), var(--water));
+  }
+
+  footer .brand {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #60a5fa, #ffd43b, #4ecdc4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  footer .tagline {
+    font-size: 1rem;
+    opacity: 0.75;
+    margin-bottom: 28px;
+    font-weight: 300;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(55, 118, 171, 0.15);
+    border: 1px solid var(--blue);
+    color: #60a5fa;
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
+
+  footer .site-link:hover {
+    background: var(--blue);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(55, 118, 171, 0.4);
+  }
+
+  footer .divider {
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--yellow), var(--blue));
+    margin: 28px auto;
+    border-radius: 2px;
+  }
+
+  footer .copyright {
+    font-size: 0.85rem;
+    opacity: 0.5;
+    margin-top: 15px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    header h1 { font-size: 1.9rem; }
+    header p { font-size: 1rem; }
+    section { padding: 28px 20px; }
+    .section-header h2 { font-size: 1.3rem; }
+    .section-header .level-badge { width: 55px; height: 55px; font-size: 1.3rem; }
+    .project-header { padding: 18px 20px; }
+    .project-body { padding: 22px; }
+    .project-title h3 { font-size: 1.05rem; }
+    .step { gap: 12px; }
+    .step::before { width: 32px; height: 32px; font-size: 0.9rem; }
+    .level-nav { padding: 20px; }
+    .level-nav a { padding: 10px 16px; font-size: 0.85rem; }
+    .code-body { font-size: 0.75rem; }
+    .code-line { padding: 0 12px; }
+    .line-num { width: 22px; min-width: 22px; margin-right: 12px; }
+    .code-header { padding: 10px 12px; gap: 8px; }
+    .file-name { font-size: 0.72rem; }
+    .copy-btn { padding: 4px 10px; font-size: 0.72rem; }
+    .output-terminal .out-body { font-size: 0.72rem; padding: 14px; }
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--sand); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--blue), var(--water));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--water-dark); }
+
+  .code-body::-webkit-scrollbar { height: 8px; }
+  .code-body::-webkit-scrollbar-track { background: #181825; }
+  .code-body::-webkit-scrollbar-thumb { background: #45475a; border-radius: 10px; }
+  .code-body::-webkit-scrollbar-thumb:hover { background: #585b70; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">🐍 آموزش پایتون — سطح ۱ (مقدماتی)</div>
+  <h1>پایتون ۱ با <span class="highlight">رمان زمین خواهد شنید</span></h1>
+  <p>یادگیری برنامه‌نویسی از صفر تا اولین پروژه‌ی کامل، با شخصیت‌ها و آبادی‌های رمان</p>
+
+  <div class="py-bar">
+    <span>🐍 Python 3</span>
+    <span>📝 متغیرها و انواع داده</span>
+    <span>🔄 شرط‌ها و حلقه‌ها</span>
+    <span>📚 لیست‌ها و دیکشنری</span>
+    <span>🎯 پروژه‌ی نهایی</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <nav class="level-nav">
+    <a href="#basics" class="basics">🐍 مبانی پایتون</a>
+    <a href="#data" class="data">📊 انواع داده</a>
+    <a href="#flow" class="flow">🔄 شرط و حلقه</a>
+    <a href="#project" class="project">🎯 پروژه‌ی نهایی</a>
+  </nav>
+
+  <!-- ==================================================== -->
+  <!-- ============ BASICS SECTION ======================= -->
+  <!-- ==================================================== -->
+  <section id="basics">
+    <div class="section-header">
+      <div class="level-badge basics">🐍</div>
+      <div>
+        <h2>بخش اول — مبانی پایتون</h2>
+        <div class="sub">آشنایی با محیط، چاپ متن، متغیرها و ورودی</div>
+      </div>
+    </div>
+
+    <div class="info hint">
+      <span class="hint-icon">💡</span>
+      <div><strong>پایتون چیست؟</strong> پایتون یک زبان برنامه‌نویسی ساده، قدرتمند و رایگان است. با آن می‌توانید بازی، وب‌سایت، تحلیل داده و هوش مصنوعی بسازید.</div>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="project">
+      <div class="project-header py">
+        <div class="project-num">۱</div>
+        <div class="project-title">
+          <h3>اولین برنامه — سلام به زاگرس</h3>
+          <div class="meta">
+            <span>⏱ ۲۰ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: print() و کامنت</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>print()</span><span>#</span><span>str</span><span>نصب پایتون</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>نصب پایتون</strong>
+              <p>از سایت <strong>python.org</strong> آخرین نسخه را دانلود کنید. در ویندوز گزینه‌ی <strong>Add Python to PATH</strong> را فعال کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>اجرای پایتون</strong>
+              <p>CMD را باز کنید و تایپ کنید: <code>python --version</code></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ساخت فایل و اجرا</strong>
+              <p>کد زیر را در فایل <strong>hello.py</strong> ذخیره کنید و با <code>python hello.py</code> اجرا کنید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block" data-code="‌# اولین برنامه‌ی پایتون من
+# بر اساس رمان «زمین خواهد شنید»
+
+print(&quot;سلام، ای مردم زاگرس!&quot;)
+print(&quot;من نیکا هستم، نوازنده‌ی چنگ.&quot;)
+print(&quot;آب راهش را پیدا می‌کند.&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">hello.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># اولین برنامه‌ی پایتون من</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"><span class="cm"># بر اساس رمان «زمین خواهد شنید»</span></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text"><span class="fn">print</span>(<span class="str">"سلام، ای مردم زاگرس!"</span>)</span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text"><span class="fn">print</span>(<span class="str">"من نیکا هستم، نوازنده‌ی چنگ."</span>)</span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text"><span class="fn">print</span>(<span class="str">"آب راهش را پیدا می‌کند."</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Output</span>
+          </div>
+          <div class="out-body"><span class="out">سلام، ای مردم زاگرس!
+من نیکا هستم، نوازنده‌ی چنگ.
+آب راهش را پیدا می‌کند.</span></div>
+        </div>
+
+        <div class="hint warn">
+          <span class="hint-icon">⚠️</span>
+          <div><strong>مهم:</strong> در پایتون، <strong>فاصله‌ی ابتدای خط (indent)</strong> بسیار مهم است. در سطح مبتدی، همه‌ی دستورات را از ابتدای خط بنویسید.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project">
+      <div class="project-header py">
+        <div class="project-num">۲</div>
+        <div class="project-title">
+          <h3>متغیرها — معرفی شخصیت‌ها</h3>
+          <div class="meta">
+            <span>⏱ ۳۰ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: متغیر و f-string</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>متغیر</span><span>=</span><span>f"{}"</span><span>type()</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>متغیر چیست؟</strong>
+              <p>متغیر یک «جعبه» است که یک مقدار در آن نگه می‌داریم: <code>name = "نیکا"</code></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>f-string</strong>
+              <p>برای ترکیب متن و متغیر: <code>f"سلام {name}"</code></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تابع type()</strong>
+              <p>نوع متغیر را نشان می‌دهد: <code>type(name)</code> → <span style="color:#bd93f9;">str</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block" data-code="‌# متغیرها — معرفی شخصیت‌های رمان
+
+name = &quot;نیکا&quot;
+role = &quot;نوازنده‌ی چنگ&quot;
+village = &quot;کُهباد&quot;
+age = 27
+is_alive = False
+
+print(f&quot;نام: {name}&quot;)
+print(f&quot;نقش: {role}&quot;)
+print(f&quot;روستا: {village}&quot;)
+print(f&quot;سن: {age}&quot;)
+print(f&quot;زنده است؟ {is_alive}&quot;)
+
+# بررسی نوع متغیرها
+print(f&quot;نوع name: {type(name)}&quot;)
+print(f&quot;نوع age: {type(age)}&quot;)
+print(f&quot;نوع is_alive: {type(is_alive)}&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">characters.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># متغیرها — معرفی شخصیت‌های رمان</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text">name <span class="op">=</span> <span class="str">"نیکا"</span></span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text">role <span class="op">=</span> <span class="str">"نوازنده‌ی چنگ"</span></span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text">village <span class="op">=</span> <span class="str">"کُهباد"</span></span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text">age <span class="op">=</span> <span class="num">27</span></span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text">is_alive <span class="op">=</span> <span class="bool">False</span></span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"نام: {name}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"نقش: {role}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">11</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"روستا: {village}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">12</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"سن: {age}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">13</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"زنده است؟ {is_alive}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">14</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">15</span><span class="code-text"><span class="cm"># بررسی نوع متغیرها</span></span></div>
+            <div class="code-line"><span class="line-num">16</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"نوع name: {<span class="builtin">type</span>(name)}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">17</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"نوع age: {<span class="builtin">type</span>(age)}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">18</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"نوع is_alive: {<span class="builtin">type</span>(is_alive)}"</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Output</span>
+          </div>
+          <div class="out-body"><span class="out">نام: نیکا
+نقش: نوازنده‌ی چنگ
+روستا: کُهباد
+سن: 27
+زنده است؟ False
+نوع name: &lt;class 'str'&gt;
+نوع age: &lt;class 'int'&gt;
+نوع is_alive: &lt;class 'bool'&gt;</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project">
+      <div class="project-header py">
+        <div class="project-num">۳</div>
+        <div class="project-title">
+          <h3>ورودی از کاربر — گفت‌وگو با هانی</h3>
+          <div class="meta">
+            <span>⏱ ۲۵ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: input() و int()</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>input()</span><span>int()</span><span>float()</span>
+        </div>
+
+        <div class="code-block" data-code="‌# گفت‌وگو با هانی، فرمانروای آیاپیر
+
+print(&quot;=== دیدار با هانی ===&quot;)
+name = input(&quot;نام خود را بگو: &quot;)
+village = input(&quot;از کدام آبادی می‌آیی؟ &quot;)
+age = int(input(&quot;چند سال داری؟ &quot;))
+
+print(f&quot;\nهانی: خوش آمدی {name} از {village}!&quot;)
+print(f&quot;هانی: پس {age} سال داری...&quot;)
+print(&quot;هانی: از امروز، تو هم صدای زاگرسی.&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">dialogue.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># گفت‌وگو با هانی، فرمانروای آیاپیر</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text"><span class="fn">print</span>(<span class="str">"=== دیدار با هانی ==="</span>)</span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text">name <span class="op">=</span> <span class="fn">input</span>(<span class="str">"نام خود را بگو: "</span>)</span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text">village <span class="op">=</span> <span class="fn">input</span>(<span class="str">"از کدام آبادی می‌آیی؟ "</span>)</span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text">age <span class="op">=</span> <span class="builtin">int</span>(<span class="fn">input</span>(<span class="str">"چند سال داری؟ "</span>))</span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"\nهانی: خوش آمدی {name} از {village}!"</span>)</span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"هانی: پس {age} سال داری..."</span>)</span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text"><span class="fn">print</span>(<span class="str">"هانی: از امروز، تو هم صدای زاگرسی."</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Interactive Session</span>
+          </div>
+          <div class="out-body"><span class="out">=== دیدار با هانی ===
+نام خود را بگو: </span><span class="prompt">آنی</span><span class="out">
+از کدام آبادی می‌آیی؟ </span><span class="prompt">شیل‌هی‌تی</span><span class="out">
+چند سال داری؟ </span><span class="prompt">22</span><span class="out">
+
+هانی: خوش آمدی آنی از شیل‌هی‌تی!
+هانی: پس 22 سال داری...
+هانی: از امروز، تو هم صدای زاگرسی.</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ DATA SECTION ========================= -->
+  <!-- ==================================================== -->
+  <section id="data">
+    <div class="section-header">
+      <div class="level-badge data">📊</div>
+      <div>
+        <h2>بخش دوم — انواع داده و لیست‌ها</h2>
+        <div class="sub">اعداد، رشته‌ها، لیست‌ها و دیکشنری</div>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project">
+      <div class="project-header data">
+        <div class="project-num">۴</div>
+        <div class="project-title">
+          <h3>عملیات ریاضی — محاسبه‌ی خراج کُهباد</h3>
+          <div class="meta">
+            <span>⏱ ۳۰ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: عملگرهای ریاضی</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>+</span><span>-</span><span>*</span><span>/</span><span>//</span><span>%</span><span>**</span>
+        </div>
+
+        <div class="code-block" data-code="‌# محاسبه‌ی خراج کُهباد
+
+# تعداد خانواده‌ها
+families = 3  # تال، دُلو کُودَر، ننه رَکو
+
+# خراج هر خانواده
+wool = 15      # مَن پشم
+khume = 10     # خُمه (ظرف روغن)
+oil = 6        # خیگ روغن
+sheep = 4      # رأس گوسفند
+wheat = 25     # کیسه گندم
+barley = 20    # کیسه جو
+
+# محاسبه‌ی کل
+total_wool = wool * families
+total_khume = khume * families
+total_oil = oil * families
+total_sheep = sheep * families
+total_wheat = wheat * families
+total_barley = barley * families
+
+print(&quot;=== خراج کُهباد به شوش ===&quot;)
+print(f&quot;پشم: {total_wool} مَن&quot;)
+print(f&quot;خُمه: {total_khume} عدد&quot;)
+print(f&quot;روغن خوش: {total_oil} خیگ&quot;)
+print(f&quot;گوسفند: {total_sheep} رأس&quot;)
+print(f&quot;گندم: {total_wheat} کیسه&quot;)
+print(f&quot;جو: {total_barley} کیسه&quot;)
+
+# توزیع بین ۱۰ سرباز
+soldiers = 10
+print(f&quot;\nسهم هر سرباز از گندم: {total_wheat // soldiers} کیسه&quot;)
+print(f&quot;باقی‌مانده: {total_wheat % soldiers} کیسه&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">tribute.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># محاسبه‌ی خراج کُهباد</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text"><span class="cm"># تعداد خانواده‌ها</span></span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text">families <span class="op">=</span> <span class="num">3</span>  <span class="cm"># تال، دُلو کُودَر، ننه رَکو</span></span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text"><span class="cm"># خراج هر خانواده</span></span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text">wool <span class="op">=</span> <span class="num">15</span>      <span class="cm"># مَن پشم</span></span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text">khume <span class="op">=</span> <span class="num">10</span>     <span class="cm"># خُمه (ظرف روغن)</span></span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text">oil <span class="op">=</span> <span class="num">6</span>        <span class="cm"># خیگ روغن</span></span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text">sheep <span class="op">=</span> <span class="num">4</span>      <span class="cm"># رأس گوسفند</span></span></div>
+            <div class="code-line"><span class="line-num">11</span><span class="code-text">wheat <span class="op">=</span> <span class="num">25</span>     <span class="cm"># کیسه گندم</span></span></div>
+            <div class="code-line"><span class="line-num">12</span><span class="code-text">barley <span class="op">=</span> <span class="num">20</span>    <span class="cm"># کیسه جو</span></span></div>
+            <div class="code-line"><span class="line-num">13</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">14</span><span class="code-text"><span class="cm"># محاسبه‌ی کل</span></span></div>
+            <div class="code-line"><span class="line-num">15</span><span class="code-text">total_wool <span class="op">=</span> wool <span class="op">*</span> families</span></div>
+            <div class="code-line"><span class="line-num">16</span><span class="code-text">total_khume <span class="op">=</span> khume <span class="op">*</span> families</span></div>
+            <div class="code-line"><span class="line-num">17</span><span class="code-text">total_oil <span class="op">=</span> oil <span class="op">*</span> families</span></div>
+            <div class="code-line"><span class="line-num">18</span><span class="code-text">total_sheep <span class="op">=</span> sheep <span class="op">*</span> families</span></div>
+            <div class="code-line"><span class="line-num">19</span><span class="code-text">total_wheat <span class="op">=</span> wheat <span class="op">*</span> families</span></div>
+            <div class="code-line"><span class="line-num">20</span><span class="code-text">total_barley <span class="op">=</span> barley <span class="op">*</span> families</span></div>
+            <div class="code-line"><span class="line-num">21</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">22</span><span class="code-text"><span class="fn">print</span>(<span class="str">"=== خراج کُهباد به شوش ==="</span>)</span></div>
+            <div class="code-line"><span class="line-num">23</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"پشم: {total_wool} مَن"</span>)</span></div>
+            <div class="code-line"><span class="line-num">24</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"خُمه: {total_khume} عدد"</span>)</span></div>
+            <div class="code-line"><span class="line-num">25</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"روغن خوش: {total_oil} خیگ"</span>)</span></div>
+            <div class="code-line"><span class="line-num">26</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"گوسفند: {total_sheep} رأس"</span>)</span></div>
+            <div class="code-line"><span class="line-num">27</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"گندم: {total_wheat} کیسه"</span>)</span></div>
+            <div class="code-line"><span class="line-num">28</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"جو: {total_barley} کیسه"</span>)</span></div>
+            <div class="code-line"><span class="line-num">29</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">30</span><span class="code-text"><span class="cm"># توزیع بین ۱۰ سرباز</span></span></div>
+            <div class="code-line"><span class="line-num">31</span><span class="code-text">soldiers <span class="op">=</span> <span class="num">10</span></span></div>
+            <div class="code-line"><span class="line-num">32</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"\nسهم هر سرباز از گندم: {total_wheat <span class="op">//</span> soldiers} کیسه"</span>)</span></div>
+            <div class="code-line"><span class="line-num">33</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"باقی‌مانده: {total_wheat <span class="op">%</span> soldiers} کیسه"</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Output</span>
+          </div>
+          <div class="out-body"><span class="out">=== خراج کُهباد به شوش ===
+پشم: 45 مَن
+خُمه: 30 عدد
+روغن خوش: 18 خیگ
+گوسفند: 12 رأس
+گندم: 75 کیسه
+جو: 60 کیسه
+
+سهم هر سرباز از گندم: 7 کیسه
+باقی‌مانده: 5 کیسه</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project">
+      <div class="project-header data">
+        <div class="project-num">۵</div>
+        <div class="project-title">
+          <h3>لیست‌ها — آبادی‌های زاگرس</h3>
+          <div class="meta">
+            <span>⏱ ۳۵ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: list و متدهای آن</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>list</span><span>append()</span><span>len()</span><span>sort()</span><span>index()</span>
+        </div>
+
+        <div class="code-block" data-code="‌# لیست آبادی‌های رمان
+
+villages = [
+    &quot;کُهباد&quot;,
+    &quot;گلِ شور&quot;,
+    &quot;شیل‌هی‌تی&quot;,
+    &quot;اشکفت‌سلمان&quot;,
+    &quot;خونگ‌آژدر&quot;
+]
+
+# اضافه کردن آبادی جدید
+villages.append(&quot;آیاپیر&quot;)
+villages.append(&quot;دزپارت&quot;)
+
+# تعداد آبادی‌ها
+print(f&quot;تعداد آبادی‌ها: {len(villages)}&quot;)
+
+# نمایش با شماره
+print(&quot;\n=== لیست آبادی‌ها ===&quot;)
+for i, v in enumerate(villages, 1):
+    print(f&quot;{i}. {v}&quot;)
+
+# مرتب‌سازی الفبایی
+villages.sort()
+print(f&quot;\nبعد از مرتب‌سازی: {villages}&quot;)
+
+# جستجوی یک آبادی
+if &quot;گلِ شور&quot; in villages:
+    position = villages.index(&quot;گلِ شور&quot;)
+    print(f&quot;\n'گلِ شور' در موقعیت {position} است.&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">villages.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># لیست آبادی‌های رمان</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text">villages <span class="op">=</span> [</span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text">    <span class="str">"کُهباد"</span>,</span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text">    <span class="str">"گلِ شور"</span>,</span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text">    <span class="str">"شیل‌هی‌تی"</span>,</span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text">    <span class="str">"اشکفت‌سلمان"</span>,</span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text">    <span class="str">"خونگ‌آژدر"</span></span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text">]</span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">11</span><span class="code-text"><span class="cm"># اضافه کردن آبادی جدید</span></span></div>
+            <div class="code-line"><span class="line-num">12</span><span class="code-text">villages.append(<span class="str">"آیاپیر"</span>)</span></div>
+            <div class="code-line"><span class="line-num">13</span><span class="code-text">villages.append(<span class="str">"دزپارت"</span>)</span></div>
+            <div class="code-line"><span class="line-num">14</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">15</span><span class="code-text"><span class="cm"># تعداد آبادی‌ها</span></span></div>
+            <div class="code-line"><span class="line-num">16</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"تعداد آبادی‌ها: {<span class="builtin">len</span>(villages)}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">17</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">18</span><span class="code-text"><span class="cm"># نمایش با شماره</span></span></div>
+            <div class="code-line"><span class="line-num">19</span><span class="code-text"><span class="fn">print</span>(<span class="str">"\n=== لیست آبادی‌ها ==="</span>)</span></div>
+            <div class="code-line"><span class="line-num">20</span><span class="code-text"><span class="kw">for</span> i, v <span class="kw">in</span> <span class="builtin">enumerate</span>(villages, <span class="num">1</span>):</span></div>
+            <div class="code-line"><span class="line-num">21</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"{i}. {v}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">22</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">23</span><span class="code-text"><span class="cm"># مرتب‌سازی الفبایی</span></span></div>
+            <div class="code-line"><span class="line-num">24</span><span class="code-text">villages.sort()</span></div>
+            <div class="code-line"><span class="line-num">25</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"\nبعد از مرتب‌سازی: {villages}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">26</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">27</span><span class="code-text"><span class="cm"># جستجوی یک آبادی</span></span></div>
+            <div class="code-line"><span class="line-num">28</span><span class="code-text"><span class="kw">if</span> <span class="str">"گلِ شور"</span> <span class="kw">in</span> villages:</span></div>
+            <div class="code-line"><span class="line-num">29</span><span class="code-text">    position <span class="op">=</span> villages.index(<span class="str">"گلِ شور"</span>)</span></div>
+            <div class="code-line"><span class="line-num">30</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"\n'گلِ شور' در موقعیت {position} است."</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Output</span>
+          </div>
+          <div class="out-body"><span class="out">تعداد آبادی‌ها: 7
+
+=== لیست آبادی‌ها ===
+1. کُهباد
+2. گلِ شور
+3. شیل‌هی‌تی
+4. اشکفت‌سلمان
+5. خونگ‌آژدر
+6. آیاپیر
+7. دزپارت
+
+بعد از مرتب‌سازی: ['آیاپیر', 'اشکفت‌سلمان', 'خونگ‌آژدر', 'دزپارت', 'شیل‌هی‌تی', 'کُهباد', 'گلِ شور']
+
+'گلِ شور' در موقعیت 6 است.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="project">
+      <div class="project-header data">
+        <div class="project-num">۶</div>
+        <div class="project-title">
+          <h3>دیکشنری — کارت شناسایی شخصیت‌ها</h3>
+          <div class="meta">
+            <span>⏱ ۴۰ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: dict و کلیدها</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>dict</span><span>keys()</span><span>values()</span><span>items()</span><span>get()</span>
+        </div>
+
+        <div class="code-block" data-code="‌# دیکشنری شخصیت‌های رمان
+
+nika = {
+    &quot;نام&quot;: &quot;نیکا&quot;,
+    &quot;نقش&quot;: &quot;نوازنده‌ی چنگ&quot;,
+    &quot;روستا&quot;: &quot;کُهباد&quot;,
+    &quot;سن&quot;: 27,
+    &quot;وضعیت&quot;: &quot;کشته شده&quot;,
+    &quot;ویژگی&quot;: &quot;شجاع، هنرمند&quot;
+}
+
+hani = {
+    &quot;نام&quot;: &quot;هانی&quot;,
+    &quot;نقش&quot;: &quot;فرمانروا&quot;,
+    &quot;روستا&quot;: &quot;آیاپیر&quot;,
+    &quot;سن&quot;: 32,
+    &quot;وضعیت&quot;: &quot;ناپدید&quot;,
+    &quot;ویژگی&quot;: &quot;مردد، خسته از جنگ&quot;
+}
+
+# نمایش اطلاعات نیکا
+print(&quot;=== نیکا ===&quot;)
+for key, value in nika.items():
+    print(f&quot;  {key}: {value}&quot;)
+
+# دسترسی مستقیم
+print(f&quot;\nنقش هانی: {hani['نقش']}&quot;)
+
+# استفاده از get (ایمن)
+age = nika.get(&quot;سن&quot;, &quot;نامعلوم&quot;)
+print(f&quot;سن نیکا: {age}&quot;)
+
+# کلیدهای یک دیکشنری
+print(f&quot;\nکلیدهای نیکا: {list(nika.keys())}&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">characters_dict.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># دیکشنری شخصیت‌های رمان</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text">nika <span class="op">=</span> {</span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text">    <span class="str">"نام"</span>: <span class="str">"نیکا"</span>,</span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text">    <span class="str">"نقش"</span>: <span class="str">"نوازنده‌ی چنگ"</span>,</span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text">    <span class="str">"روستا"</span>: <span class="str">"کُهباد"</span>,</span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text">    <span class="str">"سن"</span>: <span class="num">27</span>,</span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text">    <span class="str">"وضعیت"</span>: <span class="str">"کشته شده"</span>,</span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text">    <span class="str">"ویژگی"</span>: <span class="str">"شجاع، هنرمند"</span></span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text">}</span></div>
+            <div class="code-line"><span class="line-num">11</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">12</span><span class="code-text">hani <span class="op">=</span> {</span></div>
+            <div class="code-line"><span class="line-num">13</span><span class="code-text">    <span class="str">"نام"</span>: <span class="str">"هانی"</span>,</span></div>
+            <div class="code-line"><span class="line-num">14</span><span class="code-text">    <span class="str">"نقش"</span>: <span class="str">"فرمانروا"</span>,</span></div>
+            <div class="code-line"><span class="line-num">15</span><span class="code-text">    <span class="str">"روستا"</span>: <span class="str">"آیاپیر"</span>,</span></div>
+            <div class="code-line"><span class="line-num">16</span><span class="code-text">    <span class="str">"سن"</span>: <span class="num">32</span>,</span></div>
+            <div class="code-line"><span class="line-num">17</span><span class="code-text">    <span class="str">"وضعیت"</span>: <span class="str">"ناپدید"</span>,</span></div>
+            <div class="code-line"><span class="line-num">18</span><span class="code-text">    <span class="str">"ویژگی"</span>: <span class="str">"مردد، خسته از جنگ"</span></span></div>
+            <div class="code-line"><span class="line-num">19</span><span class="code-text">}</span></div>
+            <div class="code-line"><span class="line-num">20</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">21</span><span class="code-text"><span class="cm"># نمایش اطلاعات نیکا</span></span></div>
+            <div class="code-line"><span class="line-num">22</span><span class="code-text"><span class="fn">print</span>(<span class="str">"=== نیکا ==="</span>)</span></div>
+            <div class="code-line"><span class="line-num">23</span><span class="code-text"><span class="kw">for</span> key, value <span class="kw">in</span> nika.items():</span></div>
+            <div class="code-line"><span class="line-num">24</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"  {key}: {value}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">25</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">26</span><span class="code-text"><span class="cm"># دسترسی مستقیم</span></span></div>
+            <div class="code-line"><span class="line-num">27</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"\nنقش هانی: {hani['نقش']}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">28</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">29</span><span class="code-text"><span class="cm"># استفاده از get (ایمن)</span></span></div>
+            <div class="code-line"><span class="line-num">30</span><span class="code-text">age <span class="op">=</span> nika.get(<span class="str">"سن"</span>, <span class="str">"نامعلوم"</span>)</span></div>
+            <div class="code-line"><span class="line-num">31</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"سن نیکا: {age}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">32</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">33</span><span class="code-text"><span class="cm"># کلیدهای یک دیکشنری</span></span></div>
+            <div class="code-line"><span class="line-num">34</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"\nکلیدهای نیکا: {<span class="builtin">list</span>(nika.keys())}"</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Output</span>
+          </div>
+          <div class="out-body"><span class="out">=== نیکا ===
+  نام: نیکا
+  نقش: نوازنده‌ی چنگ
+  روستا: کُهباد
+  سن: 27
+  وضعیت: کشته شده
+  ویژگی: شجاع، هنرمند
+
+نقش هانی: فرمانروا
+سن نیکا: 27
+
+کلیدهای نیکا: ['نام', 'نقش', 'روستا', 'سن', 'وضعیت', 'ویژگی']</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ FLOW SECTION ========================= -->
+  <!-- ==================================================== -->
+  <section id="flow">
+    <div class="section-header">
+      <div class="level-badge flow">🔄</div>
+      <div>
+        <h2>بخش سوم — شرط‌ها و حلقه‌ها</h2>
+        <div class="sub">if، elif، else، for، while و توابع</div>
+      </div>
+    </div>
+
+    <!-- Project 7 -->
+    <div class="project">
+      <div class="project-header flow">
+        <div class="project-num">۷</div>
+        <div class="project-title">
+          <h3>شرط‌ها — تصمیم‌گیری مثل هانی</h3>
+          <div class="meta">
+            <span>⏱ ۴۰ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: if / elif / else</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>if</span><span>elif</span><span>else</span><span>==</span><span>&gt;</span><span>and</span><span>or</span>
+        </div>
+
+        <div class="code-block" data-code="‌# تصمیم هانی برای آتش‌بس
+
+print(&quot;=== شورای کاخ زاپوالسیمی ===&quot;)
+killed = int(input(&quot;تعداد کشته‌های این ماه: &quot;))
+soldier_morale = int(input(&quot;روحیه‌ی سربازان (1-10): &quot;))
+priest_pressure = int(input(&quot;فشار کاهنان (1-10): &quot;))
+
+print(&quot;\n--- تصمیم هانی ---&quot;)
+
+if killed &gt; 50 and soldier_morale &lt; 3:
+    print(&quot;هانی: بس است. آتش‌بس اعلام می‌کنم.&quot;)
+elif killed &gt; 30 and priest_pressure &gt; 7:
+    print(&quot;هانی: کاهنان فشار می‌آورند، اما من خسته‌ام.&quot;)
+elif killed &lt; 10:
+    print(&quot;هانی: اوضاع آرام است. هنوز جای فرمان دادن هست.&quot;)
+else:
+    print(&quot;هانی: باید بیشتر فکر کنم...&quot;)
+
+# بررسی ترکیبی
+if killed &gt; 30 or soldier_morale &lt; 4:
+    print(&quot;هانی: لااقل باید تجدید نظر کنیم.&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">hani_decision.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># تصمیم هانی برای آتش‌بس</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text"><span class="fn">print</span>(<span class="str">"=== شورای کاخ زاپوالسیمی ==="</span>)</span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text">killed <span class="op">=</span> <span class="builtin">int</span>(<span class="fn">input</span>(<span class="str">"تعداد کشته‌های این ماه: "</span>))</span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text">soldier_morale <span class="op">=</span> <span class="builtin">int</span>(<span class="fn">input</span>(<span class="str">"روحیه‌ی سربازان (1-10): "</span>))</span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text">priest_pressure <span class="op">=</span> <span class="builtin">int</span>(<span class="fn">input</span>(<span class="str">"فشار کاهنان (1-10): "</span>))</span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text"><span class="fn">print</span>(<span class="str">"\n--- تصمیم هانی ---"</span>)</span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text"><span class="kw">if</span> killed <span class="op">&gt;</span> <span class="num">50</span> <span class="kw">and</span> soldier_morale <span class="op">&lt;</span> <span class="num">3</span>:</span></div>
+            <div class="code-line"><span class="line-num">11</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"هانی: بس است. آتش‌بس اعلام می‌کنم."</span>)</span></div>
+            <div class="code-line"><span class="line-num">12</span><span class="code-text"><span class="kw">elif</span> killed <span class="op">&gt;</span> <span class="num">30</span> <span class="kw">and</span> priest_pressure <span class="op">&gt;</span> <span class="num">7</span>:</span></div>
+            <div class="code-line"><span class="line-num">13</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"هانی: کاهنان فشار می‌آورند، اما من خسته‌ام."</span>)</span></div>
+            <div class="code-line"><span class="line-num">14</span><span class="code-text"><span class="kw">elif</span> killed <span class="op">&lt;</span> <span class="num">10</span>:</span></div>
+            <div class="code-line"><span class="line-num">15</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"هانی: اوضاع آرام است. هنوز جای فرمان دادن هست."</span>)</span></div>
+            <div class="code-line"><span class="line-num">16</span><span class="code-text"><span class="kw">else</span>:</span></div>
+            <div class="code-line"><span class="line-num">17</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"هانی: باید بیشتر فکر کنم..."</span>)</span></div>
+            <div class="code-line"><span class="line-num">18</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">19</span><span class="code-text"><span class="cm"># بررسی ترکیبی</span></span></div>
+            <div class="code-line"><span class="line-num">20</span><span class="code-text"><span class="kw">if</span> killed <span class="op">&gt;</span> <span class="num">30</span> <span class="kw">or</span> soldier_morale <span class="op">&lt;</span> <span class="num">4</span>:</span></div>
+            <div class="code-line"><span class="line-num">21</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"هانی: لااقل باید تجدید نظر کنیم."</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Interactive Session</span>
+          </div>
+          <div class="out-body"><span class="out">=== شورای کاخ زاپوالسیمی ===
+تعداد کشته‌های این ماه: </span><span class="prompt">63</span><span class="out">
+روحیه‌ی سربازان (1-10): </span><span class="prompt">2</span><span class="out">
+فشار کاهنان (1-10): </span><span class="prompt">8</span><span class="out">
+
+--- تصمیم هانی ---
+هانی: بس است. آتش‌بس اعلام می‌کنم.
+هانی: لااقل باید تجدید نظر کنیم.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 8 -->
+    <div class="project">
+      <div class="project-header flow">
+        <div class="project-num">۸</div>
+        <div class="project-title">
+          <h3>حلقه‌ی for — سرشماری آبادی‌ها</h3>
+          <div class="meta">
+            <span>⏱ ۳۵ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: for و range()</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>for</span><span>range()</span><span>enumerate()</span><span>zip()</span>
+        </div>
+
+        <div class="code-block" data-code="‌# سرشماری خشت‌های هر آبادی
+
+villages = [&quot;کُهباد&quot;, &quot;تکاب&quot;, &quot;گلِ شور&quot;, &quot;شیل‌هی‌تی&quot;, &quot;اشکفت‌سلمان&quot;]
+bricks = [45, 60, 90, 65, 120]
+
+# حلقه روی لیست
+print(&quot;=== سرشماری آبادی‌ها ===&quot;)
+for i in range(len(villages)):
+    print(f&quot;{villages[i]}: {bricks[i]} خشت&quot;)
+
+# روش بهتر با zip
+print(&quot;\n=== روش zip ===&quot;)
+for village, brick in zip(villages, bricks):
+    print(f&quot;{village} → {brick}&quot;)
+
+# مجموع خشت‌ها
+total = 0
+for b in bricks:
+    total = total + b
+print(f&quot;\nمجموع خشت‌ها: {total}&quot;)
+
+# میانگین
+avg = total / len(bricks)
+print(f&quot;میانگین: {avg:.1f}&quot;)
+
+# پیدا کردن بیشترین
+max_brick = max(bricks)
+max_index = bricks.index(max_brick)
+print(f&quot;بیشترین خشت: {villages[max_index]} با {max_brick}&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">village_census.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># سرشماری خشت‌های هر آبادی</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text">villages <span class="op">=</span> [<span class="str">"کُهباد"</span>, <span class="str">"تکاب"</span>, <span class="str">"گلِ شور"</span>, <span class="str">"شیل‌هی‌تی"</span>, <span class="str">"اشکفت‌سلمان"</span>]</span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text">bricks <span class="op">=</span> [<span class="num">45</span>, <span class="num">60</span>, <span class="num">90</span>, <span class="num">65</span>, <span class="num">120</span>]</span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text"><span class="cm"># حلقه روی لیست</span></span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text"><span class="fn">print</span>(<span class="str">"=== سرشماری آبادی‌ها ==="</span>)</span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text"><span class="kw">for</span> i <span class="kw">in</span> <span class="builtin">range</span>(<span class="builtin">len</span>(villages)):</span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"{villages[i]}: {bricks[i]} خشت"</span>)</span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">11</span><span class="code-text"><span class="cm"># روش بهتر با zip</span></span></div>
+            <div class="code-line"><span class="line-num">12</span><span class="code-text"><span class="fn">print</span>(<span class="str">"\n=== روش zip ==="</span>)</span></div>
+            <div class="code-line"><span class="line-num">13</span><span class="code-text"><span class="kw">for</span> village, brick <span class="kw">in</span> <span class="builtin">zip</span>(villages, bricks):</span></div>
+            <div class="code-line"><span class="line-num">14</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"{village} → {brick}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">15</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">16</span><span class="code-text"><span class="cm"># مجموع خشت‌ها</span></span></div>
+            <div class="code-line"><span class="line-num">17</span><span class="code-text">total <span class="op">=</span> <span class="num">0</span></span></div>
+            <div class="code-line"><span class="line-num">18</span><span class="code-text"><span class="kw">for</span> b <span class="kw">in</span> bricks:</span></div>
+            <div class="code-line"><span class="line-num">19</span><span class="code-text">    total <span class="op">=</span> total <span class="op">+</span> b</span></div>
+            <div class="code-line"><span class="line-num">20</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"\nمجموع خشت‌ها: {total}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">21</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">22</span><span class="code-text"><span class="cm"># میانگین</span></span></div>
+            <div class="code-line"><span class="line-num">23</span><span class="code-text">avg <span class="op">=</span> total <span class="op">/</span> <span class="builtin">len</span>(bricks)</span></div>
+            <div class="code-line"><span class="line-num">24</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"میانگین: {avg:.1f}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">25</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">26</span><span class="code-text"><span class="cm"># پیدا کردن بیشترین</span></span></div>
+            <div class="code-line"><span class="line-num">27</span><span class="code-text">max_brick <span class="op">=</span> <span class="builtin">max</span>(bricks)</span></div>
+            <div class="code-line"><span class="line-num">28</span><span class="code-text">max_index <span class="op">=</span> bricks.index(max_brick)</span></div>
+            <div class="code-line"><span class="line-num">29</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"بیشترین خشت: {villages[max_index]} با {max_brick}"</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Output</span>
+          </div>
+          <div class="out-body"><span class="out">=== سرشماری آبادی‌ها ===
+کُهباد: 45 خشت
+تکاب: 60 خشت
+گلِ شور: 90 خشت
+شیل‌هی‌تی: 65 خشت
+اشکفت‌سلمان: 120 خشت
+
+=== روش zip ===
+کُهباد → 45
+تکاب → 60
+گلِ شور → 90
+شیل‌هی‌تی → 65
+اشکفت‌سلمان → 120
+
+مجموع خشت‌ها: 380
+میانگین: 76.0
+بیشترین خشت: اشکفت‌سلمان با 120</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 9 -->
+    <div class="project">
+      <div class="project-header flow">
+        <div class="project-num">۹</div>
+        <div class="project-title">
+          <h3>حلقه‌ی while — انتظار برای خبر</h3>
+          <div class="meta">
+            <span>⏱ ۳۵ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: while و break</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>while</span><span>break</span><span>continue</span>
+        </div>
+
+        <div class="code-block" data-code="‌# مردم روستا منتظر خبر نیکا هستند
+
+print(&quot;=== در انتظار خبر ===&quot;)
+print(&quot;مردم کُهباد هر روز به دروازه می‌روند...&quot;)
+
+day = 1
+has_news = False
+
+while not has_news:
+    print(f&quot;\nروز {day}:&quot;)
+    answer = input(&quot;خبری از نیکا رسیده؟ (بله/خیر): &quot;)
+    
+    if answer == &quot;بله&quot;:
+        print(&quot;مردم: نیکا زنده است! خبر در همه‌ی آبادی‌ها پیچید.&quot;)
+        has_news = True
+    else:
+        print(&quot;مردم: هنوز نه... فردا باز می‌آییم.&quot;)
+        day = day + 1
+    
+    if day &gt; 7:
+        print(&quot;\nمردم: هفت روز گذشت. باید خودمان برویم.&quot;)
+        break
+
+print(&quot;\n=== پایان انتظار ===&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">waiting.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># مردم روستا منتظر خبر نیکا هستند</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text"><span class="fn">print</span>(<span class="str">"=== در انتظار خبر ==="</span>)</span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text"><span class="fn">print</span>(<span class="str">"مردم کُهباد هر روز به دروازه می‌روند..."</span>)</span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text">day <span class="op">=</span> <span class="num">1</span></span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text">has_news <span class="op">=</span> <span class="bool">False</span></span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text"><span class="kw">while not</span> has_news:</span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"\nروز {day}:"</span>)</span></div>
+            <div class="code-line"><span class="line-num">11</span><span class="code-text">    answer <span class="op">=</span> <span class="fn">input</span>(<span class="str">"خبری از نیکا رسیده؟ (بله/خیر): "</span>)</span></div>
+            <div class="code-line"><span class="line-num">12</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">13</span><span class="code-text">    <span class="kw">if</span> answer <span class="op">==</span> <span class="str">"بله"</span>:</span></div>
+            <div class="code-line"><span class="line-num">14</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"مردم: نیکا زنده است! خبر در همه‌ی آبادی‌ها پیچید."</span>)</span></div>
+            <div class="code-line"><span class="line-num">15</span><span class="code-text">        has_news <span class="op">=</span> <span class="bool">True</span></span></div>
+            <div class="code-line"><span class="line-num">16</span><span class="code-text">    <span class="kw">else</span>:</span></div>
+            <div class="code-line"><span class="line-num">17</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"مردم: هنوز نه... فردا باز می‌آییم."</span>)</span></div>
+            <div class="code-line"><span class="line-num">18</span><span class="code-text">        day <span class="op">=</span> day <span class="op">+</span> <span class="num">1</span></span></div>
+            <div class="code-line"><span class="line-num">19</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">20</span><span class="code-text">    <span class="kw">if</span> day <span class="op">&gt;</span> <span class="num">7</span>:</span></div>
+            <div class="code-line"><span class="line-num">21</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"\nمردم: هفت روز گذشت. باید خودمان برویم."</span>)</span></div>
+            <div class="code-line"><span class="line-num">22</span><span class="code-text">        <span class="kw">break</span></span></div>
+            <div class="code-line"><span class="line-num">23</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">24</span><span class="code-text"><span class="fn">print</span>(<span class="str">"\n=== پایان انتظار ==="</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Interactive Session</span>
+          </div>
+          <div class="out-body"><span class="out">=== در انتظار خبر ===
+مردم کُهباد هر روز به دروازه می‌روند...
+
+روز 1:
+خبری از نیکا رسیده؟ (بله/خیر): </span><span class="prompt">خیر</span><span class="out">
+مردم: هنوز نه... فردا باز می‌آییم.
+
+روز 2:
+خبری از نیکا رسیده؟ (بله/خیر): </span><span class="prompt">بله</span><span class="out">
+مردم: نیکا زنده است! خبر در همه‌ی آبادی‌ها پیچید.
+
+=== پایان انتظار ===</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 10 -->
+    <div class="project">
+      <div class="project-header flow">
+        <div class="project-num">۱۰</div>
+        <div class="project-title">
+          <h3>توابع — چنگ نیکا</h3>
+          <div class="meta">
+            <span>⏱ ۴۰ دقیقه</span>
+            <span>📊 سطح: متوسط+</span>
+            <span>🎯 هدف: def و return</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>def</span><span>return</span><span>پارامتر</span><span>پیش‌فرض</span>
+        </div>
+
+        <div class="code-block" data-code="‌# توابع — چنگ نیکا و آوازها
+
+def salam(name):
+    &quot;&quot;&quot;سلام کردن به یک نفر&quot;&quot;&quot;
+    print(f&quot;سلام {name}، صدای زاگرس!&quot;)
+
+def zakhme(note=&quot;لا&quot;):
+    &quot;&quot;&quot;یک نت چنگ می‌نوازد&quot;&quot;&quot;
+    print(f&quot;🎵 {note}...&quot;)
+
+def havas(village):
+    &quot;&quot;&quot;آواز مخصوص یک آبادی&quot;&quot;&quot;
+    songs = {
+        &quot;کُهباد&quot;: &quot;آواز نان و تنور&quot;,
+        &quot;گلِ شور&quot;: &quot;آواز آب و جوی&quot;,
+        &quot;شیل‌هی‌تی&quot;: &quot;آواز سوگ و بلوط&quot;,
+        &quot;اشکفت‌سلمان&quot;: &quot;آواز شورا و خشت&quot;
+    }
+    return songs.get(village, &quot;آواز ناشناخته&quot;)
+
+def jam(*names):
+    &quot;&quot;&quot;جمع کردن نام‌ها&quot;&quot;&quot;
+    print(f&quot;با هم: {', '.join(names)}&quot;)
+
+# === استفاده از توابع ===
+salam(&quot;نیکا&quot;)
+salam(&quot;مانزات&quot;)
+
+print(&quot;\n--- نواختن چنگ ---&quot;)
+zakhme()
+zakhme(&quot;می&quot;)
+zakhme(&quot;دو&quot;)
+
+print(&quot;\n--- آواز آبادی‌ها ---&quot;)
+print(f&quot;کُهباد: {havas('کُهباد')}&quot;)
+print(f&quot;گلِ شور: {havas('گلِ شور')}&quot;)
+print(f&quot;دزپارت: {havas('دزپارت')}&quot;)
+
+print(&quot;\n--- آواز جمعی ---&quot;)
+jam(&quot;نیکا&quot;, &quot;آنی&quot;, &quot;مانزات&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">chang.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># توابع — چنگ نیکا و آوازها</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text"><span class="kw">def</span> <span class="fn">salam</span>(name):</span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text">    <span class="str">"""سلام کردن به یک نفر"""</span></span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"سلام {name}، صدای زاگرس!"</span>)</span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text"><span class="kw">def</span> <span class="fn">zakhme</span>(note<span class="op">=</span><span class="str">"لا"</span>):</span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text">    <span class="str">"""یک نت چنگ می‌نوازد"""</span></span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"🎵 {note}..."</span>)</span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">11</span><span class="code-text"><span class="kw">def</span> <span class="fn">havas</span>(village):</span></div>
+            <div class="code-line"><span class="line-num">12</span><span class="code-text">    <span class="str">"""آواز مخصوص یک آبادی"""</span></span></div>
+            <div class="code-line"><span class="line-num">13</span><span class="code-text">    songs <span class="op">=</span> {</span></div>
+            <div class="code-line"><span class="line-num">14</span><span class="code-text">        <span class="str">"کُهباد"</span>: <span class="str">"آواز نان و تنور"</span>,</span></div>
+            <div class="code-line"><span class="line-num">15</span><span class="code-text">        <span class="str">"گلِ شور"</span>: <span class="str">"آواز آب و جوی"</span>,</span></div>
+            <div class="code-line"><span class="line-num">16</span><span class="code-text">        <span class="str">"شیل‌هی‌تی"</span>: <span class="str">"آواز سوگ و بلوط"</span>,</span></div>
+            <div class="code-line"><span class="line-num">17</span><span class="code-text">        <span class="str">"اشکفت‌سلمان"</span>: <span class="str">"آواز شورا و خشت"</span></span></div>
+            <div class="code-line"><span class="line-num">18</span><span class="code-text">    }</span></div>
+            <div class="code-line"><span class="line-num">19</span><span class="code-text">    <span class="kw">return</span> songs.get(village, <span class="str">"آواز ناشناخته"</span>)</span></div>
+            <div class="code-line"><span class="line-num">20</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">21</span><span class="code-text"><span class="kw">def</span> <span class="fn">jam</span>(<span class="op">*</span>names):</span></div>
+            <div class="code-line"><span class="line-num">22</span><span class="code-text">    <span class="str">"""جمع کردن نام‌ها"""</span></span></div>
+            <div class="code-line"><span class="line-num">23</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"با هم: {', '.join(names)}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">24</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">25</span><span class="code-text"><span class="cm"># === استفاده از توابع ===</span></span></div>
+            <div class="code-line"><span class="line-num">26</span><span class="code-text"><span class="fn">salam</span>(<span class="str">"نیکا"</span>)</span></div>
+            <div class="code-line"><span class="line-num">27</span><span class="code-text"><span class="fn">salam</span>(<span class="str">"مانزات"</span>)</span></div>
+            <div class="code-line"><span class="line-num">28</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">29</span><span class="code-text"><span class="fn">print</span>(<span class="str">"\n--- نواختن چنگ ---"</span>)</span></div>
+            <div class="code-line"><span class="line-num">30</span><span class="code-text"><span class="fn">zakhme</span>()</span></div>
+            <div class="code-line"><span class="line-num">31</span><span class="code-text"><span class="fn">zakhme</span>(<span class="str">"می"</span>)</span></div>
+            <div class="code-line"><span class="line-num">32</span><span class="code-text"><span class="fn">zakhme</span>(<span class="str">"دو"</span>)</span></div>
+            <div class="code-line"><span class="line-num">33</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">34</span><span class="code-text"><span class="fn">print</span>(<span class="str">"\n--- آواز آبادی‌ها ---"</span>)</span></div>
+            <div class="code-line"><span class="line-num">35</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"کُهباد: {havas('کُهباد')}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">36</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"گلِ شور: {havas('گلِ شور')}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">37</span><span class="code-text"><span class="fn">print</span>(<span class="str">f"دزپارت: {havas('دزپارت')}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">38</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">39</span><span class="code-text"><span class="fn">print</span>(<span class="str">"\n--- آواز جمعی ---"</span>)</span></div>
+            <div class="code-line"><span class="line-num">40</span><span class="code-text"><span class="fn">jam</span>(<span class="str">"نیکا"</span>, <span class="str">"آنی"</span>, <span class="str">"مانزات"</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="output-terminal">
+          <div class="out-header">
+            <span class="out-dot r"></span>
+            <span class="out-dot y"></span>
+            <span class="out-dot g"></span>
+            <span class="out-title">Output</span>
+          </div>
+          <div class="out-body"><span class="out">سلام نیکا، صدای زاگرس!
+سلام مانزات، صدای زاگرس!
+
+--- نواختن چنگ ---
+🎵 لا...
+🎵 می...
+🎵 دو...
+
+--- آواز آبادی‌ها ---
+کُهباد: آواز نان و تنور
+گلِ شور: آواز آب و جوی
+دزپارت: آواز ناشناخته
+
+--- آواز جمعی ---
+با هم: نیکا, آنی, مانزات</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ FINAL PROJECT ======================== -->
+  <!-- ==================================================== -->
+  <section id="project">
+    <div class="section-header">
+      <div class="level-badge project">🎯</div>
+      <div>
+        <h2>پروژه‌ی نهایی — سیستم شورای خشت‌ها</h2>
+        <div class="sub">ترکیب همه‌ی مهارت‌ها در یک برنامه‌ی کامل</div>
+      </div>
+    </div>
+
+    <div class="info hint">
+      <span class="hint-icon">🏛️</span>
+      <div><strong>سناریو:</strong> برنامه‌ای کامل که به اهالی آبادی‌ها اجازه می‌دهد در شورای خشت‌ها رأی بدهند، نتایج را بشمارد و گزارش نهایی را نمایش دهد.</div>
+    </div>
+
+    <div class="project">
+      <div class="project-header final">
+        <div class="project-num">🎯</div>
+        <div class="project-title">
+          <h3>پروژه‌ی جامع — شورای خشت‌ها</h3>
+          <div class="meta">
+            <span>⏱ ۹۰ دقیقه</span>
+            <span>📊 سطح: جامع</span>
+            <span>🎯 هدف: ترکیب همه‌ی مهارت‌ها</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>dict</span><span>list</span><span>for</span><span>while</span><span>if/else</span><span>def</span><span>input</span>
+        </div>
+
+        <div class="code-block" data-code="‌# ============================================
+# پروژه‌ی نهایی پایتون ۱
+# سیستم شورای خشت‌ها — رمان زمین خواهد شنید
+# آموزشگاه تیروتیر
+# ============================================
+
+# --- داده‌های اولیه ---
+votes = {
+    &quot;موافق&quot;: [],
+    &quot;مخالف&quot;: [],
+    &quot;ممتنع&quot;: []
+}
+
+villages = [
+    &quot;کُهباد&quot;, &quot;تکاب&quot;, &quot;گلِ شور&quot;, &quot;شیل‌هی‌تی&quot;,
+    &quot;اشکفت‌سلمان&quot;, &quot;خونگ‌آژدر&quot;, &quot;آیاپیر&quot;, &quot;دزپارت&quot;
+]
+
+# --- توابع ---
+def namayesh_menu():
+    &quot;&quot;&quot;نمایش منوی اصلی&quot;&quot;&quot;
+    print(&quot;\n&quot; + &quot;=&quot; * 40)
+    print(&quot;   🏛️ شورای خشت‌ها — اشکفت‌سلمان&quot;)
+    print(&quot;=&quot; * 40)
+    print(&quot;1. رأی دادن&quot;)
+    print(&quot;2. مشاهده‌ی نتایج&quot;)
+    print(&quot;3. خروج&quot;)
+    print(&quot;=&quot; * 40)
+
+def raay_dadan():
+    &quot;&quot;&quot;ثبت رأی یک آبادی&quot;&quot;&quot;
+    print(&quot;\n--- لیست آبادی‌ها ---&quot;)
+    for i, v in enumerate(villages, 1):
+        print(f&quot;  {i}. {v}&quot;)
+    
+    try:
+        choice = int(input(&quot;\nشماره آبادی: &quot;))
+        if choice &lt; 1 or choice &gt; len(villages):
+            print(&quot;❌ شماره نامعتبر!&quot;)
+            return
+        village = villages[choice - 1]
+    except ValueError:
+        print(&quot;❌ لطفاً عدد وارد کنید.&quot;)
+        return
+    
+    print(&quot;\nنوع رأی:&quot;)
+    print(&quot;  1. موافق ✅&quot;)
+    print(&quot;  2. مخالف ❌&quot;)
+    print(&quot;  3. ممتنع ⚪&quot;)
+    
+    vote_type = input(&quot;انتخاب: &quot;)
+    if vote_type == &quot;1&quot;:
+        votes[&quot;موافق&quot;].append(village)
+        print(f&quot;✅ رأی {village} ثبت شد: موافق&quot;)
+    elif vote_type == &quot;2&quot;:
+        votes[&quot;مخالف&quot;].append(village)
+        print(f&quot;❌ رأی {village} ثبت شد: مخالف&quot;)
+    elif vote_type == &quot;3&quot;:
+        votes[&quot;ممتنع&quot;].append(village)
+        print(f&quot;⚪ رأی {village} ثبت شد: ممتنع&quot;)
+    else:
+        print(&quot;❌ انتخاب نامعتبر!&quot;)
+
+def namayesh_natayej():
+    &quot;&quot;&quot;نمایش نتایج رأی‌گیری&quot;&quot;&quot;
+    total = 0
+    for key in votes:
+        total += len(votes[key])
+    
+    if total == 0:
+        print(&quot;\n📭 هنوز هیچ رأیی ثبت نشده است.&quot;)
+        return
+    
+    print(&quot;\n&quot; + &quot;=&quot; * 40)
+    print(&quot;   📊 نتایج شورا&quot;)
+    print(&quot;=&quot; * 40)
+    
+    for key in votes:
+        count = len(votes[key])
+        bar = &quot;🟫&quot; * count
+        print(f&quot;{key}: {count} رأی {bar}&quot;)
+        if votes[key]:
+            print(f&quot;   → {', '.join(votes[key])}&quot;)
+    
+    print(f&quot;\nمجموع رأی‌ها: {total}&quot;)
+    
+    # نتیجه‌ی نهایی
+    if len(votes[&quot;موافق&quot;]) &gt; len(votes[&quot;مخالف&quot;]):
+        print(&quot;\n🎉 تصمیم شورا: پذیرفته شد&quot;)
+    elif len(votes[&quot;موافق&quot;]) &lt; len(votes[&quot;مخالف&quot;]):
+        print(&quot;\n❌ تصمیم شورا: رد شد&quot;)
+    else:
+        print(&quot;\n⚖️ تصمیم شورا: مساوی — نیاز به بحث بیشتر&quot;)
+
+# --- برنامه‌ی اصلی ---
+print(&quot;به شورای خشت‌ها خوش آمدید!&quot;)
+print(&quot;«هر کس یک خشت بردارد.»&quot;)
+
+while True:
+    namayesh_menu()
+    choice = input(&quot;\nانتخاب شما: &quot;)
+    
+    if choice == &quot;1&quot;:
+        raay_dadan()
+    elif choice == &quot;2&quot;:
+        namayesh_natayej()
+    elif choice == &quot;3&quot;:
+        print(&quot;\n🌊 آب راهش را پیدا می‌کند. خدانگهدار!&quot;)
+        break
+    else:
+        print(&quot;❌ لطفاً عدد 1، 2 یا 3 را وارد کنید.&quot;)">
+          <div class="code-header">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="py-tag">Python 3</span>
+            <button class="copy-btn" onclick="copyCode(this)">
+              <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>کپی</span>
+            </button>
+            <span class="file-name">shora.py</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="line-num">1</span><span class="code-text"><span class="cm"># ============================================</span></span></div>
+            <div class="code-line"><span class="line-num">2</span><span class="code-text"><span class="cm"># پروژه‌ی نهایی پایتون ۱</span></span></div>
+            <div class="code-line"><span class="line-num">3</span><span class="code-text"><span class="cm"># سیستم شورای خشت‌ها — رمان زمین خواهد شنید</span></span></div>
+            <div class="code-line"><span class="line-num">4</span><span class="code-text"><span class="cm"># آموزشگاه تیروتیر</span></span></div>
+            <div class="code-line"><span class="line-num">5</span><span class="code-text"><span class="cm"># ============================================</span></span></div>
+            <div class="code-line"><span class="line-num">6</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">7</span><span class="code-text"><span class="cm"># --- داده‌های اولیه ---</span></span></div>
+            <div class="code-line"><span class="line-num">8</span><span class="code-text">votes <span class="op">=</span> {</span></div>
+            <div class="code-line"><span class="line-num">9</span><span class="code-text">    <span class="str">"موافق"</span>: [],</span></div>
+            <div class="code-line"><span class="line-num">10</span><span class="code-text">    <span class="str">"مخالف"</span>: [],</span></div>
+            <div class="code-line"><span class="line-num">11</span><span class="code-text">    <span class="str">"ممتنع"</span>: []</span></div>
+            <div class="code-line"><span class="line-num">12</span><span class="code-text">}</span></div>
+            <div class="code-line"><span class="line-num">13</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">14</span><span class="code-text">villages <span class="op">=</span> [</span></div>
+            <div class="code-line"><span class="line-num">15</span><span class="code-text">    <span class="str">"کُهباد"</span>, <span class="str">"تکاب"</span>, <span class="str">"گلِ شور"</span>, <span class="str">"شیل‌هی‌تی"</span>,</span></div>
+            <div class="code-line"><span class="line-num">16</span><span class="code-text">    <span class="str">"اشکفت‌سلمان"</span>, <span class="str">"خونگ‌آژدر"</span>, <span class="str">"آیاپیر"</span>, <span class="str">"دزپارت"</span></span></div>
+            <div class="code-line"><span class="line-num">17</span><span class="code-text">]</span></div>
+            <div class="code-line"><span class="line-num">18</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">19</span><span class="code-text"><span class="cm"># --- توابع ---</span></span></div>
+            <div class="code-line"><span class="line-num">20</span><span class="code-text"><span class="kw">def</span> <span class="fn">namayesh_menu</span>():</span></div>
+            <div class="code-line"><span class="line-num">21</span><span class="code-text">    <span class="str">"""نمایش منوی اصلی"""</span></span></div>
+            <div class="code-line"><span class="line-num">22</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"\n" + "=" * 40</span>)</span></div>
+            <div class="code-line"><span class="line-num">23</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"   🏛️ شورای خشت‌ها — اشکفت‌سلمان"</span>)</span></div>
+            <div class="code-line"><span class="line-num">24</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"=" * 40</span>)</span></div>
+            <div class="code-line"><span class="line-num">25</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"1. رأی دادن"</span>)</span></div>
+            <div class="code-line"><span class="line-num">26</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"2. مشاهده‌ی نتایج"</span>)</span></div>
+            <div class="code-line"><span class="line-num">27</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"3. خروج"</span>)</span></div>
+            <div class="code-line"><span class="line-num">28</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"=" * 40</span>)</span></div>
+            <div class="code-line"><span class="line-num">29</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">30</span><span class="code-text"><span class="kw">def</span> <span class="fn">raay_dadan</span>():</span></div>
+            <div class="code-line"><span class="line-num">31</span><span class="code-text">    <span class="str">"""ثبت رأی یک آبادی"""</span></span></div>
+            <div class="code-line"><span class="line-num">32</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"\n--- لیست آبادی‌ها ---"</span>)</span></div>
+            <div class="code-line"><span class="line-num">33</span><span class="code-text">    <span class="kw">for</span> i, v <span class="kw">in</span> <span class="builtin">enumerate</span>(villages, <span class="num">1</span>):</span></div>
+            <div class="code-line"><span class="line-num">34</span><span class="code-text">        <span class="fn">print</span>(<span class="str">f"  {i}. {v}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">35</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">36</span><span class="code-text">    <span class="kw">try</span>:</span></div>
+            <div class="code-line"><span class="line-num">37</span><span class="code-text">        choice <span class="op">=</span> <span class="builtin">int</span>(<span class="fn">input</span>(<span class="str">"\nشماره آبادی: "</span>))</span></div>
+            <div class="code-line"><span class="line-num">38</span><span class="code-text">        <span class="kw">if</span> choice <span class="op">&lt;</span> <span class="num">1</span> <span class="kw">or</span> choice <span class="op">&gt;</span> <span class="builtin">len</span>(villages):</span></div>
+            <div class="code-line"><span class="line-num">39</span><span class="code-text">            <span class="fn">print</span>(<span class="str">"❌ شماره نامعتبر!"</span>)</span></div>
+            <div class="code-line"><span class="line-num">40</span><span class="code-text">            <span class="kw">return</span></span></div>
+            <div class="code-line"><span class="line-num">41</span><span class="code-text">        village <span class="op">=</span> villages[choice <span class="op">-</span> <span class="num">1</span>]</span></div>
+            <div class="code-line"><span class="line-num">42</span><span class="code-text">    <span class="kw">except</span> <span class="cls">ValueError</span>:</span></div>
+            <div class="code-line"><span class="line-num">43</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"❌ لطفاً عدد وارد کنید."</span>)</span></div>
+            <div class="code-line"><span class="line-num">44</span><span class="code-text">        <span class="kw">return</span></span></div>
+            <div class="code-line"><span class="line-num">45</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">46</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"\nنوع رأی:"</span>)</span></div>
+            <div class="code-line"><span class="line-num">47</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"  1. موافق ✅"</span>)</span></div>
+            <div class="code-line"><span class="line-num">48</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"  2. مخالف ❌"</span>)</span></div>
+            <div class="code-line"><span class="line-num">49</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"  3. ممتنع ⚪"</span>)</span></div>
+            <div class="code-line"><span class="line-num">50</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">51</span><span class="code-text">    vote_type <span class="op">=</span> <span class="fn">input</span>(<span class="str">"انتخاب: "</span>)</span></div>
+            <div class="code-line"><span class="line-num">52</span><span class="code-text">    <span class="kw">if</span> vote_type <span class="op">==</span> <span class="str">"1"</span>:</span></div>
+            <div class="code-line"><span class="line-num">53</span><span class="code-text">        votes[<span class="str">"موافق"</span>].append(village)</span></div>
+            <div class="code-line"><span class="line-num">54</span><span class="code-text">        <span class="fn">print</span>(<span class="str">f"✅ رأی {village} ثبت شد: موافق"</span>)</span></div>
+            <div class="code-line"><span class="line-num">55</span><span class="code-text">    <span class="kw">elif</span> vote_type <span class="op">==</span> <span class="str">"2"</span>:</span></div>
+            <div class="code-line"><span class="line-num">56</span><span class="code-text">        votes[<span class="str">"مخالف"</span>].append(village)</span></div>
+            <div class="code-line"><span class="line-num">57</span><span class="code-text">        <span class="fn">print</span>(<span class="str">f"❌ رأی {village} ثبت شد: مخالف"</span>)</span></div>
+            <div class="code-line"><span class="line-num">58</span><span class="code-text">    <span class="kw">elif</span> vote_type <span class="op">==</span> <span class="str">"3"</span>:</span></div>
+            <div class="code-line"><span class="line-num">59</span><span class="code-text">        votes[<span class="str">"ممتنع"</span>].append(village)</span></div>
+            <div class="code-line"><span class="line-num">60</span><span class="code-text">        <span class="fn">print</span>(<span class="str">f"⚪ رأی {village} ثبت شد: ممتنع"</span>)</span></div>
+            <div class="code-line"><span class="line-num">61</span><span class="code-text">    <span class="kw">else</span>:</span></div>
+            <div class="code-line"><span class="line-num">62</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"❌ انتخاب نامعتبر!"</span>)</span></div>
+            <div class="code-line"><span class="line-num">63</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">64</span><span class="code-text"><span class="kw">def</span> <span class="fn">namayesh_natayej</span>():</span></div>
+            <div class="code-line"><span class="line-num">65</span><span class="code-text">    <span class="str">"""نمایش نتایج رأی‌گیری"""</span></span></div>
+            <div class="code-line"><span class="line-num">66</span><span class="code-text">    total <span class="op">=</span> <span class="num">0</span></span></div>
+            <div class="code-line"><span class="line-num">67</span><span class="code-text">    <span class="kw">for</span> key <span class="kw">in</span> votes:</span></div>
+            <div class="code-line"><span class="line-num">68</span><span class="code-text">        total <span class="op">+=</span> <span class="builtin">len</span>(votes[key])</span></div>
+            <div class="code-line"><span class="line-num">69</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">70</span><span class="code-text">    <span class="kw">if</span> total <span class="op">==</span> <span class="num">0</span>:</span></div>
+            <div class="code-line"><span class="line-num">71</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"\n📭 هنوز هیچ رأیی ثبت نشده است."</span>)</span></div>
+            <div class="code-line"><span class="line-num">72</span><span class="code-text">        <span class="kw">return</span></span></div>
+            <div class="code-line"><span class="line-num">73</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">74</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"\n" + "=" * 40</span>)</span></div>
+            <div class="code-line"><span class="line-num">75</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"   📊 نتایج شورا"</span>)</span></div>
+            <div class="code-line"><span class="line-num">76</span><span class="code-text">    <span class="fn">print</span>(<span class="str">"=" * 40</span>)</span></div>
+            <div class="code-line"><span class="line-num">77</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">78</span><span class="code-text">    <span class="kw">for</span> key <span class="kw">in</span> votes:</span></div>
+            <div class="code-line"><span class="line-num">79</span><span class="code-text">        count <span class="op">=</span> <span class="builtin">len</span>(votes[key])</span></div>
+            <div class="code-line"><span class="line-num">80</span><span class="code-text">        bar <span class="op">=</span> <span class="str">"🟫"</span> <span class="op">*</span> count</span></div>
+            <div class="code-line"><span class="line-num">81</span><span class="code-text">        <span class="fn">print</span>(<span class="str">f"{key}: {count} رأی {bar}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">82</span><span class="code-text">        <span class="kw">if</span> votes[key]:</span></div>
+            <div class="code-line"><span class="line-num">83</span><span class="code-text">            <span class="fn">print</span>(<span class="str">f"   → {', '.join(votes[key])}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">84</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">85</span><span class="code-text">    <span class="fn">print</span>(<span class="str">f"\nمجموع رأی‌ها: {total}"</span>)</span></div>
+            <div class="code-line"><span class="line-num">86</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">87</span><span class="code-text">    <span class="cm"># نتیجه‌ی نهایی</span></span></div>
+            <div class="code-line"><span class="line-num">88</span><span class="code-text">    <span class="kw">if</span> <span class="builtin">len</span>(votes[<span class="str">"موافق"</span>]) <span class="op">&gt;</span> <span class="builtin">len</span>(votes[<span class="str">"مخالف"</span>]):</span></div>
+            <div class="code-line"><span class="line-num">89</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"\n🎉 تصمیم شورا: پذیرفته شد"</span>)</span></div>
+            <div class="code-line"><span class="line-num">90</span><span class="code-text">    <span class="kw">elif</span> <span class="builtin">len</span>(votes[<span class="str">"موافق"</span>]) <span class="op">&lt;</span> <span class="builtin">len</span>(votes[<span class="str">"مخالف"</span>]):</span></div>
+            <div class="code-line"><span class="line-num">91</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"\n❌ تصمیم شورا: رد شد"</span>)</span></div>
+            <div class="code-line"><span class="line-num">92</span><span class="code-text">    <span class="kw">else</span>:</span></div>
+            <div class="code-line"><span class="line-num">93</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"\n⚖️ تصمیم شورا: مساوی — نیاز به بحث بیشتر"</span>)</span></div>
+            <div class="code-line"><span class="line-num">94</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">95</span><span class="code-text"><span class="cm"># --- برنامه‌ی اصلی ---</span></span></div>
+            <div class="code-line"><span class="line-num">96</span><span class="code-text"><span class="fn">print</span>(<span class="str">"به شورای خشت‌ها خوش آمدید!"</span>)</span></div>
+            <div class="code-line"><span class="line-num">97</span><span class="code-text"><span class="fn">print</span>(<span class="str">"«هر کس یک خشت بردارد.»"</span>)</span></div>
+            <div class="code-line"><span class="line-num">98</span><span class="code-text"></span></div>
+            <div class="code-line"><span class="line-num">99</span><span class="code-text"><span class="kw">while</span> <span class="bool">True</span>:</span></div>
+            <div class="code-line"><span class="line-num">100</span><span class="code-text">    <span class="fn">namayesh_menu</span>()</span></div>
+            <div class="code-line"><span class="line-num">101</span><span class="code-text">    choice <span class="op">=</span> <span class="fn">input</span>(<span class="str">"\nانتخاب شما: "</span>)</span></div>
+            <div class="code-line"><span class="line-num">102</span><span class="code-text">    </span></div>
+            <div class="code-line"><span class="line-num">103</span><span class="code-text">    <span class="kw">if</span> choice <span class="op">==</span> <span class="str">"1"</span>:</span></div>
+            <div class="code-line"><span class="line-num">104</span><span class="code-text">        <span class="fn">raay_dadan</span>()</span></div>
+            <div class="code-line"><span class="line-num">105</span><span class="code-text">    <span class="kw">elif</span> choice <span class="op">==</span> <span class="str">"2"</span>:</span></div>
+            <div class="code-line"><span class="line-num">106</span><span class="code-text">        <span class="fn">namayesh_natayej</span>()</span></div>
+            <div class="code-line"><span class="line-num">107</span><span class="code-text">    <span class="kw">elif</span> choice <span class="op">==</span> <span class="str">"3"</span>:</span></div>
+            <div class="code-line"><span class="line-num">108</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"\n🌊 آب راهش را پیدا می‌کند. خدانگهدار!"</span>)</span></div>
+            <div class="code-line"><span class="line-num">109</span><span class="code-text">        <span class="kw">break</span></span></div>
+            <div class="code-line"><span class="line-num">110</span><span class="code-text">    <span class="kw">else</span>:</span></div>
+            <div class="code-line"><span class="line-num">111</span><span class="code-text">        <span class="fn">print</span>(<span class="str">"❌ لطفاً عدد 1، 2 یا 3 را وارد کنید."</span>)</span></div>
+          </div>
+        </div>
+
+        <div class="hint success">
+          <span class="hint-icon">🏆</span>
+          <div><strong>تبریک!</strong> اگر این پروژه را اجرا کردید، به سطح ۱ پایتون مسلط شده‌اید. حالا می‌توانید به سطح ۲ بروید: فایل‌ها، کلاس‌ها، و کتابخانه‌ها.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ SUMMARY ============================== -->
+  <!-- ==================================================== -->
+  <section>
+    <div class="section-header">
+      <div class="level-badge" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));">📋</div>
+      <div>
+        <h2>جمع‌بندی پایتون سطح ۱</h2>
+        <div class="sub">مرور کلی ۱۰ پروژه و مهارت‌های کسب‌شده</div>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h4>🐍 مبانی (۱-۳)</h4>
+        <ul>
+          <li>نصب و اجرای پایتون</li>
+          <li>print() و کامنت</li>
+          <li>متغیرها و f-string</li>
+          <li>type() و بررسی نوع</li>
+          <li>input() و int()</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>📊 داده‌ها (۴-۶)</h4>
+        <ul>
+          <li>عملگرهای ریاضی</li>
+          <li>لیست و متدهای آن</li>
+          <li>append, sort, index</li>
+          <li>دیکشنری و کلیدها</li>
+          <li>items, keys, values</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>🔄 جریان (۷-۱۰)</h4>
+        <ul>
+          <li>if / elif / else</li>
+          <li>and، or، not</li>
+          <li>حلقه‌ی for و while</li>
+          <li>range، enumerate، zip</li>
+          <li>توابع و return</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>🎯 پروژه‌ی نهایی</h4>
+        <ul>
+          <li>ترکیب همه‌ی مهارت‌ها</li>
+          <li>سیستم رأی‌گیری شورا</li>
+          <li>مدیریت خطا (try/except)</li>
+          <li>منوی تعاملی</li>
+          <li>گزارش‌گیری</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hint info" style="margin-top:30px;padding:25px 30px;">
+      <span class="hint-icon" style="font-size:1.8rem;">🎯</span>
+      <div>
+        <strong style="font-size:1.05rem;">مسیر پیش رو:</strong>
+        حالا که پایتون ۱ را تمام کردید، در پایتون ۲ یاد می‌گیرید: کار با فایل‌ها، کلاس‌ها و شی‌گرایی، کتابخانه‌های turtle و tkinter برای ساخت بازی، و شاید شروع تحلیل داده با pandas.
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="brand">آموزشگاه هوش مصنوعی تیروتیر</div>
+  <p class="tagline">
+    آموزش مهارت‌های دیجیتال با الهام از تاریخ و ادبیات ایران<br>
+    بر اساس رمان «زمین خواهد شنید» نوشته‌ی داریوش علیپور
+  </p>
+  <a href="https://tirotir.ir" class="site-link" target="_blank" rel="noopener">
+    🌐 tirotir.ir
+  </a>
+  <div class="divider"></div>
+  <p class="copyright">© ۱۴۰۵ — تمامی حقوق برای آموزشگاه تیروتیر محفوظ است.</p>
+</footer>
+
+<script>
+function copyCode(btn) {
+  // پیدا کردن code-block والد
+  const codeBlock = btn.closest('.code-block');
+  // استفاده از data-code برای متن تمیز
+  let code = codeBlock.getAttribute('data-code');
+  
+  if (!code) {
+    // در صورت نبود data-code، از DOM استفاده کن
+    const lines = codeBlock.querySelectorAll('.code-line');
+    code = Array.from(lines).map(line => {
+      const text = line.querySelector('.code-text');
+      return text ? text.innerText : '';
+    }).join('\n');
+  }
+  
+  // حذف کاراکترهای نامرئی ابتدای متن
+  code = code.replace(/^‌/, '');
+  
+  // کپی در کلیپ‌بورد
+  navigator.clipboard.writeText(code).then(() => {
+    // تغییر متن دکمه به "کپی شد!"
+    const originalHTML = btn.innerHTML;
+    btn.classList.add('copied');
+    btn.innerHTML = `
+      <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      <span>کپی شد!</span>
+    `;
+    
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+      btn.classList.remove('copied');
+    }, 1800);
+  }).catch(err => {
+    // Fallback برای مرورگرهای قدیمی
+    const textarea = document.createElement('textarea');
+    textarea.value = code;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      btn.classList.add('copied');
+      btn.querySelector('span').textContent = 'کپی شد!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.querySelector('span').textContent = 'کپی';
+      }, 1800);
+    } catch (e) {
+      alert('کپی نشد، لطفاً دستی کپی کنید.');
+    }
+    document.body.removeChild(textarea);
+  });
+}
+</script>
+
+</body>
+</html>

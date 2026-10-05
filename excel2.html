@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آموزش اکسل — زمین خواهد شنید | آموزشگاه هوش مصنوعی تیروتیر</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --earth: #8b5e3c;
+    --earth-light: #b8865b;
+    --earth-dark: #5c3b22;
+    --water: #2a9d8f;
+    --water-light: #4ecdc4;
+    --water-dark: #1a6b62;
+    --brick: #c17a4d;
+    --sand: #f5e9d7;
+    --sand-light: #fbf6ee;
+    --ink: #2b2118;
+    --gold: #d4a24c;
+    --shadow: 0 10px 40px rgba(92, 59, 34, 0.15);
+  }
+
+  body {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    background: linear-gradient(135deg, #fbf6ee 0%, #f0e4d0 100%);
+    color: var(--ink);
+    line-height: 1.9;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, var(--earth-dark) 0%, var(--earth) 50%, var(--brick) 100%);
+    color: #fff;
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(78, 205, 196, 0.25), transparent 70%);
+    border-radius: 50%;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(212, 162, 76, 0.3), transparent 70%);
+    border-radius: 50%;
+  }
+
+  header .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+  }
+
+  header h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 3px 15px rgba(0,0,0,0.3);
+  }
+
+  header h1 span { color: var(--gold); }
+
+  header p {
+    font-size: 1.15rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    font-weight: 300;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1150px;
+    margin: -40px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ===== SECTION ===== */
+  section {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 35px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(139, 94, 60, 0.08);
+    animation: fadeUp 0.7s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section h2 {
+    font-size: 1.7rem;
+    color: var(--earth-dark);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--water), var(--gold), transparent) 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  section h2 .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--water), var(--water-dark));
+    color: #fff;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
+  }
+
+  section h3 {
+    font-size: 1.25rem;
+    color: var(--earth);
+    margin: 25px 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  section h3::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 0.8rem;
+  }
+
+  p { margin-bottom: 15px; color: #4a3d30; }
+
+  /* ===== VILLAGES LIST ===== */
+  .villages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .villages span {
+    background: linear-gradient(135deg, var(--sand), #fff);
+    border: 1px solid var(--earth-light);
+    color: var(--earth-dark);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .villages span:hover {
+    background: linear-gradient(135deg, var(--water), var(--water-dark));
+    color: #fff;
+    border-color: var(--water);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(42, 157, 143, 0.3);
+  }
+
+  /* ===== TABLE ===== */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(92, 59, 34, 0.1);
+    margin: 20px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 0.95rem;
+    min-width: 600px;
+  }
+
+  thead {
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth));
+    color: #fff;
+  }
+
+  thead th {
+    padding: 16px 12px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.95rem;
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+
+  tbody td {
+    padding: 13px 12px;
+    text-align: center;
+    border-bottom: 1px solid #f0e4d0;
+    transition: background 0.2s;
+  }
+
+  tbody tr:nth-child(even) { background: var(--sand-light); }
+
+  tbody tr:hover { background: #e8f6f4; }
+
+  tbody tr:hover td { color: var(--water-dark); font-weight: 500; }
+
+  tbody td:first-child {
+    font-weight: 700;
+    color: var(--earth-dark);
+    background: rgba(212, 162, 76, 0.08);
+  }
+
+  /* Highlight special rows */
+  .row-golshur { background: linear-gradient(90deg, rgba(78,205,196,0.15), rgba(78,205,196,0.05)) !important; }
+  .row-koldozakh { background: linear-gradient(90deg, rgba(212,162,76,0.15), rgba(212,162,76,0.05)) !important; }
+
+  /* ===== FUNCTION CARDS ===== */
+  .functions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+  }
+
+  .func-card {
+    background: linear-gradient(135deg, #fff 0%, var(--sand-light) 100%);
+    border: 1px solid rgba(139, 94, 60, 0.15);
+    border-radius: 16px;
+    padding: 22px;
+    position: relative;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+
+  .func-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--water), var(--gold));
+  }
+
+  .func-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(42, 157, 143, 0.2);
+    border-color: var(--water);
+  }
+
+  .func-card .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--earth), var(--brick));
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .func-card h4 {
+    font-size: 1.05rem;
+    color: var(--earth-dark);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .func-card .cell {
+    display: inline-block;
+    background: var(--water-dark);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 12px;
+  }
+
+  code {
+    display: block;
+    background: #1e1e2e;
+    color: #a6e3a1;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    direction: ltr;
+    text-align: left;
+    margin: 10px 0;
+    overflow-x: auto;
+    border: 1px solid #313244;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  }
+
+  .func-card .result {
+    font-size: 0.85rem;
+    color: var(--water-dark);
+    background: rgba(78, 205, 196, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border-right: 3px solid var(--water);
+    margin-top: 8px;
+  }
+
+  /* ===== CHART CARDS ===== */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+  }
+
+  .chart-card {
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth));
+    color: #fff;
+    border-radius: 18px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .chart-card:hover { transform: scale(1.02); }
+
+  .chart-card::after {
+    content: '📊';
+    position: absolute;
+    bottom: -15px;
+    left: -10px;
+    font-size: 5rem;
+    opacity: 0.15;
+  }
+
+  .chart-card .chart-num {
+    font-size: 0.8rem;
+    background: rgba(255,255,255,0.2);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+  }
+
+  .chart-card h4 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .chart-card ol {
+    padding-right: 20px;
+    font-size: 0.9rem;
+    opacity: 0.95;
+  }
+
+  .chart-card ol li { margin-bottom: 6px; }
+
+  /* ===== SUMMARY TABLE ===== */
+  .summary-table td:first-child {
+    font-family: 'Courier New', monospace;
+    direction: ltr;
+    color: var(--water-dark);
+    font-weight: 700;
+  }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.12), rgba(212, 162, 76, 0.12));
+    border-right: 5px solid var(--water);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin: 20px 0;
+    font-size: 0.98rem;
+    color: var(--earth-dark);
+  }
+
+  .callout strong { color: var(--water-dark); }
+
+  .callout .emoji { font-size: 1.3rem; margin-left: 8px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: linear-gradient(135deg, var(--earth-dark) 0%, #3a2415 100%);
+    color: #fff;
+    padding: 50px 20px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--water), var(--gold), var(--water));
+  }
+
+  footer .brand {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--water-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  footer .tagline {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 25px;
+    font-weight: 300;
+  }
+
+  footer .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(78, 205, 196, 0.15);
+    border: 1px solid var(--water);
+    color: var(--water-light);
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s;
+  }
+
+  footer .site-link:hover {
+    background: var(--water);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(42, 157, 143, 0.4);
+  }
+
+  footer .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 25px auto;
+    border-radius: 2px;
+  }
+
+  footer .copyright {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 15px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    header h1 { font-size: 1.8rem; }
+    header p { font-size: 1rem; }
+    section { padding: 28px 20px; }
+    section h2 { font-size: 1.35rem; }
+    .functions-grid { grid-template-columns: 1fr; }
+    .charts-grid { grid-template-columns: 1fr; }
+    .container { margin-top: -25px; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--sand); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--earth), var(--water));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--water-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">🌊 تمرین اکسل بر اساس رمان «زمین خواهد شنید»</div>
+  <h1>خشت، لوح و <span>سُکُت</span></h1>
+  <p>آموزش توابع اکسل با داده‌های آبادی‌های زاگرس — از کُهباد تا اشکفت‌سلمان</p>
+</header>
+
+<div class="container">
+
+  <!-- ===== VILLAGES ===== -->
+  <section>
+    <h2><span class="icon">🏘️</span> آبادی‌های استخراج‌شده از رمان</h2>
+    <p>از متن رمان، این آبادی‌ها و مکان‌ها استخراج شده‌اند و در تمرین زیر از ۱۶ آبادی اصلی استفاده می‌کنیم:</p>
+    <div class="villages">
+      <span>کُهباد</span><span>تکاب</span><span>بَردَبَران</span><span>ناشلیل</span>
+      <span>آسماری</span><span>موزّر</span><span>مَرْغا</span><span>شَیْوَنَد</span>
+      <span>غَرِیوَلِ</span><span>پُرُسیال</span><span>پیون</span><span>کلدوِزخ</span>
+      <span>گلِ شور</span><span>شیل‌هی‌تی</span><span>خونگ‌آژدر</span><span>اشکفت‌سلمان</span>
+      <span>دزپارت</span><span>سوسن</span><span>بروجن</span><span>جونقان</span>
+      <span>گندمان</span><span>مُنج</span><span>لُردَگون</span><span>سرخون</span>
+      <span>گندمکار</span><span>بره‌مُرده</span><span>دوپُلون</span><span>باج‌گیران</span>
+      <span>ناغون</span><span>اردل</span><span>بلداجی</span><span>آلوئی</span>
+      <span>خان‌میرزایی</span><span>دهکُرد</span><span>چارتنگ</span><span>قلعه‌سَرد</span>
+    </div>
+    <div class="callout">
+      <span class="emoji">💡</span>
+      <strong>توجه:</strong> اعداد جدول زیر فرضی هستند و فقط برای تمرین توابع اکسل طراحی شده‌اند.
+    </div>
+  </section>
+
+  <!-- ===== DATA TABLE ===== -->
+  <section>
+    <h2><span class="icon">📋</span> جدول داده‌ها</h2>
+    <p>این جدول را در اکسل وارد کنید (سلول‌های <code style="display:inline;padding:2px 8px;font-size:0.85rem;">A1</code> تا <code style="display:inline;padding:2px 8px;font-size:0.85rem;">D17</code>):</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ردیف</th>
+            <th>نام آبادی</th>
+            <th>تعداد خشت</th>
+            <th>تعداد لوح</th>
+            <th>تعداد سُکُت</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>۱</td><td>کُهباد</td><td>۴۵</td><td>۳</td><td>۰</td></tr>
+          <tr><td>۲</td><td>تکاب</td><td>۶۰</td><td>۲</td><td>۰</td></tr>
+          <tr><td>۳</td><td>بَردَبَران</td><td>۳۰</td><td>۱</td><td>۰</td></tr>
+          <tr><td>۴</td><td>ناشلیل</td><td>۲۵</td><td>۰</td><td>۰</td></tr>
+          <tr><td>۵</td><td>آسماری</td><td>۲۰</td><td>۰</td><td>۰</td></tr>
+          <tr><td>۶</td><td>موزّر</td><td>۵۵</td><td>۴</td><td>۲</td></tr>
+          <tr><td>۷</td><td>مَرْغا</td><td>۱۵</td><td>۰</td><td>۰</td></tr>
+          <tr><td>۸</td><td>شَیْوَنَد</td><td>۴۰</td><td>۱</td><td>۱</td></tr>
+          <tr><td>۹</td><td>غَرِیوَلِ</td><td>۳۵</td><td>۲</td><td>۰</td></tr>
+          <tr><td>۱۰</td><td>پُرُسیال</td><td>۷۰</td><td>۵</td><td>۳</td></tr>
+          <tr><td>۱۱</td><td>پیون</td><td>۵۰</td><td>۳</td><td>۱</td></tr>
+          <tr class="row-koldozakh"><td>۱۲</td><td>کلدوِزخ</td><td>۸۰</td><td>۶</td><td>۱۰</td></tr>
+          <tr class="row-golshur"><td>۱۳</td><td>گلِ شور</td><td>۹۰</td><td>۱۲</td><td>۴</td></tr>
+          <tr><td>۱۴</td><td>شیل‌هی‌تی</td><td>۶۵</td><td>۴</td><td>۲</td></tr>
+          <tr><td>۱۵</td><td>خونگ‌آژدر</td><td>۱۰۰</td><td>۸</td><td>۵</td></tr>
+          <tr><td>۱۶</td><td>اشکفت‌سلمان</td><td>۱۲۰</td><td>۱۰</td><td>۶</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== FUNCTIONS ===== -->
+  <section>
+    <h2><span class="icon">🧮</span> تمرین‌های توابع اکسل</h2>
+    <p>۱۲ تابع کاربردی را با داده‌های رمان تمرین کنید. هر کارت شامل شماره، سلول هدف، فرمول و نتیجه است.</p>
+
+    <div class="functions-grid">
+
+      <div class="func-card">
+        <span class="num">۱</span>
+        <h4>جمع کل خشت‌ها</h4>
+        <span class="cell">F2</span>
+        <code>=SUM(B2:B17)</code>
+        <div class="result">مجموع تعداد خشت‌های همه‌ی آبادی‌ها</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۲</span>
+        <h4>میانگین خشت‌ها</h4>
+        <span class="cell">F3</span>
+        <code>=AVERAGE(B2:B17)</code>
+        <div class="result">میانگین خشت هر آبادی</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۳</span>
+        <h4>بیشترین خشت</h4>
+        <span class="cell">F4</span>
+        <code>=MAX(B2:B17)</code>
+        <div class="result">آبادی با بیشترین خشت (اشکفت‌سلمان)</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۴</span>
+        <h4>کمترین خشت</h4>
+        <span class="cell">F5</span>
+        <code>=MIN(B2:B17)</code>
+        <div class="result">آبادی با کمترین خشت (مَرْغا)</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۵</span>
+        <h4>تعداد آبادی‌ها</h4>
+        <span class="cell">F6</span>
+        <code>=COUNTA(A2:A17)</code>
+        <div class="result">۱۶ آبادی در جدول</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۶</span>
+        <h4>آبادی‌های با بیش از ۵۰ خشت</h4>
+        <span class="cell">F7</span>
+        <code>=COUNTIF(B2:B17,"&gt;50")</code>
+        <div class="result">تعداد آبادی‌های پرخشت</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۷</span>
+        <h4>مجموع خشت‌های بیش از ۵۰</h4>
+        <span class="cell">F8</span>
+        <code>=SUMIF(B2:B17,"&gt;50")</code>
+        <div class="result">جمع خشت آبادی‌های پرجمعیت</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۸</span>
+        <h4>تعداد لوح‌ها در گلِ شور</h4>
+        <span class="cell">F9</span>
+        <code>=VLOOKUP("گلِ شور",A2:D17,3,FALSE)</code>
+        <div class="result">نتیجه: ۱۲ لوح</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۹</span>
+        <h4>تعداد سُکُت‌ها در کلدوِزخ</h4>
+        <span class="cell">F10</span>
+        <code>=VLOOKUP("کلدوِزخ",A2:D17,4,FALSE)</code>
+        <div class="result">نتیجه: ۱۰ سُکُت</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۱۰</span>
+        <h4>وضعیت خشت هر آبادی</h4>
+        <span class="cell">E2:E17</span>
+        <code>=IF(B2&gt;100,"زیاد","کم")</code>
+        <div class="result">دسته‌بندی آبادی‌ها بر اساس تعداد خشت</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۱۱</span>
+        <h4>آبادی‌های با بیش از ۵ لوح</h4>
+        <span class="cell">F11</span>
+        <code>=COUNTIF(C2:C17,"&gt;5")</code>
+        <div class="result">تعداد آبادی‌های دارای لوح زیاد</div>
+      </div>
+
+      <div class="func-card">
+        <span class="num">۱۲</span>
+        <h4>مجموع سُکُت‌ها</h4>
+        <span class="cell">F12</span>
+        <code>=SUM(D2:D17)</code>
+        <div class="result">جمع کل سُکُت‌های منطقه</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CHARTS ===== -->
+  <section>
+    <h2><span class="icon">📈</span> نمودارها</h2>
+    <p>سه نمودار کاربردی از داده‌های جدول بسازید:</p>
+
+    <div class="charts-grid">
+
+      <div class="chart-card">
+        <span class="chart-num">نمودار ۱</span>
+        <h4>تعداد خشت هر آبادی</h4>
+        <ol>
+          <li>سلول‌های <b>A2:A17</b> و <b>B2:B17</b> را انتخاب کنید.</li>
+          <li>از <b>Insert &gt; Column Chart</b> نمودار ستونی بسازید.</li>
+          <li>عنوان: «تعداد خشت هر آبادی»</li>
+          <li>رنگ ستون‌ها را قهوه‌ای کنید (نماد خشت).</li>
+        </ol>
+      </div>
+
+      <div class="chart-card">
+        <span class="chart-num">نمودار ۲</span>
+        <h4>سهم لوح‌ها</h4>
+        <ol>
+          <li>سلول‌های <b>A2:A17</b> و <b>C2:C17</b> را انتخاب کنید.</li>
+          <li>از <b>Insert &gt; Pie Chart</b> نمودار دایره‌ای بسازید.</li>
+          <li>عنوان: «سهم لوح‌های هر آبادی»</li>
+          <li>برچسب درصدها را نمایش دهید.</li>
+        </ol>
+      </div>
+
+      <div class="chart-card">
+        <span class="chart-num">نمودار ۳</span>
+        <h4>مقایسه خشت، لوح و سُکُت</h4>
+        <ol>
+          <li>سلول‌های <b>A1:D17</b> را انتخاب کنید.</li>
+          <li>از <b>Insert &gt; Clustered Column Chart</b> استفاده کنید.</li>
+          <li>عنوان: «مقایسه خشت، لوح و سُکُت در آبادی‌ها»</li>
+          <li>رنگ هر دسته را متفاوت کنید.</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PIVOT ===== -->
+  <section>
+    <h2><span class="icon">📊</span> جدول محوری (Pivot Table)</h2>
+    <ol style="padding-right:25px;font-size:1rem;">
+      <li>داده‌ها را انتخاب کنید.</li>
+      <li>از مسیر <b>Insert &gt; PivotTable</b> یک جدول محوری بسازید.</li>
+      <li>«نام آبادی» را به <b>Rows</b> بکشید.</li>
+      <li>«تعداد خشت»، «تعداد لوح» و «تعداد سُکُت» را به <b>Values</b> بکشید (Sum).</li>
+      <li>نتیجه: جدولی که مجموع هر کالا را برای هر آبادی نشان می‌دهد.</li>
+    </ol>
+  </section>
+
+  <!-- ===== SUMMARY ===== -->
+  <section>
+    <h2><span class="icon">✅</span> جدول خلاصه‌ی توابع</h2>
+    <div class="table-wrap">
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>تابع</th>
+            <th>کاربرد</th>
+            <th>سلول</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>SUM</td><td>جمع کل خشت‌ها</td><td>F2</td></tr>
+          <tr><td>AVERAGE</td><td>میانگین خشت‌ها</td><td>F3</td></tr>
+          <tr><td>MAX</td><td>بیشترین خشت</td><td>F4</td></tr>
+          <tr><td>MIN</td><td>کمترین خشت</td><td>F5</td></tr>
+          <tr><td>COUNTA</td><td>تعداد آبادی‌ها</td><td>F6</td></tr>
+          <tr><td>COUNTIF</td><td>تعداد آبادی‌های با بیش از ۵۰ خشت</td><td>F7</td></tr>
+          <tr><td>SUMIF</td><td>مجموع خشت‌های بیش از ۵۰</td><td>F8</td></tr>
+          <tr><td>VLOOKUP</td><td>تعداد لوح گلِ شور</td><td>F9</td></tr>
+          <tr><td>VLOOKUP</td><td>تعداد سُکُت کلدوِزخ</td><td>F10</td></tr>
+          <tr><td>IF</td><td>وضعیت خشت (زیاد/کم)</td><td>E2:E17</td></tr>
+          <tr><td>COUNTIF</td><td>تعداد آبادی‌های با بیش از ۵ لوح</td><td>F11</td></tr>
+          <tr><td>SUM</td><td>مجموع سُکُت‌ها</td><td>F12</td></tr>
+          <tr><td>AVERAGE</td><td>میانگین لوح‌ها</td><td>F13</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="brand">آموزشگاه هوش مصنوعی تیروتیر</div>
+  <p class="tagline">آموزش مهارت‌های دیجیتال با الهام از تاریخ و ادبیات ایران</p>
+  <a href="https://tirotir.ir" class="site-link" target="_blank" rel="noopener">
+    🌐 tirotir.ir
+  </a>
+  <div class="divider"></div>
+  <p class="copyright">© ۱۴۰۵ — تمامی حقوق برای آموزشگاه تیروتیر محفوظ است.</p>
+</footer>
+
+</body>
+</html>

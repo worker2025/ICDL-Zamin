@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ارباب، شاه و کاهن — یک قماش | زمین خواهد شنید</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --earth: #8b5e3c;
+    --earth-dark: #5c3b22;
+    --water: #2a9d8f;
+    --water-dark: #1a6b62;
+    --gold: #d4a24c;
+    --gold-dark: #a67c2e;
+    --blood: #9b2c2c;
+    --sand: #f5e9d7;
+    --sand-light: #fbf6ee;
+    --ink: #2b2118;
+    --shadow: 0 10px 40px rgba(92, 59, 34, 0.15);
+  }
+
+  body {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    background: linear-gradient(135deg, #fbf6ee 0%, #f0e4d0 100%);
+    color: var(--ink);
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, #3a2415 0%, var(--earth-dark) 40%, var(--earth) 100%);
+    color: #fff;
+    padding: 70px 20px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(42, 157, 143, 0.2), transparent 70%);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(212, 162, 76, 0.25), transparent 70%);
+    border-radius: 50%;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-20px, 20px); }
+  }
+
+  header .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 22px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+    letter-spacing: 0.5px;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    line-height: 1.3;
+  }
+
+  header h1 .highlight {
+    background: linear-gradient(90deg, var(--gold), #f0c674);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    font-weight: 300;
+  }
+
+  header .quote-badge {
+    margin-top: 30px;
+    display: inline-block;
+    background: rgba(155, 44, 44, 0.3);
+    border: 1px solid rgba(255, 100, 100, 0.4);
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    font-style: italic;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1200px;
+    margin: -50px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ===== SECTION ===== */
+  section {
+    background: #fff;
+    border-radius: 22px;
+    padding: 45px 40px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(139, 94, 60, 0.08);
+    animation: fadeUp 0.7s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section h2 {
+    font-size: 1.8rem;
+    color: var(--earth-dark);
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--blood), var(--gold), var(--water), transparent) 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 800;
+  }
+
+  section h2 .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--earth), var(--brick, #c17a4d));
+    color: #fff;
+    border-radius: 14px;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(139, 94, 60, 0.3);
+    flex-shrink: 0;
+  }
+
+  section h3 {
+    font-size: 1.3rem;
+    color: var(--earth);
+    margin: 30px 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+  }
+
+  section h3::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 0.85rem;
+  }
+
+  p { margin-bottom: 16px; color: #4a3d30; font-size: 1.02rem; }
+
+  /* ===== THREE PILLARS ===== */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 35px 0;
+  }
+
+  .pillar {
+    border-radius: 20px;
+    padding: 35px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    cursor: default;
+  }
+
+  .pillar:hover {
+    transform: translateY(-8px);
+  }
+
+  .pillar.lord {
+    background: linear-gradient(135deg, #8b5e3c, #5c3b22);
+    color: #fff;
+  }
+
+  .pillar.king {
+    background: linear-gradient(135deg, #9b2c2c, #6b1a1a);
+    color: #fff;
+  }
+
+  .pillar.priest {
+    background: linear-gradient(135deg, #a67c2e, #6b4f1a);
+    color: #fff;
+  }
+
+  .pillar .emoji {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: block;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+  }
+
+  .pillar h4 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .pillar .subtitle {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-bottom: 18px;
+    font-weight: 300;
+  }
+
+  .pillar ul {
+    text-align: right;
+    padding-right: 20px;
+    font-size: 0.95rem;
+    opacity: 0.95;
+  }
+
+  .pillar ul li { margin-bottom: 8px; }
+
+  .pillar::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    width: 120px;
+    height: 120px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+
+  /* ===== SAME CLOTH VISUAL ===== */
+  .same-cloth {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 24px;
+    padding: 50px 35px;
+    margin: 40px 0;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .same-cloth::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--earth), var(--blood), var(--gold), var(--water));
+  }
+
+  .same-cloth h3 {
+    color: #fff;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 35px;
+    font-weight: 800;
+  }
+
+  .cloth-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .cloth-item {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 20px 25px;
+    text-align: center;
+    min-width: 130px;
+    transition: all 0.3s;
+  }
+
+  .cloth-item:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.05);
+  }
+
+  .cloth-item .big-emoji { font-size: 2.5rem; display: block; margin-bottom: 8px; }
+  .cloth-item .label { font-size: 1rem; font-weight: 600; }
+
+  .cloth-plus {
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 900;
+  }
+
+  .cloth-equals {
+    font-size: 2rem;
+    color: var(--water);
+    font-weight: 900;
+  }
+
+  .cloth-result {
+    background: linear-gradient(135deg, var(--blood), #6b1a1a);
+    border: 2px solid #ff6b6b;
+    border-radius: 16px;
+    padding: 22px 30px;
+    text-align: center;
+    min-width: 180px;
+    box-shadow: 0 0 30px rgba(155, 44, 44, 0.5);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(155, 44, 44, 0.5); }
+    50% { box-shadow: 0 0 50px rgba(155, 44, 44, 0.8); }
+  }
+
+  .cloth-result .big-emoji { font-size: 2.5rem; display: block; margin-bottom: 8px; }
+  .cloth-result .label { font-size: 1.1rem; font-weight: 800; }
+
+  .cloth-quote {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-top: 25px;
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    line-height: 2;
+  }
+
+  /* ===== EVIDENCE CARDS ===== */
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+  }
+
+  .evidence-card {
+    background: linear-gradient(135deg, #fff, var(--sand-light));
+    border: 1px solid rgba(139, 94, 60, 0.15);
+    border-radius: 18px;
+    padding: 28px;
+    position: relative;
+    transition: all 0.3s;
+    border-right: 5px solid var(--blood);
+  }
+
+  .evidence-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(155, 44, 44, 0.15);
+    border-right-color: var(--gold);
+  }
+
+  .evidence-card .chapter {
+    display: inline-block;
+    background: var(--earth-dark);
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+
+  .evidence-card .quote-text {
+    font-size: 1.05rem;
+    color: var(--earth-dark);
+    font-style: italic;
+    margin-bottom: 14px;
+    line-height: 2;
+    position: relative;
+    padding-right: 25px;
+  }
+
+  .evidence-card .quote-text::before {
+    content: '«';
+    position: absolute;
+    right: 0;
+    top: -10px;
+    font-size: 2.5rem;
+    color: var(--gold);
+    opacity: 0.5;
+    font-family: serif;
+  }
+
+  .evidence-card .analysis {
+    font-size: 0.92rem;
+    color: #6b5a4a;
+    background: rgba(212, 162, 76, 0.1);
+    padding: 12px 16px;
+    border-radius: 10px;
+    border-right: 3px solid var(--gold);
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(92, 59, 34, 0.12);
+    margin: 25px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 0.95rem;
+    min-width: 700px;
+  }
+
+  thead {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+  }
+
+  thead th {
+    padding: 18px 14px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.95rem;
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+
+  tbody td {
+    padding: 15px 14px;
+    text-align: center;
+    border-bottom: 1px solid #f0e4d0;
+    transition: background 0.2s;
+  }
+
+  tbody tr:nth-child(even) { background: var(--sand-light); }
+  tbody tr:hover { background: #e8f6f4; }
+  tbody tr:hover td { color: var(--water-dark); }
+
+  tbody td:first-child {
+    font-weight: 700;
+    color: var(--earth-dark);
+    background: rgba(212, 162, 76, 0.08);
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .same-cell {
+    background: linear-gradient(135deg, rgba(155, 44, 44, 0.1), rgba(155, 44, 44, 0.05)) !important;
+    font-weight: 700;
+    color: var(--blood) !important;
+  }
+
+  /* ===== STEP GUIDE ===== */
+  .step-guide {
+    background: linear-gradient(135deg, #1e1e2e, #2a2a3e);
+    border-radius: 20px;
+    padding: 35px;
+    margin: 30px 0;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-guide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--water), var(--gold));
+  }
+
+  .step-guide h4 {
+    color: var(--water);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .step-guide ol {
+    padding-right: 25px;
+    font-size: 0.98rem;
+    line-height: 2.2;
+  }
+
+  .step-guide ol li {
+    margin-bottom: 10px;
+    color: #d0d0e0;
+  }
+
+  .step-guide ol li strong { color: var(--gold); }
+
+  .step-guide code {
+    background: rgba(42, 157, 143, 0.2);
+    color: var(--water);
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    direction: ltr;
+    display: inline-block;
+    font-size: 0.9rem;
+  }
+
+  /* ===== HTML PREVIEW ===== */
+  .html-preview {
+    background: #0d1117;
+    border-radius: 16px;
+    padding: 0;
+    margin: 25px 0;
+    overflow: hidden;
+    border: 1px solid #30363d;
+  }
+
+  .html-preview .preview-header {
+    background: #161b22;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #30363d;
+  }
+
+  .html-preview .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .html-preview .dot.red { background: #ff5f56; }
+  .html-preview .dot.yellow { background: #ffbd2e; }
+  .html-preview .dot.green { background: #27c93f; }
+
+  .html-preview .preview-title {
+    color: #8b949e;
+    font-size: 0.85rem;
+    margin-right: auto;
+    font-family: 'Courier New', monospace;
+  }
+
+  .html-preview pre {
+    padding: 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #c9d1d9;
+    direction: ltr;
+    text-align: left;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .html-preview pre .tag { color: #7ee787; }
+  .html-preview pre .attr { color: #79c0ff; }
+  .html-preview pre .str { color: #a5d6ff; }
+  .html-preview pre .comment { color: #8b949e; }
+  .html-preview pre .css-prop { color: #ff7b72; }
+  .html-preview pre .css-val { color: #a5d6ff; }
+
+  /* ===== PROJECT CARDS ===== */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+  }
+
+  .project-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(92, 59, 34, 0.12);
+    border: 1px solid rgba(139, 94, 60, 0.1);
+    transition: all 0.3s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(92, 59, 34, 0.2);
+  }
+
+  .project-card .card-header {
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth));
+    color: #fff;
+    padding: 22px 25px;
+    position: relative;
+  }
+
+  .project-card .card-header .num {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 2.5rem;
+    font-weight: 900;
+    opacity: 0.2;
+    line-height: 1;
+  }
+
+  .project-card .card-header h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .project-card .card-header .level {
+    font-size: 0.82rem;
+    opacity: 0.8;
+    background: rgba(255,255,255,0.15);
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 50px;
+  }
+
+  .project-card .card-body {
+    padding: 25px;
+  }
+
+  .project-card .card-body p {
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+
+  .project-card .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .project-card .skills span {
+    background: var(--sand);
+    color: var(--earth-dark);
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(139, 94, 60, 0.2);
+  }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    background: linear-gradient(135deg, rgba(155, 44, 44, 0.08), rgba(212, 162, 76, 0.08));
+    border-right: 5px solid var(--blood);
+    border-radius: 14px;
+    padding: 22px 28px;
+    margin: 25px 0;
+    font-size: 1rem;
+    color: var(--earth-dark);
+    line-height: 2;
+  }
+
+  .callout strong { color: var(--blood); }
+
+  .callout .emoji { font-size: 1.4rem; margin-left: 8px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0d1117 100%);
+    color: #fff;
+    padding: 55px 20px 35px;
+    text-align: center;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--earth), var(--blood), var(--gold), var(--water));
+  }
+
+  footer .brand {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, var(--water), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  footer .tagline {
+    font-size: 1rem;
+    opacity: 0.75;
+    margin-bottom: 28px;
+    font-weight: 300;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(42, 157, 143, 0.15);
+    border: 1px solid var(--water);
+    color: var(--water);
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
+
+  footer .site-link:hover {
+    background: var(--water);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(42, 157, 143, 0.4);
+  }
+
+  footer .divider {
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--water));
+    margin: 28px auto;
+    border-radius: 2px;
+  }
+
+  footer .copyright {
+    font-size: 0.85rem;
+    opacity: 0.5;
+    margin-top: 15px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    header h1 { font-size: 1.9rem; }
+    header p { font-size: 1rem; }
+    section { padding: 28px 20px; }
+    section h2 { font-size: 1.35rem; }
+    .pillars { grid-template-columns: 1fr; }
+    .evidence-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .cloth-diagram { flex-direction: column; }
+    .cloth-plus, .cloth-equals { transform: rotate(90deg); }
+    .container { margin-top: -30px; }
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--sand); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--earth), var(--blood));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--blood); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">🔍 تحلیل مضامین رمان «زمین خواهد شنید»</div>
+  <h1>ارباب، شاه و کاهن<br><span class="highlight">از یک قماشند</span></h1>
+  <p>سه ستون قدرت که در ظاهر جدا به نظر می‌رسند، اما در واقع یک پیکر واحد را می‌سازند که بر شانه‌های مردم ایستاده است.</p>
+  <div class="quote-badge">
+    «آدم‌ها مثل آب‌اند؛ راه را که ببندی، راه دیگری پیدا می‌کنند.» — هانی، فصل ۴
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ===== THREE PILLARS ===== -->
+  <section>
+    <h2><span class="icon">🏛️</span> سه ستون قدرت در رمان</h2>
+    <p>در رمان «زمین خواهد شنید»، ساختار قدرت در سه نهاد تجسم می‌یابد. هر کدام نقشی جدا ایفا می‌کنند، اما همه در یک چیز مشترک‌اند: <strong>زندگی بر دوش مردم</strong>.</p>
+
+    <div class="pillars">
+
+      <div class="pillar lord">
+        <span class="emoji">🏠</span>
+        <h4>ارباب</h4>
+        <div class="subtitle">هوټران، مباشر ارباب</div>
+        <ul>
+          <li>خراج می‌گیرد</li>
+          <li>نام بدهکاران را روی لوح می‌نویسد</li>
+          <li>می‌گوید: «هر سال تعداد آن‌ها بیشتر می‌شود»</li>
+          <li>وقتی شورا شکل می‌گیرد، می‌گوید: «اعتماد ندارم»</li>
+        </ul>
+      </div>
+
+      <div class="pillar king">
+        <span class="emoji">👑</span>
+        <h4>شاه</h4>
+        <div class="subtitle">هانی، پسر تاهی‌هی</div>
+        <ul>
+          <li>«کوتور» (نگهبان) است</li>
+          <li>خودش نمی‌داند نگهبان چه چیز است</li>
+          <li>سنگ‌نگاره می‌سازد: «۲۰ تن را اسیر کردم»</li>
+          <li>وقتی مردم شورا می‌سازند، می‌گوید: «فرمان از دستمان بیرون رفته»</li>
+        </ul>
+      </div>
+
+      <div class="pillar priest">
+        <span class="emoji">🕯️</span>
+        <h4>کاهن</h4>
+        <div class="subtitle">کاهن اعظم معبد نارسینا</div>
+        <ul>
+          <li>لوح می‌خواند: «خدایان مرا یاری کردند»</li>
+          <li>می‌گوید: «مردم همیشه رنج کشیده‌اند»</li>
+          <li>وقتی شورا شکل می‌گیرد: «سهم معبد از داوری کمتر می‌شود»</li>
+          <li>خون را به نام خدایان تقدیس می‌کند</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== SAME CLOTH ===== -->
+  <section>
+    <h2><span class="icon">🧵</span> چرا از یک قماشند؟</h2>
+
+    <div class="same-cloth">
+      <h3>معادله‌ی قدرت در ایلام</h3>
+
+      <div class="cloth-diagram">
+        <div class="cloth-item">
+          <span class="big-emoji">🏠</span>
+          <span class="label">ارباب</span>
+        </div>
+        <span class="cloth-plus">+</span>
+        <div class="cloth-item">
+          <span class="big-emoji">👑</span>
+          <span class="label">شاه</span>
+        </div>
+        <span class="cloth-plus">+</span>
+        <div class="cloth-item">
+          <span class="big-emoji">🕯️</span>
+          <span class="label">کاهن</span>
+        </div>
+        <span class="cloth-equals">=</span>
+        <div class="cloth-result">
+          <span class="big-emoji">⛓️</span>
+          <span class="label">یک نظام واحد</span>
+        </div>
+      </div>
+
+      <div class="cloth-quote">
+        «هر سه از یک سفره می‌خورند؛ سفره‌ای که دهقان پهن می‌کند.»<br>
+        — آتا، پیرمرد گلِ شور
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="emoji">💡</span>
+      <strong>نکته‌ی کلیدی:</strong> در رمان، هیچ‌کدام از این سه نهاد به تنهایی نمی‌تواند حکومت کند. شاه به کاهن نیاز دارد تا فرمانش رنگ مقدس بگیرد؛ کاهن به شاه نیاز دارد تا معبدش از خراج سیر شود؛ و ارباب به هر دو نیاز دارد تا خراج را از مردم بگیرد و به بالا بفرستد. اما همه‌ی این‌ها بدون <strong>مردم</strong> هیچ‌اند.
+    </div>
+  </section>
+
+  <!-- ===== EVIDENCE ===== -->
+  <section>
+    <h2><span class="icon">📜</span> شواهد از متن رمان</h2>
+    <p>این نقل‌قول‌ها از فصل‌های مختلف رمان، هم‌قماش بودن این سه نهاد را نشان می‌دهند:</p>
+
+    <div class="evidence-grid">
+
+      <div class="evidence-card">
+        <span class="chapter">فصل ۳ — گلِ شور</span>
+        <div class="quote-text">هر سال سهمش را می‌خورد و باز گرسنه‌تر می‌شود.</div>
+        <div class="analysis">هوهین درباره‌ی سهم دهقان می‌گوید. کیسه‌ی پاره‌ای که جو از آن می‌ریزد، نماد سهم مردم است. ارباب، شاه و کاهن هر سه از یک کیسه‌ی دیگر می‌خورند.</div>
+      </div>
+
+      <div class="evidence-card">
+        <span class="chapter">فصل ۳ — گلِ شور</span>
+        <div class="quote-text">خدا را بیشتر در دست‌های مردم دیده‌ام تا در این سنگ‌ها.</div>
+        <div class="analysis">هالژ در معبد شوش فریاد می‌زند. این جمله، مرز میان کاهن رسمی و ایمان مردمی را نشان می‌دهد. کاهن به سنگ نیاز دارد، مردم به دست.</div>
+      </div>
+
+      <div class="evidence-card">
+        <span class="chapter">فصل ۴ — آیاپیر</span>
+        <div class="quote-text">بعضی دژها را با نردبان می‌گیرند، بعضی را با قصه.</div>
+        <div class="analysis">شوترورو درباره‌ی نقش کاهنان و قصه‌گویان می‌گوید. کاهن با قصه، فرمان شاه را مقدس می‌کند.</div>
+      </div>
+
+      <div class="evidence-card">
+        <span class="chapter">فصل ۹ — خاموشی فرمان</span>
+        <div class="quote-text">اگر چنین باشد، دیگر شاه چه فرقی با یک کدخدا دارد؟</div>
+        <div class="analysis">کاهن وقتی می‌بیند هانی از آتش زدن دهکده‌ها منصرف شده، می‌پرسد. او نگران از دست رفتن قدرت شاه است — چون قدرت خودش به شاه وابسته است.</div>
+      </div>
+
+      <div class="evidence-card">
+        <span class="chapter">فصل ۱۰ — خونگ‌آژدر</span>
+        <div class="quote-text">خدایان شکم ندارن که سیر بشن. این شکم شاه بود که سیر نمی‌شد.</div>
+        <div class="analysis">مامورو درباره‌ی سنگ‌نگاره‌ها می‌گوید. او مرز میان بهانه‌ی مقدس و منفعت مادی را آشکار می‌کند.</div>
+      </div>
+
+      <div class="evidence-card">
+        <span class="chapter">فصل ۱۲ — اشکفت‌سلمان</span>
+        <div class="quote-text">اگر مردم خودشان داوری کنند، سهمِ معبد از داوری کمتر می‌شود.</div>
+        <div class="analysis">دو کاهن وقتی می‌بینند مردم شورا تشکیل داده‌اند، نگران می‌شوند. این جمله پرده از هم‌دستی کاهن و شاه برمی‌دارد.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== COMPARISON TABLE ===== -->
+  <section>
+    <h2><span class="icon">📊</span> جدول مقایسه‌ای سه نهاد</h2>
+    <p>این جدول نشان می‌دهد که ارباب، شاه و کاهن در ظاهر متفاوت‌اند، اما در عمل یک کار انجام می‌دهند:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ویژگی</th>
+            <th>🏠 ارباب</th>
+            <th>👑 شاه</th>
+            <th>🕯️ کاهن</th>
+            <th>🔗 وجه اشتراک</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>منبع درآمد</td>
+            <td>خراج از دهقان</td>
+            <td>خراج از آبادی‌ها</td>
+            <td>سهم معبد از خراج</td>
+            <td class="same-cell">همه از یک خراج</td>
+          </tr>
+          <tr>
+            <td>بهانه</td>
+            <td>نظم و اداره</td>
+            <td>حفاظت از سرزمین</td>
+            <td>خواست خدایان</td>
+            <td class="same-cell">همه بهانه می‌تراشند</td>
+          </tr>
+          <tr>
+            <td>رابطه با مردم</td>
+            <td>مباشر و مأمور</td>
+            <td>سپاه و فرمان</td>
+            <td>نیایش و آیین</td>
+            <td class="same-cell">همه از مردم جدا هستند</td>
+          </tr>
+          <tr>
+            <td>ترس اصلی</td>
+            <td>کم شدن خراج</td>
+            <td>از دست رفتن فرمان</td>
+            <td>کم شدن سهم معبد</td>
+            <td class="same-cell">ترس از بیداری مردم</td>
+          </tr>
+          <tr>
+            <td>واکنش به شورا</td>
+            <td>«اعتماد ندارم»</td>
+            <td>«فرمان از دست رفت»</td>
+            <td>«سهم معبد کم می‌شود»</td>
+            <td class="same-cell">همه مخالف شورا</td>
+          </tr>
+          <tr>
+            <td>سرنوشت در رمان</td>
+            <td>هوټران می‌ماند و حساب‌ها را نگاه می‌کند</td>
+            <td>هانی کاخ را ترک می‌کند</td>
+            <td>کاهن به شورا تن می‌دهد</td>
+            <td class="same-cell">همه در برابر مردم تسلیم می‌شوند</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section>
+    <h2><span class="icon">💻</span> ۵ پروژه‌ی HTML با راهنمای گام‌به‌گام</h2>
+    <p>هر پروژه یک صفحه‌ی HTML مستقل است که موضوع «از یک قماش بودن ارباب، شاه و کاهن» را به نمایش می‌گذارد. کد کامل هر پروژه را می‌توانید کپی کنید و در مرورگر اجرا کنید.</p>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="card-header">
+          <span class="num">۱</span>
+          <h4>نمودار سه ستون قدرت</h4>
+          <span class="level">سطح: مبتدی</span>
+        </div>
+        <div class="card-body">
+          <p>یک صفحه‌ی ساده که سه نهاد قدرت را با کارت‌های رنگی نشان می‌دهد و در پایین، معادله‌ی «ارباب + شاه + کاهن = یک نظام» را نمایش می‌دهد.</p>
+          <div class="skills">
+            <span>HTML</span><span>CSS Grid</span><span>Flexbox</span><span>Gradient</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-header">
+          <span class="num">۲</span>
+          <h4>جدول مقایسه‌ای تعاملی</h4>
+          <span class="level">سطح: متوسط</span>
+        </div>
+        <div class="card-body">
+          <p>جدولی که با کلیک روی هر ردیف، ستون «وجه اشتراک» هایلایت می‌شود و یک توضیح ظاهر می‌شود.</p>
+          <div class="skills">
+            <span>HTML Table</span><span>JavaScript</span><span>Event</span><span>CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-header">
+          <span class="num">۳</span>
+          <h4>کارت‌های شواهد از رمان</h4>
+          <span class="level">سطح: متوسط</span>
+        </div>
+        <div class="card-body">
+          <p>کارت‌هایی که هر کدام یک نقل‌قول از رمان را نشان می‌دهند و با کلیک، تحلیل آن ظاهر می‌شود.</p>
+          <div class="skills">
+            <span>Card Design</span><span>Toggle</span><span>Animation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-header">
+          <span class="num">۴</span>
+          <h4>نمودار دایره‌ای سهم قدرت</h4>
+          <span class="level">سطح: پیشرفته</span>
+        </div>
+        <div class="card-body">
+          <p>یک نمودار دایره‌ای با CSS که سهم هر نهاد از خراج را نشان می‌دهد و با هاور، بزرگ‌نمایی می‌شود.</p>
+          <div class="skills">
+            <span>CSS Conic-gradient</span><span>Hover</span><span>Transform</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-header">
+          <span class="num">۵</span>
+          <h4>کوییز تعاملی</h4>
+          <span class="level">سطح: پیشرفته</span>
+        </div>
+        <div class="card-body">
+          <p>یک کوییز ۵ سوالی که با هر پاسخ، امتیاز می‌گیرید و در پایان نتیجه را می‌بینید.</p>
+          <div class="skills">
+            <span>JavaScript Array</span><span>DOM</span><span>Score</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PROJECT 1 ===== -->
+  <section>
+    <h2><span class="icon">📁</span> پروژه‌ی ۱: نمودار سه ستون قدرت</h2>
+
+    <div class="step-guide">
+      <h4>🎯 راهنمای گام‌به‌گام</h4>
+      <ol>
+        <li><strong>گام ۱:</strong> یک فایل جدید با نام <code>project1.html</code> بسازید.</li>
+        <li><strong>گام ۲:</strong> ساختار پایه HTML را بنویسید: <code>&lt;!DOCTYPE html&gt;</code> و تگ‌های <code>&lt;html&gt;</code>، <code>&lt;head&gt;</code>، <code>&lt;body&gt;</code>.</li>
+        <li><strong>گام ۳:</strong> در <code>&lt;head&gt;</code>، فونت Vazirmatn را از Google Fonts اضافه کنید و <code>dir="rtl"</code> و <code>lang="fa"</code> را تنظیم کنید.</li>
+        <li><strong>گام ۴:</strong> یک <code>&lt;header&gt;</code> با عنوان «ارباب، شاه و کاهن از یک قماشند» بسازید.</li>
+        <li><strong>گام ۵:</strong> یک <code>&lt;div class="pillars"&gt;</code> بسازید و داخل آن سه <code>&lt;div class="pillar"&gt;</code> برای ارباب، شاه و کاهن قرار دهید.</li>
+        <li><strong>گام ۶:</strong> با CSS به هر کارت رنگ متفاوت بدهید: ارباب (قهوه‌ای)، شاه (قرمز)، کاهن (طلایی).</li>
+        <li><strong>گام ۷:</strong> در پایین، یک <code>&lt;div class="equation"&gt;</code> بسازید که معادله را نشان دهد.</li>
+        <li><strong>گام ۸:</strong> فایل را ذخیره کنید و در مرورگر باز کنید: <code>Ctrl + O</code>.</li>
+      </ol>
+    </div>
+
+    <div class="html-preview">
+      <div class="preview-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="preview-title">project1.html</span>
+      </div>
+      <pre><span class="comment">&lt;!-- پروژه ۱: نمودار سه ستون قدرت --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="str">"fa"</span> <span class="attr">dir</span>=<span class="str">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>سه ستون قدرت — زمین خواهد شنید<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="str">"https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&amp;display=swap"</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;style&gt;</span>
+    <span class="css-prop">body</span> {
+      <span class="css-prop">font-family</span>: <span class="css-val">'Vazirmatn', sans-serif</span>;
+      <span class="css-prop">background</span>: <span class="css-val">linear-gradient(135deg, #fbf6ee, #f0e4d0)</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">40px 20px</span>;
+      <span class="css-prop">text-align</span>: <span class="css-val">center</span>;
+    }
+    <span class="css-prop">h1</span> {
+      <span class="css-prop">color</span>: <span class="css-val">#5c3b22</span>;
+      <span class="css-prop">margin-bottom</span>: <span class="css-val">40px</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">2.2rem</span>;
+    }
+    <span class="css-prop">.pillars</span> {
+      <span class="css-prop">display</span>: <span class="css-val">grid</span>;
+      <span class="css-prop">grid-template-columns</span>: <span class="css-val">repeat(3, 1fr)</span>;
+      <span class="css-prop">gap</span>: <span class="css-val">25px</span>;
+      <span class="css-prop">max-width</span>: <span class="css-val">900px</span>;
+      <span class="css-prop">margin</span>: <span class="css-val">0 auto</span>;
+    }
+    <span class="css-prop">.pillar</span> {
+      <span class="css-prop">border-radius</span>: <span class="css-val">20px</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">35px 25px</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#fff</span>;
+      <span class="css-prop">transition</span>: <span class="css-val">0.3s</span>;
+    }
+    <span class="css-prop">.pillar:hover</span> { <span class="css-prop">transform</span>: <span class="css-val">translateY(-8px)</span>; }
+    <span class="css-prop">.lord</span> { <span class="css-prop">background</span>: <span class="css-val">linear-gradient(135deg, #8b5e3c, #5c3b22)</span>; }
+    <span class="css-prop">.king</span> { <span class="css-prop">background</span>: <span class="css-val">linear-gradient(135deg, #9b2c2c, #6b1a1a)</span>; }
+    <span class="css-prop">.priest</span> { <span class="css-prop">background</span>: <span class="css-val">linear-gradient(135deg, #a67c2e, #6b4f1a)</span>; }
+    <span class="css-prop">.pillar .emoji</span> { <span class="css-prop">font-size</span>: <span class="css-val">3rem</span>; }
+    <span class="css-prop">.pillar h3</span> { <span class="css-prop">margin</span>: <span class="css-val">15px 0</span>; }
+    <span class="css-prop">.equation</span> {
+      <span class="css-prop">margin-top</span>: <span class="css-val">50px</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">1.5rem</span>;
+      <span class="css-prop">font-weight</span>: <span class="css-val">700</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#9b2c2c</span>;
+    }
+  <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>🏛️ ارباب، شاه و کاهن از یک قماشند<span class="tag">&lt;/h1&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"pillars"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"pillar lord"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"emoji"</span><span class="tag">&gt;</span>🏠<span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;h3&gt;</span>ارباب<span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;p&gt;</span>خراج می‌گیرد<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"pillar king"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"emoji"</span><span class="tag">&gt;</span>👑<span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;h3&gt;</span>شاه<span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;p&gt;</span>فرمان می‌دهد<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"pillar priest"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"emoji"</span><span class="tag">&gt;</span>🕯️<span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;h3&gt;</span>کاهن<span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;p&gt;</span>تقدیس می‌کند<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"equation"</span><span class="tag">&gt;</span>
+    ارباب + شاه + کاهن = یک نظام واحد
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+    </div>
+  </section>
+
+  <!-- ===== PROJECT 2 ===== -->
+  <section>
+    <h2><span class="icon">📁</span> پروژه‌ی ۲: جدول مقایسه‌ای تعاملی</h2>
+
+    <div class="step-guide">
+      <h4>🎯 راهنمای گام‌به‌گام</h4>
+      <ol>
+        <li><strong>گام ۱:</strong> فایل <code>project2.html</code> بسازید.</li>
+        <li><strong>گام ۲:</strong> یک جدول با ۵ ستون (ویژگی، ارباب، شاه، کاهن، وجه اشتراک) بسازید.</li>
+        <li><strong>گام ۳:</strong> برای هر ردیف، یک <code>id</code> بگذارید: <code>row1</code>, <code>row2</code> و...</li>
+        <li><strong>گام ۴:</strong> با CSS، ستون «وجه اشتراک» را با رنگ قرمز متمایز کنید.</li>
+        <li><strong>گام ۵:</strong> یک <code>&lt;div id="info"&gt;</code> در پایین جدول بسازید برای نمایش توضیح.</li>
+        <li><strong>گام ۶:</strong> با JavaScript، به هر ردیف یک <code>onclick</code> بدهید که متن توضیح را نمایش دهد.</li>
+        <li><strong>گام ۷:</strong> فایل را ذخیره و اجرا کنید.</li>
+      </ol>
+    </div>
+
+    <div class="html-preview">
+      <div class="preview-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="preview-title">project2.html</span>
+      </div>
+      <pre><span class="comment">&lt;!-- پروژه ۲: جدول تعاملی --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="str">"fa"</span> <span class="attr">dir</span>=<span class="str">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>جدول مقایسه‌ای — سه نهاد قدرت<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="str">"https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&amp;display=swap"</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;style&gt;</span>
+    <span class="css-prop">body</span> {
+      <span class="css-prop">font-family</span>: <span class="css-val">'Vazirmatn', sans-serif</span>;
+      <span class="css-prop">background</span>: <span class="css-val">#fbf6ee</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">40px 20px</span>;
+      <span class="css-prop">max-width</span>: <span class="css-val">1100px</span>;
+      <span class="css-prop">margin</span>: <span class="css-val">auto</span>;
+    }
+    <span class="css-prop">table</span> {
+      <span class="css-prop">width</span>: <span class="css-val">100%</span>;
+      <span class="css-prop">border-collapse</span>: <span class="css-val">collapse</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">16px</span>;
+      <span class="css-prop">overflow</span>: <span class="css-val">hidden</span>;
+      <span class="css-prop">box-shadow</span>: <span class="css-val">0 8px 25px rgba(0,0,0,0.1)</span>;
+    }
+    <span class="css-prop">th</span> {
+      <span class="css-prop">background</span>: <span class="css-val">#1a1a2e</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#fff</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">18px</span>;
+    }
+    <span class="css-prop">td</span> {
+      <span class="css-prop">padding</span>: <span class="css-val">15px</span>;
+      <span class="css-prop">text-align</span>: <span class="css-val">center</span>;
+      <span class="css-prop">border-bottom</span>: <span class="css-val">1px solid #eee</span>;
+      <span class="css-prop">cursor</span>: <span class="css-val">pointer</span>;
+      <span class="css-prop">transition</span>: <span class="css-val">0.2s</span>;
+    }
+    <span class="css-prop">tr:hover td</span> { <span class="css-prop">background</span>: <span class="css-val">#e8f6f4</span>; }
+    <span class="css-prop">.same</span> {
+      <span class="css-prop">background</span>: <span class="css-val">#fde8e8</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#9b2c2c</span>;
+      <span class="css-prop">font-weight</span>: <span class="css-val">700</span>;
+    }
+    <span class="css-prop">#info</span> {
+      <span class="css-prop">margin-top</span>: <span class="css-val">25px</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">20px</span>;
+      <span class="css-prop">background</span>: <span class="css-val">#fff</span>;
+      <span class="css-prop">border-right</span>: <span class="css-val">5px solid #9b2c2c</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">12px</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">1.05rem</span>;
+      <span class="css-prop">min-height</span>: <span class="css-val">60px</span>;
+    }
+  <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>📊 مقایسه‌ی سه نهاد قدرت<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>روی هر ردیف کلیک کنید تا توضیح آن را ببینید.<span class="tag">&lt;/p&gt;</span>
+
+  <span class="tag">&lt;table&gt;</span>
+    <span class="tag">&lt;thead&gt;</span>
+      <span class="tag">&lt;tr&gt;</span>
+        <span class="tag">&lt;th&gt;</span>ویژگی<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;th&gt;</span>🏠 ارباب<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;th&gt;</span>👑 شاه<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;th&gt;</span>🕯️ کاهن<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;th&gt;</span>🔗 وجه اشتراک<span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/thead&gt;</span>
+    <span class="tag">&lt;tbody&gt;</span>
+      <span class="tag">&lt;tr</span> <span class="attr">onclick</span>=<span class="str">"show('منبع درآمد: هر سه از یک خراج می‌خورند. دهقان پشم و روغن می‌دهد، ارباب به شاه می‌فرستد، شاه به کاهن می‌بخشد.')"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;td&gt;</span>منبع درآمد<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>خراج از دهقان<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>خراج از آبادی‌ها<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>سهم معبد<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td</span> <span class="attr">class</span>=<span class="str">"same"</span><span class="tag">&gt;</span>همه از یک خراج<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+      <span class="tag">&lt;tr</span> <span class="attr">onclick</span>=<span class="str">"show('بهانه: ارباب می‌گوید نظم، شاه می‌گوید حفاظت، کاهن می‌گوید خواست خدایان. اما همه یک هدف دارند: ادامه‌ی قدرت.')"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;td&gt;</span>بهانه<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>نظم و اداره<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>حفاظت از سرزمین<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>خواست خدایان<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td</span> <span class="attr">class</span>=<span class="str">"same"</span><span class="tag">&gt;</span>همه بهانه می‌تراشند<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+      <span class="tag">&lt;tr</span> <span class="attr">onclick</span>=<span class="str">"show('ترس اصلی: ارباب از کم شدن خراج می‌ترسد، شاه از از دست رفتن فرمان، کاهن از کم شدن سهم معبد. اما ترس مشترک‌شان بیداری مردم است.')"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;td&gt;</span>ترس اصلی<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>کم شدن خراج<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>از دست رفتن فرمان<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>کم شدن سهم معبد<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td</span> <span class="attr">class</span>=<span class="str">"same"</span><span class="tag">&gt;</span>ترس از بیداری مردم<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+      <span class="tag">&lt;tr</span> <span class="attr">onclick</span>=<span class="str">"show('واکنش به شورا: هوټران می‌گوید اعتماد ندارم، هانی می‌گوید فرمان از دست رفت، کاهن می‌گوید سهم معبد کم می‌شود. هر سه مخالف شورایند.')"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;td&gt;</span>واکنش به شورا<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>اعتماد ندارم<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>فرمان از دست رفت<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>سهم معبد کم می‌شود<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td</span> <span class="attr">class</span>=<span class="str">"same"</span><span class="tag">&gt;</span>همه مخالف شورا<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/tbody&gt;</span>
+  <span class="tag">&lt;/table&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="str">"info"</span><span class="tag">&gt;</span>👆 روی یک ردیف کلیک کنید...<span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;script&gt;</span>
+    <span class="css-prop">function</span> show(text) {
+      document.getElementById(<span class="str">'info'</span>).textContent = text;
+    }
+  <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+    </div>
+  </section>
+
+  <!-- ===== PROJECT 3 ===== -->
+  <section>
+    <h2><span class="icon">📁</span> پروژه‌ی ۳: کارت‌های شواهد از رمان</h2>
+
+    <div class="step-guide">
+      <h4>🎯 راهنمای گام‌به‌گام</h4>
+      <ol>
+        <li><strong>گام ۱:</strong> فایل <code>project3.html</code> بسازید.</li>
+        <li><strong>گام ۲:</strong> یک شبکه‌ی کارت با CSS Grid بسازید.</li>
+        <li><strong>گام ۳:</strong> هر کارت شامل: شماره فصل، نقل‌قول، و تحلیل.</li>
+        <li><strong>گام ۴:</strong> تحلیل را با <code>display: none</code> پنهان کنید.</li>
+        <li><strong>گام ۵:</strong> با JavaScript، با کلیک روی کارت، تحلیل نمایش داده شود.</li>
+        <li><strong>گام ۶:</strong> از <code>transition</code> برای نرمی انیمیشن استفاده کنید.</li>
+        <li><strong>گام ۷:</strong> فایل را ذخیره و اجرا کنید.</li>
+      </ol>
+    </div>
+
+    <div class="html-preview">
+      <div class="preview-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="preview-title">project3.html</span>
+      </div>
+      <pre><span class="comment">&lt;!-- پروژه ۳: کارت‌های شواهد --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="str">"fa"</span> <span class="attr">dir</span>=<span class="str">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>شواهد از رمان<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="str">"https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&amp;display=swap"</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;style&gt;</span>
+    <span class="css-prop">body</span> {
+      <span class="css-prop">font-family</span>: <span class="css-val">'Vazirmatn', sans-serif</span>;
+      <span class="css-prop">background</span>: <span class="css-val">#fbf6ee</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">40px 20px</span>;
+      <span class="css-prop">max-width</span>: <span class="css-val">1100px</span>;
+      <span class="css-prop">margin</span>: <span class="css-val">auto</span>;
+    }
+    <span class="css-prop">.grid</span> {
+      <span class="css-prop">display</span>: <span class="css-val">grid</span>;
+      <span class="css-prop">grid-template-columns</span>: <span class="css-val">repeat(auto-fill, minmax(320px, 1fr))</span>;
+      <span class="css-prop">gap</span>: <span class="css-val">22px</span>;
+    }
+    <span class="css-prop">.card</span> {
+      <span class="css-prop">background</span>: <span class="css-val">#fff</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">18px</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">28px</span>;
+      <span class="css-prop">border-right</span>: <span class="css-val">5px solid #9b2c2c</span>;
+      <span class="css-prop">cursor</span>: <span class="css-val">pointer</span>;
+      <span class="css-prop">transition</span>: <span class="css-val">0.3s</span>;
+      <span class="css-prop">box-shadow</span>: <span class="css-val">0 5px 20px rgba(0,0,0,0.08)</span>;
+    }
+    <span class="css-prop">.card:hover</span> { <span class="css-prop">transform</span>: <span class="css-val">translateY(-5px)</span>; }
+    <span class="css-prop">.chapter</span> {
+      <span class="css-prop">background</span>: <span class="css-val">#5c3b22</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#fff</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">4px 14px</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">50px</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">0.8rem</span>;
+      <span class="css-prop">display</span>: <span class="css-val">inline-block</span>;
+      <span class="css-prop">margin-bottom</span>: <span class="css-val">14px</span>;
+    }
+    <span class="css-prop">.quote</span> {
+      <span class="css-prop">font-style</span>: <span class="css-val">italic</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#5c3b22</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">1.05rem</span>;
+      <span class="css-prop">margin-bottom</span>: <span class="css-val">14px</span>;
+      <span class="css-prop">line-height</span>: <span class="css-val">2</span>;
+    }
+    <span class="css-prop">.analysis</span> {
+      <span class="css-prop">display</span>: <span class="css-val">none</span>;
+      <span class="css-prop">background</span>: <span class="css-val">#fde8e8</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">14px</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">10px</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">0.92rem</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#6b1a1a</span>;
+      <span class="css-prop">margin-top</span>: <span class="css-val">10px</span>;
+    }
+    <span class="css-prop">.card.open .analysis</span> { <span class="css-prop">display</span>: <span class="css-val">block</span>; }
+  <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>📜 شواهد از متن رمان<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>روی هر کارت کلیک کنید تا تحلیل آن را ببینید.<span class="tag">&lt;/p&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"grid"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span> <span class="attr">onclick</span>=<span class="str">"this.classList.toggle('open')"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"chapter"</span><span class="tag">&gt;</span>فصل ۳<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"quote"</span><span class="tag">&gt;</span>«هر سال سهمش را می‌خورد و باز گرسنه‌تر می‌شود.»<span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"analysis"</span><span class="tag">&gt;</span>
+        هوهین درباره‌ی سهم دهقان می‌گوید. کیسه‌ی پاره‌ای که جو از آن می‌ریزد،
+        نماد سهم مردم است. ارباب، شاه و کاهن هر سه از یک کیسه‌ی دیگر می‌خورند.
+      <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span> <span class="attr">onclick</span>=<span class="str">"this.classList.toggle('open')"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"chapter"</span><span class="tag">&gt;</span>فصل ۹<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"quote"</span><span class="tag">&gt;</span>«اگر چنین باشد، دیگر شاه چه فرقی با یک کدخدا دارد؟»<span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"analysis"</span><span class="tag">&gt;</span>
+        کاهن وقتی می‌بیند هانی از آتش زدن دهکده‌ها منصرف شده، می‌پرسد.
+        او نگران از دست رفتن قدرت شاه است — چون قدرت خودش به شاه وابسته است.
+      <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span> <span class="attr">onclick</span>=<span class="str">"this.classList.toggle('open')"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"chapter"</span><span class="tag">&gt;</span>فصل ۱۲<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"quote"</span><span class="tag">&gt;</span>«اگر مردم خودشان داوری کنند، سهمِ معبد از داوری کمتر می‌شود.»<span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"analysis"</span><span class="tag">&gt;</span>
+        دو کاهن وقتی می‌بینند مردم شورا تشکیل داده‌اند، نگران می‌شوند.
+        این جمله پرده از هم‌دستی کاهن و شاه برمی‌دارد.
+      <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span> <span class="attr">onclick</span>=<span class="str">"this.classList.toggle('open')"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"chapter"</span><span class="tag">&gt;</span>فصل ۱۰<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"quote"</span><span class="tag">&gt;</span>«خدایان شکم ندارن که سیر بشن. این شکم شاه بود که سیر نمی‌شد.»<span class="tag">&lt;/div&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"analysis"</span><span class="tag">&gt;</span>
+        مامورو درباره‌ی سنگ‌نگاره‌ها می‌گوید. او مرز میان بهانه‌ی مقدس
+        و منفعت مادی را آشکار می‌کند.
+      <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+    </div>
+  </section>
+
+  <!-- ===== PROJECT 4 ===== -->
+  <section>
+    <h2><span class="icon">📁</span> پروژه‌ی ۴: نمودار دایره‌ای سهم قدرت</h2>
+
+    <div class="step-guide">
+      <h4>🎯 راهنمای گام‌به‌گام</h4>
+      <ol>
+        <li><strong>گام ۱:</strong> فایل <code>project4.html</code> بسازید.</li>
+        <li><strong>گام ۲:</strong> یک <code>&lt;div class="pie"&gt;</code> بسازید.</li>
+        <li><strong>گام ۳:</strong> با <code>conic-gradient</code> در CSS، سه بخش رنگی بسازید: ارباب ۴۰٪، شاه ۳۵٪، کاهن ۲۵٪.</li>
+        <li><strong>گام ۴:</strong> یک دایره‌ی سفید در مرکز بگذارید تا نمودار دونات شود.</li>
+        <li><strong>گام ۵:</strong> با <code>hover</code>، هر بخش بزرگ‌نمایی شود.</li>
+        <li><strong>گام ۶:</strong> در کنار نمودار، راهنمای رنگ‌ها (legend) بسازید.</li>
+        <li><strong>گام ۷:</strong> یک متن توضیحی زیر نمودار اضافه کنید.</li>
+        <li><strong>گام ۸:</strong> فایل را ذخیره و اجرا کنید.</li>
+      </ol>
+    </div>
+
+    <div class="html-preview">
+      <div class="preview-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="preview-title">project4.html</span>
+      </div>
+      <pre><span class="comment">&lt;!-- پروژه ۴: نمودار دایره‌ای --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="str">"fa"</span> <span class="attr">dir</span>=<span class="str">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>سهم قدرت — نمودار دایره‌ای<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="str">"https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&amp;display=swap"</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;style&gt;</span>
+    <span class="css-prop">body</span> {
+      <span class="css-prop">font-family</span>: <span class="css-val">'Vazirmatn', sans-serif</span>;
+      <span class="css-prop">background</span>: <span class="css-val">#fbf6ee</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">40px 20px</span>;
+      <span class="css-prop">text-align</span>: <span class="css-val">center</span>;
+    }
+    <span class="css-prop">.pie</span> {
+      <span class="css-prop">width</span>: <span class="css-val">300px</span>;
+      <span class="css-prop">height</span>: <span class="css-val">300px</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">50%</span>;
+      <span class="css-prop">background</span>: <span class="css-val">conic-gradient(
+        #8b5e3c 0% 40%,
+        #9b2c2c 40% 75%,
+        #a67c2e 75% 100%
+      )</span>;
+      <span class="css-prop">margin</span>: <span class="css-val">30px auto</span>;
+      <span class="css-prop">position</span>: <span class="css-val">relative</span>;
+      <span class="css-prop">box-shadow</span>: <span class="css-val">0 10px 30px rgba(0,0,0,0.2)</span>;
+      <span class="css-prop">transition</span>: <span class="css-val">0.3s</span>;
+    }
+    <span class="css-prop">.pie::after</span> {
+      <span class="css-prop">content</span>: <span class="css-val">'سهم قدرت'</span>;
+      <span class="css-prop">position</span>: <span class="css-val">absolute</span>;
+      <span class="css-prop">top</span>: <span class="css-val">50%</span>;
+      <span class="css-prop">left</span>: <span class="css-val">50%</span>;
+      <span class="css-prop">transform</span>: <span class="css-val">translate(-50%, -50%)</span>;
+      <span class="css-prop">width</span>: <span class="css-val">140px</span>;
+      <span class="css-prop">height</span>: <span class="css-val">140px</span>;
+      <span class="css-prop">background</span>: <span class="css-val">#fbf6ee</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">50%</span>;
+      <span class="css-prop">display</span>: <span class="css-val">flex</span>;
+      <span class="css-prop">align-items</span>: <span class="css-val">center</span>;
+      <span class="css-prop">justify-content</span>: <span class="css-val">center</span>;
+      <span class="css-prop">font-weight</span>: <span class="css-val">700</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#5c3b22</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">1.1rem</span>;
+    }
+    <span class="css-prop">.pie:hover</span> { <span class="css-prop">transform</span>: <span class="css-val">scale(1.05) rotate(5deg)</span>; }
+    <span class="css-prop">.legend</span> {
+      <span class="css-prop">display</span>: <span class="css-val">flex</span>;
+      <span class="css-prop">justify-content</span>: <span class="css-val">center</span>;
+      <span class="css-prop">gap</span>: <span class="css-val">25px</span>;
+      <span class="css-prop">flex-wrap</span>: <span class="css-val">wrap</span>;
+      <span class="css-prop">margin-top</span>: <span class="css-val">20px</span>;
+    }
+    <span class="css-prop">.legend-item</span> {
+      <span class="css-prop">display</span>: <span class="css-val">flex</span>;
+      <span class="css-prop">align-items</span>: <span class="css-val">center</span>;
+      <span class="css-prop">gap</span>: <span class="css-val">8px</span>;
+      <span class="css-prop">font-weight</span>: <span class="css-val">600</span>;
+    }
+    <span class="css-prop">.dot</span> {
+      <span class="css-prop">width</span>: <span class="css-val">18px</span>;
+      <span class="css-prop">height</span>: <span class="css-val">18px</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">5px</span>;
+    }
+    <span class="css-prop">.dot.lord</span> { <span class="css-prop">background</span>: <span class="css-val">#8b5e3c</span>; }
+    <span class="css-prop">.dot.king</span> { <span class="css-prop">background</span>: <span class="css-val">#9b2c2c</span>; }
+    <span class="css-prop">.dot.priest</span> { <span class="css-prop">background</span>: <span class="css-val">#a67c2e</span>; }
+  <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>📊 سهم سه نهاد از قدرت<span class="tag">&lt;/h1&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"pie"</span><span class="tag">&gt;&lt;/div&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"legend"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"legend-item"</span><span class="tag">&gt;&lt;span</span> <span class="attr">class</span>=<span class="str">"dot lord"</span><span class="tag">&gt;&lt;/span&gt;</span> ارباب — ۴۰٪<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"legend-item"</span><span class="tag">&gt;&lt;span</span> <span class="attr">class</span>=<span class="str">"dot king"</span><span class="tag">&gt;&lt;/span&gt;</span> شاه — ۳۵٪<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"legend-item"</span><span class="tag">&gt;&lt;span</span> <span class="attr">class</span>=<span class="str">"dot priest"</span><span class="tag">&gt;&lt;/span&gt;</span> کاهن — ۲۵٪<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;p</span> <span class="attr">style</span>=<span class="str">"max-width:600px;margin:30px auto;line-height:2;color:#5c3b22;"</span><span class="tag">&gt;</span>
+    این نمودار نشان می‌دهد که اگرچه سه نهاد در ظاهر جدا هستند،
+    اما همه از یک سفره تغذیه می‌کنند. سهم هر کدام متفاوت است،
+    اما منبع یکی است: <strong>خراج مردم</strong>.
+  <span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+    </div>
+  </section>
+
+  <!-- ===== PROJECT 5 ===== -->
+  <section>
+    <h2><span class="icon">📁</span> پروژه‌ی ۵: کوییز تعاملی</h2>
+
+    <div class="step-guide">
+      <h4>🎯 راهنمای گام‌به‌گام</h4>
+      <ol>
+        <li><strong>گام ۱:</strong> فایل <code>project5.html</code> بسازید.</li>
+        <li><strong>گام ۲:</strong> یک آرایه‌ی JavaScript از ۵ سوال بسازید.</li>
+        <li><strong>گام ۳:</strong> هر سوال شامل: متن سوال، گزینه‌ها، پاسخ صحیح.</li>
+        <li><strong>گام ۴:</strong> یک <code>&lt;div id="quiz"&gt;</code> بسازید.</li>
+        <li><strong>گام ۵:</strong> با JavaScript، سوال را نمایش دهید و با کلیک روی گزینه، بررسی کنید.</li>
+        <li><strong>گام ۶:</strong> امتیاز را ذخیره کنید و در پایان نمایش دهید.</li>
+        <li><strong>گام ۷:</strong> یک دکمه‌ی «شروع مجدد» اضافه کنید.</li>
+        <li><strong>گام ۸:</strong> فایل را ذخیره و اجرا کنید.</li>
+      </ol>
+    </div>
+
+    <div class="html-preview">
+      <div class="preview-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="preview-title">project5.html</span>
+      </div>
+      <pre><span class="comment">&lt;!-- پروژه ۵: کوییز --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="str">"fa"</span> <span class="attr">dir</span>=<span class="str">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>کوییز — سه نهاد قدرت<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="str">"https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&amp;display=swap"</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;style&gt;</span>
+    <span class="css-prop">body</span> {
+      <span class="css-prop">font-family</span>: <span class="css-val">'Vazirmatn', sans-serif</span>;
+      <span class="css-prop">background</span>: <span class="css-val">#fbf6ee</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">40px 20px</span>;
+      <span class="css-prop">max-width</span>: <span class="css-val">700px</span>;
+      <span class="css-prop">margin</span>: <span class="css-val">auto</span>;
+    }
+    <span class="css-prop">.quiz-box</span> {
+      <span class="css-prop">background</span>: <span class="css-val">#fff</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">20px</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">35px</span>;
+      <span class="css-prop">box-shadow</span>: <span class="css-val">0 10px 30px rgba(0,0,0,0.1)</span>;
+    }
+    <span class="css-prop">.question</span> {
+      <span class="css-prop">font-size</span>: <span class="css-val">1.2rem</span>;
+      <span class="css-prop">font-weight</span>: <span class="css-val">700</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#5c3b22</span>;
+      <span class="css-prop">margin-bottom</span>: <span class="css-val">25px</span>;
+      <span class="css-prop">line-height</span>: <span class="css-val">1.8</span>;
+    }
+    <span class="css-prop">.option</span> {
+      <span class="css-prop">display</span>: <span class="css-val">block</span>;
+      <span class="css-prop">width</span>: <span class="css-val">100%</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">14px 20px</span>;
+      <span class="css-prop">margin-bottom</span>: <span class="css-val">12px</span>;
+      <span class="css-prop">background</span>: <span class="css-val">#f5e9d7</span>;
+      <span class="css-prop">border</span>: <span class="css-val">2px solid transparent</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">12px</span>;
+      <span class="css-prop">cursor</span>: <span class="css-val">pointer</span>;
+      <span class="css-prop">font-family</span>: <span class="css-val">inherit</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">1rem</span>;
+      <span class="css-prop">text-align</span>: <span class="css-val">right</span>;
+      <span class="css-prop">transition</span>: <span class="css-val">0.2s</span>;
+    }
+    <span class="css-prop">.option:hover</span> {
+      <span class="css-prop">background</span>: <span class="css-val">#e8f6f4</span>;
+      <span class="css-prop">border-color</span>: <span class="css-val">#2a9d8f</span>;
+    }
+    <span class="css-prop">.option.correct</span> { <span class="css-prop">background</span>: <span class="css-val">#d4edda</span>; <span class="css-prop">border-color</span>: <span class="css-val">#28a745</span>; }
+    <span class="css-prop">.option.wrong</span> { <span class="css-prop">background</span>: <span class="css-val">#f8d7da</span>; <span class="css-prop">border-color</span>: <span class="css-val">#dc3545</span>; }
+    <span class="css-prop">#result</span> {
+      <span class="css-prop">text-align</span>: <span class="css-val">center</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">1.3rem</span>;
+      <span class="css-prop">font-weight</span>: <span class="css-val">700</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#2a9d8f</span>;
+      <span class="css-prop">margin-top</span>: <span class="css-val">20px</span>;
+    }
+    <span class="css-prop">button</span> {
+      <span class="css-prop">background</span>: <span class="css-val">#2a9d8f</span>;
+      <span class="css-prop">color</span>: <span class="css-val">#fff</span>;
+      <span class="css-prop">border</span>: <span class="css-val">none</span>;
+      <span class="css-prop">padding</span>: <span class="css-val">14px 30px</span>;
+      <span class="css-prop">border-radius</span>: <span class="css-val">50px</span>;
+      <span class="css-prop">font-family</span>: <span class="css-val">inherit</span>;
+      <span class="css-prop">font-size</span>: <span class="css-val">1rem</span>;
+      <span class="css-prop">cursor</span>: <span class="css-val">pointer</span>;
+      <span class="css-prop">margin-top</span>: <span class="css-val">20px</span>;
+      <span class="css-prop">font-weight</span>: <span class="css-val">700</span>;
+    }
+    <span class="css-prop">button:hover</span> { <span class="css-prop">background</span>: <span class="css-val">#1a6b62</span>; }
+  <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>🧠 کوییز: ارباب، شاه و کاهن<span class="tag">&lt;/h1&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"quiz-box"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="str">"quiz"</span><span class="tag">&gt;&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="str">"result"</span><span class="tag">&gt;&lt;/div&gt;</span>
+    <span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="str">"startQuiz()"</span><span class="tag">&gt;</span>🔄 شروع مجدد<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;script&gt;</span>
+    <span class="css-prop">const</span> questions = [
+      {
+        q: <span class="str">'در رمان، هوټران نماینده‌ی کدام نهاد است؟'</span>,
+        options: [<span class="str">'کاهن'</span>, <span class="str">'ارباب'</span>, <span class="str">'شاه'</span>, <span class="str">'مردم'</span>],
+        answer: <span class="str">'ارباب'</span>
+      },
+      {
+        q: <span class="str">'کاهن اعظم وقتی شورا شکل می‌گیرد، نگران چیست؟'</span>,
+        options: [<span class="str">'کم شدن سهم معبد'</span>, <span class="str">'جنگ'</span>, <span class="str">'قحطی'</span>, <span class="str">'آب'</span>],
+        answer: <span class="str">'کم شدن سهم معبد'</span>
+      },
+      {
+        q: <span class="str">'هانی خودش را چه می‌نامد؟'</span>,
+        options: [<span class="str">'شاه'</span>, <span class="str">'کوتور (نگهبان)'</span>, <span class="str">'کاهن'</span>, <span class="str">'ارباب'</span>],
+        answer: <span class="str">'کوتور (نگهبان)'</span>
+      },
+      {
+        q: <span class="str">'جمله‌ی «خدایان شکم ندارن، این شکم شاه بود که سیر نمی‌شد» از کیست؟'</span>,
+        options: [<span class="str">'نیکا'</span>, <span class="str">'مامورو'</span>, <span class="str">'هانی'</span>, <span class="str">'آتا'</span>],
+        answer: <span class="str">'مامورو'</span>
+      },
+      {
+        q: <span class="str">'چه چیزی ارباب، شاه و کاهن را به هم پیوند می‌دهد؟'</span>,
+        options: [<span class="str">'خون'</span>, <span class="str">'خراج مردم'</span>, <span class="str">'زمین'</span>, <span class="str">'جنگ'</span>],
+        answer: <span class="str">'خراج مردم'</span>
+      }
+    ];
+
+    <span class="css-prop">let</span> currentQ = 0;
+    <span class="css-prop">let</span> score = 0;
+
+    <span class="css-prop">function</span> startQuiz() {
+      currentQ = 0;
+      score = 0;
+      document.getElementById(<span class="str">'result'</span>).textContent = <span class="str">''</span>;
+      showQuestion();
+    }
+
+    <span class="css-prop">function</span> showQuestion() {
+      <span class="css-prop">if</span> (currentQ >= questions.length) {
+        document.getElementById(<span class="str">'quiz'</span>).innerHTML = <span class="str">''</span>;
+        document.getElementById(<span class="str">'result'</span>).textContent =
+          <span class="str">'امتیاز شما: '</span> + score + <span class="str">' از '</span> + questions.length;
+        <span class="css-prop">return</span>;
+      }
+
+      <span class="css-prop">const</span> q = questions[currentQ];
+      <span class="css-prop">let</span> html = <span class="str">'&lt;div class="question"&gt;'</span> + (currentQ + 1) + <span class="str">'. ' </span> + q.q + <span class="str">'&lt;/div&gt;'</span>;
+
+      q.options.forEach(opt =&gt; {
+        html += <span class="str">'&lt;button class="option" onclick="checkAnswer(this, \''</span> + opt + <span class="str">'\')"&gt;'</span> + opt + <span class="str">'&lt;/button&gt;'</span>;
+      });
+
+      document.getElementById(<span class="str">'quiz'</span>).innerHTML = html;
+    }
+
+    <span class="css-prop">function</span> checkAnswer(btn, opt) {
+      <span class="css-prop">const</span> correct = questions[currentQ].answer;
+      <span class="css-prop">const</span> buttons = document.querySelectorAll(<span class="str">'.option'</span>);
+      buttons.forEach(b =&gt; b.disabled = <span class="css-val">true</span>);
+
+      <span class="css-prop">if</span> (opt === correct) {
+        btn.classList.add(<span class="str">'correct'</span>);
+        score++;
+      } <span class="css-prop">else</span> {
+        btn.classList.add(<span class="str">'wrong'</span>);
+        buttons.forEach(b =&gt; {
+          <span class="css-prop">if</span> (b.textContent === correct) b.classList.add(<span class="str">'correct'</span>);
+        });
+      }
+
+      currentQ++;
+      setTimeout(showQuestion, 1200);
+    }
+
+    startQuiz();
+  <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+    </div>
+  </section>
+
+  <!-- ===== FINAL ===== -->
+  <section>
+    <h2><span class="icon">🎯</span> جمع‌بندی</h2>
+
+    <div class="callout">
+      <span class="emoji">🔗</span>
+      <strong>نتیجه:</strong> در رمان «زمین خواهد شنید»، ارباب، شاه و کاهن سه چهره از یک قدرت واحدند. ارباب خراج می‌گیرد، شاه فرمان می‌دهد، کاهن تقدیس می‌کند. اما وقتی مردم با <strong>خشت‌های رأی</strong> شورا می‌سازند، هر سه نهاد می‌لرزند. رمان نشان می‌دهد که این سه، از یک قماشند — قماشی که تنها با <strong>آگاهی مردم</strong> می‌تواند از هم بشکافد.
+    </div>
+
+    <p style="text-align:center;font-size:1.1rem;color:#9b2c2c;font-weight:700;margin-top:30px;">
+      «آب راهش را پیدا می‌کند؛ مردم هم.»
+    </p>
+  </section>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="brand">آموزشگاه هوش مصنوعی تیروتیر</div>
+  <p class="tagline">آموزش مهارت‌های دیجیتال با الهام از تاریخ و ادبیات ایران — رمان «زمین خواهد شنید»</p>
+  <a href="https://tirotir.ir" class="site-link" target="_blank" rel="noopener">
+    🌐 tirotir.ir
+  </a>
+  <div class="divider"></div>
+  <p class="copyright">© ۱۴۰۵ — تمامی حقوق برای آموزشگاه تیروتیر محفوظ است.</p>
+</footer>
+
+</body>
+</html>

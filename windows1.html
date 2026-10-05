@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آموزش ویندوز، مدیریت فایل‌ها و CMD — رمان زمین خواهد شنید | تیروتیر</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --earth: #8b5e3c;
+    --earth-dark: #5c3b22;
+    --earth-light: #b8865b;
+    --water: #2a9d8f;
+    --water-dark: #1a6b62;
+    --water-light: #4ecdc4;
+    --gold: #d4a24c;
+    --gold-dark: #a67c2e;
+    --blood: #9b2c2c;
+    --sand: #f5e9d7;
+    --sand-light: #fbf6ee;
+    --ink: #2b2118;
+    --blue: #2563eb;
+    --blue-dark: #1e40af;
+    --purple: #7c3aed;
+    --green: #16a34a;
+    --cmd-bg: #0c0c0c;
+    --cmd-green: #0f0;
+    --cmd-cyan: #5eead4;
+    --cmd-yellow: #fbbf24;
+    --shadow-sm: 0 4px 15px rgba(92, 59, 34, 0.08);
+    --shadow-md: 0 10px 30px rgba(92, 59, 34, 0.12);
+    --shadow-lg: 0 20px 50px rgba(92, 59, 34, 0.18);
+  }
+
+  body {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    background: linear-gradient(135deg, #fbf6ee 0%, #f0e4d0 100%);
+    color: var(--ink);
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, #0a0e27 0%, #1e3a5f 50%, var(--water-dark) 100%);
+    color: #fff;
+    padding: 70px 20px 110px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent 70%);
+    border-radius: 50%;
+    animation: float 9s ease-in-out infinite;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(94, 234, 212, 0.25), transparent 70%);
+    border-radius: 50%;
+    animation: float 11s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-25px, 25px); }
+  }
+
+  header .badge {
+    display: inline-block;
+    background: rgba(94, 234, 212, 0.12);
+    border: 1px solid rgba(94, 234, 212, 0.3);
+    color: #a7f3d0;
+    padding: 9px 26px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 4px 25px rgba(0,0,0,0.4);
+    line-height: 1.3;
+  }
+
+  header h1 .highlight {
+    background: linear-gradient(90deg, #5eead4, #67e8f9, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header p {
+    font-size: 1.15rem;
+    opacity: 0.92;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    font-weight: 300;
+  }
+
+  .os-bar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+  }
+
+  .os-bar span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    backdrop-filter: blur(10px);
+    color: #fff;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1200px;
+    margin: -55px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ===== NAV ===== */
+  .level-nav {
+    background: #fff;
+    border-radius: 22px;
+    padding: 30px 25px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border: 1px solid rgba(139, 94, 60, 0.08);
+  }
+
+  .level-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+  }
+
+  .level-nav a.win {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--blue);
+    border-color: rgba(37, 99, 235, 0.2);
+  }
+  .level-nav a.win:hover {
+    background: var(--blue);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  }
+
+  .level-nav a.file {
+    background: rgba(212, 162, 76, 0.1);
+    color: var(--gold-dark);
+    border-color: rgba(212, 162, 76, 0.2);
+  }
+  .level-nav a.file:hover {
+    background: var(--gold);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(212, 162, 76, 0.3);
+  }
+
+  .level-nav a.cmd {
+    background: rgba(12, 12, 12, 0.08);
+    color: #1a1a1a;
+    border-color: rgba(94, 234, 212, 0.3);
+  }
+  .level-nav a.cmd:hover {
+    background: var(--cmd-bg);
+    color: var(--cmd-green);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(94, 234, 212, 0.3);
+  }
+
+  /* ===== SECTION ===== */
+  section {
+    background: #fff;
+    border-radius: 22px;
+    padding: 45px 40px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(139, 94, 60, 0.08);
+    animation: fadeUp 0.7s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 35px;
+    padding-bottom: 22px;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--water), var(--gold), transparent) 1;
+  }
+
+  .section-header .level-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    font-size: 1.8rem;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    font-weight: 900;
+  }
+
+  .level-badge.win { background: linear-gradient(135deg, #0078d4, #005a9e); }
+  .level-badge.file { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); }
+  .level-badge.cmd { background: linear-gradient(135deg, #0c0c0c, #1a1a1a); color: var(--cmd-green); }
+
+  .section-header h2 {
+    font-size: 1.7rem;
+    color: var(--earth-dark);
+    font-weight: 800;
+    line-height: 1.4;
+  }
+
+  .section-header .sub {
+    font-size: 0.95rem;
+    color: #8b7355;
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  /* ===== PROJECT CARD ===== */
+  .project {
+    background: linear-gradient(135deg, #fff 0%, var(--sand-light) 100%);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border: 1px solid rgba(139, 94, 60, 0.12);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+  }
+
+  .project:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .project-header {
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth));
+    color: #fff;
+    padding: 24px 30px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-header.win { background: linear-gradient(135deg, #005a9e, #0078d4); }
+  .project-header.file { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); }
+  .project-header.cmd { background: linear-gradient(135deg, #0c0c0c, #1a1a1a); }
+
+  .project-header::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .project-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 14px;
+    font-size: 1.3rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-title { position: relative; z-index: 1; }
+
+  .project-title h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .project-title .meta {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .project-title .meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .project-body { padding: 30px; }
+
+  /* ===== SKILLS ===== */
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .skills span {
+    background: linear-gradient(135deg, var(--sand), #fff);
+    color: var(--earth-dark);
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 94, 60, 0.2);
+    transition: all 0.2s;
+  }
+
+  .skills span:hover {
+    background: linear-gradient(135deg, var(--water), var(--water-dark));
+    color: #fff;
+    border-color: var(--water);
+  }
+
+  /* ===== STEPS ===== */
+  .steps {
+    counter-reset: step;
+    margin-top: 20px;
+  }
+
+  .step {
+    display: flex;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px dashed rgba(139, 94, 60, 0.15);
+    position: relative;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step::before {
+    counter-increment: step;
+    content: counter(step);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--water), var(--water-dark));
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(42, 157, 143, 0.3);
+    margin-top: 2px;
+  }
+
+  .step-content { flex: 1; }
+
+  .step-content strong {
+    color: var(--earth-dark);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+
+  .step-content p {
+    color: #5a4a3a;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+
+  /* ===== KBD & PATH ===== */
+  .kbd {
+    display: inline-block;
+    background: linear-gradient(180deg, #fff, #e8e8e8);
+    color: #333;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 0 #bbb;
+    margin: 0 3px;
+    direction: ltr;
+  }
+
+  .path {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e1e2e, #2a2a3e);
+    color: #a5d6ff;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    direction: ltr;
+    margin: 3px 0;
+    border: 1px solid #313244;
+  }
+
+  .path .sep { color: #7ee787; margin: 0 4px; }
+
+  /* ===== HINT ===== */
+  .hint {
+    background: linear-gradient(135deg, rgba(212, 162, 76, 0.12), rgba(212, 162, 76, 0.05));
+    border-right: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 0.92rem;
+    color: #6b4f1a;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .hint .hint-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .hint strong { color: var(--gold-dark); }
+
+  .warn {
+    background: linear-gradient(135deg, rgba(155, 44, 44, 0.1), rgba(155, 44, 44, 0.04));
+    border-right: 4px solid var(--blood);
+    color: #6b1a1a;
+  }
+  .warn strong { color: var(--blood); }
+
+  .info {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.04));
+    border-right: 4px solid var(--blue);
+    color: #1e3a8a;
+  }
+  .info strong { color: var(--blue-dark); }
+
+  .success {
+    background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(22, 163, 74, 0.04));
+    border-right: 4px solid var(--green);
+    color: #14532d;
+  }
+  .success strong { color: var(--green); }
+
+  /* ===== WINDOWS MOCKUP ===== */
+  .win-mockup {
+    background: linear-gradient(135deg, #0078d4, #005a9e);
+    border-radius: 12px;
+    padding: 4px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-md);
+    direction: ltr;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+  }
+
+  .win-window {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .win-titlebar {
+    background: #f3f3f3;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .win-titlebar .icon { font-size: 1rem; }
+  .win-titlebar .title { font-size: 0.85rem; color: #333; flex: 1; }
+  .win-titlebar .controls { display: flex; gap: 15px; }
+  .win-titlebar .controls span {
+    width: 12px; height: 12px; border-radius: 50%;
+    display: inline-block;
+  }
+  .win-titlebar .controls .min { background: #fbbf24; }
+  .win-titlebar .controls .max { background: #34d399; }
+  .win-titlebar .controls .close { background: #ef4444; }
+
+  .win-toolbar {
+    background: #fafafa;
+    padding: 10px 15px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .win-toolbar button {
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    color: #333;
+    font-family: inherit;
+    cursor: default;
+  }
+
+  .win-path {
+    background: #fff;
+    padding: 8px 15px;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 0.78rem;
+    color: #333;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .win-path .folder { color: #0078d4; font-weight: 600; }
+  .win-path .sep { color: #999; margin: 0 4px; }
+
+  .win-content {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 15px;
+    background: #fff;
+    min-height: 150px;
+  }
+
+  .win-item {
+    text-align: center;
+    cursor: default;
+    padding: 8px;
+    border-radius: 6px;
+  }
+
+  .win-item:hover { background: #e8f4fd; }
+
+  .win-item .folder-icon {
+    width: 45px;
+    height: 38px;
+    background: linear-gradient(180deg, #fbbf24, #f59e0b);
+    border-radius: 4px 4px 6px 6px;
+    margin: 0 auto 6px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(251,191,36,0.3);
+  }
+
+  .win-item .folder-icon::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 4px;
+    width: 20px;
+    height: 8px;
+    background: #fbbf24;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .win-item .file-icon {
+    width: 38px;
+    height: 46px;
+    background: #fff;
+    border: 2px solid #0078d4;
+    border-radius: 4px;
+    margin: 0 auto 6px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,120,212,0.2);
+  }
+
+  .win-item .file-icon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 12px;
+    height: 12px;
+    background: #0078d4;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+  }
+
+  .win-item .file-icon.doc { border-color: #2b579a; }
+  .win-item .file-icon.doc::before { background: #2b579a; }
+  .win-item .file-icon.txt { border-color: #64748b; }
+  .win-item .file-icon.txt::before { background: #64748b; }
+  .win-item .file-icon.img { border-color: #16a34a; }
+  .win-item .file-icon.img::before { background: #16a34a; }
+
+  .win-item .name {
+    font-size: 0.72rem;
+    color: #333;
+    word-break: break-word;
+    line-height: 1.3;
+  }
+
+  /* ===== CMD TERMINAL ===== */
+  .cmd-terminal {
+    background: var(--cmd-bg);
+    border-radius: 12px;
+    padding: 0;
+    margin: 20px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    overflow: hidden;
+    direction: ltr;
+    border: 2px solid #1a1a1a;
+  }
+
+  .cmd-titlebar {
+    background: linear-gradient(180deg, #1a1a1a, #0f0f0f);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .cmd-titlebar .dots { display: flex; gap: 6px; }
+  .cmd-titlebar .dots span {
+    width: 12px; height: 12px; border-radius: 50%;
+  }
+  .cmd-titlebar .dots .r { background: #ff5f56; }
+  .cmd-titlebar .dots .y { background: #ffbd2e; }
+  .cmd-titlebar .dots .g { background: #27c93f; }
+
+  .cmd-titlebar .title {
+    color: #888;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-left: auto;
+  }
+
+  .cmd-body {
+    padding: 20px;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #e5e5e5;
+    min-height: 120px;
+  }
+
+  .cmd-line { margin-bottom: 4px; }
+
+  .cmd-prompt { color: var(--cmd-green); font-weight: 700; }
+  .cmd-path { color: var(--cmd-cyan); }
+  .cmd-symbol { color: #fff; }
+
+  .cmd-input { color: #fff; }
+  .cmd-output { color: #b0b0b0; }
+  .cmd-comment { color: #6b7280; font-style: italic; }
+  .cmd-highlight { color: var(--cmd-yellow); font-weight: 700; }
+  .cmd-error { color: #ff6b6b; }
+  .cmd-success { color: #4ade80; }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--cmd-green);
+    animation: blink 1s infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  /* ===== CMD TABLE ===== */
+  .cmd-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cmd-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    min-width: 600px;
+    direction: rtl;
+  }
+
+  .cmd-table thead {
+    background: linear-gradient(135deg, #0c0c0c, #1a1a1a);
+    color: var(--cmd-green);
+  }
+
+  .cmd-table thead th {
+    padding: 15px 14px;
+    text-align: right;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-left: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .cmd-table tbody td {
+    padding: 13px 14px;
+    border-bottom: 1px solid #f0e4d0;
+    font-size: 0.9rem;
+    color: #4a3d30;
+  }
+
+  .cmd-table tbody tr:nth-child(even) { background: var(--sand-light); }
+  .cmd-table tbody tr:hover { background: #e8f6f4; }
+
+  .cmd-table code {
+    background: #0c0c0c;
+    color: var(--cmd-green);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    direction: ltr;
+    display: inline-block;
+    border: 1px solid #2a2a2a;
+  }
+
+  /* ===== FILE TREE ===== */
+  .file-tree {
+    background: linear-gradient(135deg, #1e1e2e, #2a2a3e);
+    color: #e5e5e5;
+    padding: 25px;
+    border-radius: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    direction: ltr;
+    text-align: left;
+    line-height: 2;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid #313244;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .file-tree .folder { color: #fbbf24; font-weight: 700; }
+  .file-tree .file { color: #a5d6ff; }
+  .file-tree .line { color: #6b7280; }
+  .file-tree .comment { color: #6b7280; font-style: italic; }
+
+  /* ===== SUMMARY GRID ===== */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+  }
+
+  .summary-card {
+    background: linear-gradient(135deg, #fff, var(--sand-light));
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid rgba(139, 94, 60, 0.12);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--water), var(--gold));
+  }
+
+  .summary-card h4 {
+    font-size: 1.1rem;
+    color: var(--earth-dark);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .summary-card ul { list-style: none; padding: 0; }
+
+  .summary-card ul li {
+    padding: 5px 0;
+    font-size: 0.9rem;
+    color: #5a4a3a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .summary-card ul li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 900;
+    font-size: 0.95rem;
+  }
+
+  /* ===== SHORTCUT BOX ===== */
+  .shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .shortcut-item {
+    background: linear-gradient(135deg, #fff, var(--sand-light));
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid rgba(139, 94, 60, 0.12);
+    transition: all 0.2s;
+  }
+
+  .shortcut-item:hover {
+    border-color: var(--water);
+    box-shadow: 0 5px 15px rgba(42, 157, 143, 0.15);
+    transform: translateX(-3px);
+  }
+
+  .shortcut-item .action {
+    font-size: 0.92rem;
+    color: var(--earth-dark);
+    font-weight: 500;
+  }
+
+  .shortcut-item .keys {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: linear-gradient(135deg, #0a0e27 0%, #0d1117 100%);
+    color: #fff;
+    padding: 55px 20px 35px;
+    text-align: center;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0078d4, var(--water), var(--gold), var(--cmd-green));
+  }
+
+  footer .brand {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #60a5fa, var(--water-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  footer .tagline {
+    font-size: 1rem;
+    opacity: 0.75;
+    margin-bottom: 28px;
+    font-weight: 300;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(42, 157, 143, 0.15);
+    border: 1px solid var(--water);
+    color: var(--water-light);
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
+
+  footer .site-link:hover {
+    background: var(--water);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(42, 157, 143, 0.4);
+  }
+
+  footer .divider {
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--water));
+    margin: 28px auto;
+    border-radius: 2px;
+  }
+
+  footer .copyright {
+    font-size: 0.85rem;
+    opacity: 0.5;
+    margin-top: 15px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    header h1 { font-size: 1.9rem; }
+    header p { font-size: 1rem; }
+    section { padding: 28px 20px; }
+    .section-header h2 { font-size: 1.3rem; }
+    .section-header .level-badge { width: 55px; height: 55px; font-size: 1.5rem; }
+    .project-header { padding: 18px 20px; }
+    .project-body { padding: 22px; }
+    .project-title h3 { font-size: 1.05rem; }
+    .step { gap: 12px; }
+    .step::before { width: 32px; height: 32px; font-size: 0.9rem; }
+    .level-nav { padding: 20px; }
+    .level-nav a { padding: 10px 16px; font-size: 0.85rem; }
+    .cmd-body { font-size: 0.75rem; padding: 15px; }
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--sand); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #0078d4, var(--water));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--water-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">💻 آموزش مهارت‌های ویندوز، مدیریت فایل و CMD</div>
+  <h1>ویندوز، فایل‌ها و <span class="highlight">خط فرمان</span></h1>
+  <p>آموزش گام‌به‌گام مهارت‌های دیجیتال با پروژه‌های عملی بر اساس رمان «زمین خواهد شنید»</p>
+
+  <div class="os-bar">
+    <span>🪟 Windows Basics</span>
+    <span>📁 File Management</span>
+    <span>⌨️ Command Prompt</span>
+    <span>🛡️ Security</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ===== LEVEL NAV ===== -->
+  <nav class="level-nav">
+    <a href="#windows" class="win">🪟 مهارت‌های ویندوز</a>
+    <a href="#files" class="file">📁 مدیریت فایل‌ها</a>
+    <a href="#cmd" class="cmd">⌨️ خط فرمان CMD</a>
+    <a href="#summary" class="file">📋 جمع‌بندی</a>
+  </nav>
+
+  <!-- ==================================================== -->
+  <!-- ============ WINDOWS SECTION ====================== -->
+  <!-- ==================================================== -->
+  <section id="windows">
+    <div class="section-header">
+      <div class="level-badge win">🪟</div>
+      <div>
+        <h2>بخش اول — مهارت‌های پایه‌ی ویندوز</h2>
+        <div class="sub">آشنایی با دسکتاپ، نوار وظیفه، پنجره‌ها و تنظیمات سیستم</div>
+      </div>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="project">
+      <div class="project-header win">
+        <div class="project-num">۱</div>
+        <div class="project-title">
+          <h3>کاوش در دسکتاپ و نوار وظیفه</h3>
+          <div class="meta">
+            <span>⏱ ۲۵ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: آشنایی با محیط ویندوز</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Desktop</span><span>Taskbar</span><span>Start Menu</span><span>System Tray</span><span>Notification</span>
+        </div>
+
+        <div class="info hint">
+          <span class="hint-icon">🎯</span>
+          <div><strong>سناریو:</strong> می‌خواهیم برای پروژه‌ی رمان «زمین خواهد شنید» یک محیط کاری منظم در ویندوز بسازیم و با اجزای دسکتاپ آشنا شویم.</div>
+        </div>
+
+        <div class="win-mockup">
+          <div class="win-window">
+            <div class="win-titlebar">
+              <span class="icon">🖥️</span>
+              <span class="title">Desktop — Windows 11</span>
+              <div class="controls">
+                <span class="min"></span><span class="max"></span><span class="close"></span>
+              </div>
+            </div>
+            <div class="win-content" style="grid-template-columns:repeat(auto-fill,minmax(80px,1fr));background:linear-gradient(135deg,#0078d4,#005a9e);padding:20px;">
+              <div class="win-item">
+                <div class="folder-icon"></div>
+                <div class="name" style="color:#fff;">زمین‌خواهدشنید</div>
+              </div>
+              <div class="win-item">
+                <div class="file-icon doc"></div>
+                <div class="name" style="color:#fff;">خلاصه.docx</div>
+              </div>
+              <div class="win-item">
+                <div class="folder-icon"></div>
+                <div class="name" style="color:#fff;">تصاویر</div>
+              </div>
+              <div class="win-item">
+                <div class="file-icon txt"></div>
+                <div class="name" style="color:#fff;">notes.txt</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>آشنایی با دسکتاپ</strong>
+              <p>روی فضای خالی دسکتاپ راست‌کلیک کنید و گزینه‌ی <strong>Personalize</strong> را ببینید. اینجا می‌توانید تصویر پس‌زمینه را به تصویر سنگ‌نگاره‌های رمان تغییر دهید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>نوار وظیفه (Taskbar)</strong>
+              <p>پایین صفحه، نوار وظیفه قرار دارد. شامل: منوی Start، جستجو، برنامه‌های پین‌شده، آیکون‌های سیستم و ساعت.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>پین کردن برنامه‌ها</strong>
+              <p>روی Word راست‌کلیک و <strong>Pin to taskbar</strong> را بزنید تا همیشه در دسترس باشد.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>منوی Start</strong>
+              <p>روی آیکون ویندوز یا <span class="kbd">Win</span> کلیک کنید. جستجو برای: <strong>Word</strong>، <strong>Notepad</strong>، <strong>Cmd</strong>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تنظیمات سریع</strong>
+              <p>با <span class="kbd">Win</span>+<span class="kbd">I</span> پنجره‌ی Settings باز می‌شود. در بخش <strong>System > Display</strong> می‌توانید رزولوشن را تنظیم کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>System Tray</strong>
+              <p>گوشه‌ی راست-پایین ساعت و آیکون‌های شبکه، صدا، باتری قرار دارند. روی ساعت کلیک کنید تا تاریخ و تقویم را ببینید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>چند پنجره‌ای کار کردن</strong>
+              <p>با <span class="kbd">Win</span>+<span class="kbd">←</span> یا <span class="kbd">Win</span>+<span class="kbd">→</span> پنجره‌ها را نصف صفحه کنید. با <span class="kbd">Alt</span>+<span class="kbd">Tab</span> بین آن‌ها جابه‌جا شوید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint success">
+          <span class="hint-icon">✅</span>
+          <div><strong>تمرین عملی:</strong> یک پوشه به نام «پروژه_رمان» روی دسکتاپ بسازید و آن را برای مراحل بعدی نگه دارید.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project">
+      <div class="project-header win">
+        <div class="project-num">۲</div>
+        <div class="project-title">
+          <h3>تنظیمات سیستم و شخصی‌سازی</h3>
+          <div class="meta">
+            <span>⏱ ۳۰ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: Settings و Personalization</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Settings</span><span>Display</span><span>Personalization</span><span>Region</span><span>Language</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>تنظیم زبان فارسی</strong>
+              <p>از <span class="path">Settings <span class="sep">›</span> Time &amp; Language <span class="sep">›</span> Language &amp; Region</span> زبان فارسی را اضافه کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تنظیم پس‌زمینه</strong>
+              <p>از <span class="path">Settings <span class="sep">›</span> Personalization <span class="sep">›</span> Background</span> یک تصویر از سنگ‌نگاره‌های ایلام انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تغییر رنگ سیستم</strong>
+              <p>از <span class="path">Settings <span class="sep">›</span> Personalization <span class="sep">›</span> Colors</span> رنگ قهوه‌ای خاکی را انتخاب کنید تا هماهنگ با رمان باشد.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تنظیم تاریخ و ساعت</strong>
+              <p>از <span class="path">Settings <span class="sep">›</span> Time &amp; Language <span class="sep">›</span> Date &amp; Time</span> منطقه‌ی زمانی را به <strong>(UTC+03:30) Tehran</strong> تغییر دهید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>مدیریت برنامه‌ها</strong>
+              <p>از <span class="path">Settings <span class="sep">›</span> Apps <span class="sep">›</span> Installed Apps</span> می‌توانید برنامه‌های نصب‌شده را مدیریت کنید.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project">
+      <div class="project-header win">
+        <div class="project-num">۳</div>
+        <div class="project-title">
+          <h3>میانبرهای کلیدی ویندوز</h3>
+          <div class="meta">
+            <span>⏱ ۲۰ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: سرعت کار با کیبورد</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Keyboard Shortcuts</span><span>Win Key</span><span>Alt+Tab</span><span>Ctrl+Shift+Esc</span>
+        </div>
+
+        <div class="shortcut-grid">
+          <div class="shortcut-item">
+            <span class="action">باز کردن منوی Start</span>
+            <div class="keys"><span class="kbd">Win</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">جستجوی سریع</span>
+            <div class="keys"><span class="kbd">Win</span>+<span class="kbd">S</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">پنجره‌ی تنظیمات</span>
+            <div class="keys"><span class="kbd">Win</span>+<span class="kbd">I</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">قفل کردن صفحه</span>
+            <div class="keys"><span class="kbd">Win</span>+<span class="kbd">L</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">نمایش دسکتاپ</span>
+            <div class="keys"><span class="kbd">Win</span>+<span class="kbd">D</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">جابه‌جایی بین پنجره‌ها</span>
+            <div class="keys"><span class="kbd">Alt</span>+<span class="kbd">Tab</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">مدیریت وظایف</span>
+            <div class="keys"><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">Esc</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">Screenshot کامل</span>
+            <div class="keys"><span class="kbd">Win</span>+<span class="kbd">PrtSc</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">Screenshot انتخابی</span>
+            <div class="keys"><span class="kbd">Win</span>+<span class="kbd">Shift</span>+<span class="kbd">S</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">باز کردن Explorer</span>
+            <div class="keys"><span class="kbd">Win</span>+<span class="kbd">E</span></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">خط فرمان CMD</span>
+            <div class="keys"><span class="kbd">Win</span>+<span class="kbd">R</span> → <strong>cmd</strong></div>
+          </div>
+          <div class="shortcut-item">
+            <span class="action">بستن پنجره‌ی فعال</span>
+            <div class="keys"><span class="kbd">Alt</span>+<span class="kbd">F4</span></div>
+          </div>
+        </div>
+
+        <div class="hint success">
+          <span class="hint-icon">🎯</span>
+          <div><strong>تمرین عملی:</strong> این ۱۲ میانبر را روی کاغذ بنویسید و هر روز ۵ دقیقه تمرین کنید تا در حافظه‌تان ثبت شود.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ FILE MANAGEMENT ====================== -->
+  <!-- ==================================================== -->
+  <section id="files">
+    <div class="section-header">
+      <div class="level-badge file">📁</div>
+      <div>
+        <h2>بخش دوم — مدیریت فایل‌ها و پوشه‌ها</h2>
+        <div class="sub">ساخت، نام‌گذاری، جابه‌جایی، کپی و سازمان‌دهی فایل‌ها</div>
+      </div>
+    </div>
+
+    <div class="info hint">
+      <span class="hint-icon">🏘️</span>
+      <div><strong>ساختار پیشنهادی پروژه:</strong> برای رمان «زمین خواهد شنید» یک ساختار پوشه‌بندی منظم می‌سازیم که شبیه به آبادی‌های رمان باشد.</div>
+    </div>
+
+    <div class="file-tree">
+<span class="comment">📁 Zamin_Khahad_Shenid/           # پوشه‌ی اصلی پروژه</span>
+├── <span class="folder">📁 01_متن_رمان/</span>
+│   ├── <span class="file">📄 خلاصه.docx</span>
+│   ├── <span class="file">📄 شخصیت‌ها.docx</span>
+│   └── <span class="file">📄 تحلیل_نمادها.docx</span>
+├── <span class="folder">📁 02_تصاویر/</span>
+│   ├── <span class="file">🖼 سنگ‌نگاره_کول‌فرح.jpg</span>
+│   ├── <span class="file">🖼 اشکفت_سلمان.jpg</span>
+│   └── <span class="file">🖼 کاروان_خشت.jpg</span>
+├── <span class="folder">📁 03_اکسل/</span>
+│   ├── <span class="file">📊 خراج_کهباد.xlsx</span>
+│   └── <span class="file">📊 شخصیت‌ها.xlsx</span>
+├── <span class="folder">📁 04_پاورپوینت/</span>
+│   └── <span class="file">📽 معرفی_رمان.pptx</span>
+└── <span class="folder">📁 05_پشتیبان/</span>
+    └── <span class="file">🗜 backup.zip</span>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project">
+      <div class="project-header file">
+        <div class="project-num">۴</div>
+        <div class="project-title">
+          <h3>ساخت پوشه و نام‌گذاری صحیح</h3>
+          <div class="meta">
+            <span>⏱ ۳۰ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: New Folder و Naming</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>New Folder</span><span>Rename</span><span>Naming Rules</span><span>Extensions</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>باز کردن File Explorer</strong>
+              <p>با <span class="kbd">Win</span>+<span class="kbd">E</span> پنجره‌ی Explorer باز می‌شود. به مسیر <span class="path">This PC <span class="sep">›</span> Documents</span> بروید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ساخت پوشه‌ی اصلی</strong>
+              <p>راست‌کلیک → <strong>New → Folder</strong> یا میانبر <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">N</span>. نام: <strong>Zamin_Khahad_Shenid</strong></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ساخت ۵ زیرپوشه</strong>
+              <p>داخل پوشه‌ی اصلی، این ۵ پوشه را بسازید:</p>
+              <p>01_متن_رمان، 02_تصاویر، 03_اکسل، 04_پاورپوینت، 05_پشتیبان</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>قواعد نام‌گذاری</strong>
+              <p>در نام‌گذاری فایل‌ها از <strong>فاصله</strong> استفاده نکنید؛ به جای آن <strong>underline (_)</strong> یا <strong>dash (-)</strong> بگذارید. مثال: <code style="background:#0c0c0c;color:#0f0;padding:2px 8px;border-radius:5px;font-family:monospace;">خلاصه_رمان.docx</code></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تغییر نام (Rename)</strong>
+              <p>روی فایل کلیک کنید و <span class="kbd">F2</span> را بزنید، یا راست‌کلیک → <strong>Rename</strong>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>نمایش پسوند فایل‌ها</strong>
+              <p>از <span class="path">View <span class="sep">›</span> Show <span class="sep">›</span> File name extensions</span> فعال کنید تا پسوندها (.docx, .xlsx, .txt) را ببینید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint warn">
+          <span class="hint-icon">⚠️</span>
+          <div><strong>مهم:</strong> در نام فایل‌ها از این کاراکترها استفاده نکنید: <code>\ / : * ? " &lt; &gt; |</code> — ویندوز آن‌ها را نمی‌پذیرد.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project">
+      <div class="project-header file">
+        <div class="project-num">۵</div>
+        <div class="project-title">
+          <h3>کپی، انتقال و حذف فایل‌ها</h3>
+          <div class="meta">
+            <span>⏱ ۳۵ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: Copy, Move, Delete</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Copy</span><span>Cut</span><span>Paste</span><span>Delete</span><span>Recycle Bin</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>کپی کردن (Copy)</strong>
+              <p>فایل را انتخاب و <span class="kbd">Ctrl</span>+<span class="kbd">C</span> بزنید. یا راست‌کلیک → <strong>Copy</strong>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>چسباندن (Paste)</strong>
+              <p>به پوشه‌ی مقصد بروید و <span class="kbd">Ctrl</span>+<span class="kbd">V</span> بزنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>برش (Cut) برای انتقال</strong>
+              <p>فایل را انتخاب و <span class="kbd">Ctrl</span>+<span class="kbd">X</span> بزنید، سپس در مقصد <span class="kbd">Ctrl</span>+<span class="kbd">V</span>. این کار فایل را <strong>منتقل</strong> می‌کند.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>حذف به سبد بازیافت</strong>
+              <p>فایل را انتخاب و <span class="kbd">Delete</span> بزنید. فایل به <strong>Recycle Bin</strong> می‌رود و قابل بازیابی است.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>حذف دائمی</strong>
+              <p><span class="kbd">Shift</span>+<span class="kbd">Delete</span> فایل را برای همیشه حذف می‌کند (بدون Recycle Bin).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>انتخاب چندتایی</strong>
+              <p>با <span class="kbd">Ctrl</span>+کلیک، فایل‌های پراکنده را انتخاب کنید. با <span class="kbd">Shift</span>+کلیک، یک محدوده‌ی پیوسته را انتخاب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>بازیابی از Recycle Bin</strong>
+              <p>روی آیکون سبد بازیافت دسکتاپ دوبار کلیک کنید. فایل را انتخاب و <strong>Restore</strong> را بزنید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint info">
+          <span class="hint-icon">💡</span>
+          <div><strong>تفاوت Copy و Cut:</strong> Copy فایل را تکثیر می‌کند (اصل فایل می‌ماند)، اما Cut فایل را جابه‌جا می‌کند (اصل حذف می‌شود).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="project">
+      <div class="project-header file">
+        <div class="project-num">۶</div>
+        <div class="project-title">
+          <h3>جستجو، مرتب‌سازی و فشرده‌سازی</h3>
+          <div class="meta">
+            <span>⏱ ۴۰ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: Search, Sort, Compress</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Search</span><span>Sort</span><span>Filter</span><span>Compress (ZIP)</span><span>Extract</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>جستجوی فایل</strong>
+              <p>در نوار جستجوی Explorer بنویسید: <strong>*.docx</strong> تا همه‌ی فایل‌های Word را پیدا کنید. یا <strong>خلاصه*</strong> تا فایل‌هایی که با «خلاصه» شروع می‌شوند.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>مرتب‌سازی (Sort)</strong>
+              <p>در پوشه، راست‌کلیک → <strong>Sort by → Name / Date / Type / Size</strong>. مثلاً فایل‌ها را بر اساس تاریخ مرتب کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>فیلتر کردن</strong>
+              <p>از تب <span class="path">View <span class="sep">›</span> Sort <span class="sep">›</span> Filter</span> می‌توانید فقط فایل‌های Word یا تصویر را نمایش دهید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>فشرده‌سازی (ZIP)</strong>
+              <p>پوشه‌ی <strong>Zamin_Khahad_Shenid</strong> را انتخاب و راست‌کلیک → <strong>Send to → Compressed (zipped) folder</strong>. یک فایل ZIP ساخته می‌شود.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>استخراج (Extract)</strong>
+              <p>روی فایل ZIP راست‌کلیک → <strong>Extract All</strong> تا محتوای آن باز شود. این برای بازیابی پشتیبان مفید است.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>پشتیبان‌گیری</strong>
+              <p>فایل ZIP را در پوشه‌ی <strong>05_پشتیبان</strong> کپی کنید. هر هفته یک نسخه‌ی جدید با تاریخ (مثلاً <code style="background:#0c0c0c;color:#0f0;padding:2px 6px;border-radius:4px;">backup_1405-07-15.zip</code>) بسازید.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint success">
+          <span class="hint-icon">🏆</span>
+          <div><strong>نکته‌ی حرفه‌ای:</strong> همیشه از پروژه‌های مهم پشتیبان تهیه کنید. ضرب‌المثل کامپیوتری: «پشتیبان نگیری، گریه‌ات را کسی نمی‌بیند.»</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ CMD SECTION ========================== -->
+  <!-- ==================================================== -->
+  <section id="cmd">
+    <div class="section-header">
+      <div class="level-badge cmd">⌨️</div>
+      <div>
+        <h2>بخش سوم — خط فرمان CMD</h2>
+        <div class="sub">آشنایی با Command Prompt و دستورات پرکاربرد</div>
+      </div>
+    </div>
+
+    <div class="info hint">
+      <span class="hint-icon">🖥️</span>
+      <div><strong>CMD چیست؟</strong> Command Prompt یک محیط متنی است که به جای کلیک ماوس، با تایپ دستور کارها را انجام می‌دهد. سرعت کار در آن بیشتر است و برای مدیریت فایل‌ها و تنظیمات سیستم بسیار مفید است.</div>
+    </div>
+
+    <!-- Project 7 -->
+    <div class="project">
+      <div class="project-header cmd">
+        <div class="project-num">۷</div>
+        <div class="project-title">
+          <h3>باز کردن CMD و دستورات پایه</h3>
+          <div class="meta">
+            <span>⏱ ۲۵ دقیقه</span>
+            <span>📊 سطح: مبتدی</span>
+            <span>🎯 هدف: dir, cd, cls, exit</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>CMD</span><span>dir</span><span>cd</span><span>cls</span><span>exit</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>باز کردن CMD</strong>
+              <p>با <span class="kbd">Win</span>+<span class="kbd">R</span> پنجره‌ی Run باز می‌شود. تایپ کنید <strong>cmd</strong> و <span class="kbd">Enter</span> بزنید.</p>
+              <p>یا در جستجوی ویندوز <strong>cmd</strong> را تایپ کنید و روی <strong>Command Prompt</strong> کلیک کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>دستور dir</strong>
+              <p>محتوای پوشه‌ی جاری را نمایش می‌دهد.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>دستور cd</strong>
+              <p>برای جابه‌جایی بین پوشه‌ها: <strong>cd نام_پوشه</strong>. برای بازگشت به پوشه‌ی قبل: <strong>cd ..</strong>. برای رفتن به ریشه: <strong>cd \</strong>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>دستور cls</strong>
+              <p>صفحه‌ی CMD را پاک می‌کند.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>دستور exit</strong>
+              <p>از CMD خارج می‌شود.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cmd-terminal">
+          <div class="cmd-titlebar">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="title">Command Prompt</span>
+          </div>
+          <div class="cmd-body">
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Users\Zamin</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">dir</span>
+            </div>
+            <div class="cmd-line"><span class="cmd-output"> Volume in drive C has no label.</span></div>
+            <div class="cmd-line"><span class="cmd-output"> Directory of C:\Users\Zamin</span></div>
+            <div class="cmd-line"><span class="cmd-output">&nbsp;</span></div>
+            <div class="cmd-line"><span class="cmd-output">10/05/2026  09:15 AM    &lt;DIR&gt;          Desktop</span></div>
+            <div class="cmd-line"><span class="cmd-output">10/05/2026  09:15 AM    &lt;DIR&gt;          Documents</span></div>
+            <div class="cmd-line"><span class="cmd-output">10/05/2026  09:15 AM    &lt;DIR&gt;          Downloads</span></div>
+            <div class="cmd-line"><span class="cmd-output">&nbsp;</span></div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Users\Zamin</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">cd Documents</span>
+            </div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Users\Zamin\Documents</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">cd Zamin_Khahad_Shenid</span>
+            </div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Users\Zamin\Documents\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">dir</span>
+            </div>
+            <div class="cmd-line"><span class="cmd-output"> Directory of C:\Users\Zamin\Documents\Zamin_Khahad_Shenid</span></div>
+            <div class="cmd-line"><span class="cmd-output">&nbsp;</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  09:20 AM    &lt;DIR&gt;          01_متن_رمان</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  09:20 AM    &lt;DIR&gt;          02_تصاویر</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  09:20 AM    &lt;DIR&gt;          03_اکسل</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  09:20 AM    &lt;DIR&gt;          04_پاورپوینت</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  09:20 AM    &lt;DIR&gt;          05_پشتیبان</span></div>
+            <div class="cmd-line"><span class="cmd-output">&nbsp;</span></div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Users\Zamin\Documents\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cursor"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 8 -->
+    <div class="project">
+      <div class="project-header cmd">
+        <div class="project-num">۸</div>
+        <div class="project-title">
+          <h3>مدیریت فایل با CMD — پروژه‌ی کُهباد</h3>
+          <div class="meta">
+            <span>⏱ ۴۵ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: mkdir, copy, move, del, ren</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>mkdir</span><span>copy</span><span>move</span><span>del</span><span>ren</span><span>type</span>
+        </div>
+
+        <div class="info hint">
+          <span class="hint-icon">🏘️</span>
+          <div><strong>سناریو:</strong> می‌خواهیم پوشه‌های آبادی‌های رمان را با CMD بسازیم و در هر کدام، فایل‌های مربوطه را قرار دهیم.</div>
+        </div>
+
+        <div class="cmd-terminal">
+          <div class="cmd-titlebar">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="title">Command Prompt — Project</span>
+          </div>
+          <div class="cmd-body">
+            <div class="cmd-line">
+              <span class="cmd-comment">:: ساخت پوشه‌ی اصلی پروژه</span>
+            </div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">mkdir Zamin_Khahad_Shenid</span>
+            </div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">cd Zamin_Khahad_Shenid</span>
+            </div>
+            <div class="cmd-line"><span class="cmd-comment">:: ساخت پوشه‌ی آبادی‌ها</span></div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">mkdir 01_کهباد</span>
+            </div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">mkdir 02_گلِ_شور</span>
+            </div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">mkdir 03_شیل‌هی‌تی</span>
+            </div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">mkdir 04_اشکفت‌سلمان</span>
+            </div>
+            <div class="cmd-line"><span class="cmd-comment">:: ساخت همه با یک دستور</span></div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">mkdir 05_خونگ‌آژدر 06_آیاپیر 07_دزپارت</span>
+            </div>
+            <div class="cmd-line"><span class="cmd-success">✓ ۷ پوشه ساخته شد.</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">dir</span>
+            </div>
+            <div class="cmd-line"><span class="cmd-output"> Directory of C:\Projects\Zamin_Khahad_Shenid</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  10:05 AM    &lt;DIR&gt;          01_کهباد</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  10:05 AM    &lt;DIR&gt;          02_گلِ_شور</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  10:05 AM    &lt;DIR&gt;          03_شیل‌هی‌تی</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  10:05 AM    &lt;DIR&gt;          04_اشکفت‌سلمان</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  10:05 AM    &lt;DIR&gt;          05_خونگ‌آژدر</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  10:05 AM    &lt;DIR&gt;          06_آیاپیر</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">10/05/2026  10:05 AM    &lt;DIR&gt;          07_دزپارت</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cursor"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>ساخت پوشه با mkdir</strong>
+              <p>دستور <strong>mkdir</strong> (یا <strong>md</strong>) پوشه می‌سازد. مثلاً: <code style="background:#0c0c0c;color:#0f0;padding:2px 8px;border-radius:5px;font-family:monospace;">mkdir 01_کهباد</code></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>ساخت چند پوشه با هم</strong>
+              <p>می‌توانید چند نام را پشت هم بنویسید: <code style="background:#0c0c0c;color:#0f0;padding:2px 8px;border-radius:5px;font-family:monospace;">mkdir پوشه1 پوشه2 پوشه3</code></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>کپی کردن فایل با copy</strong>
+              <p><code style="background:#0c0c0c;color:#0f0;padding:2px 8px;border-radius:5px;font-family:monospace;">copy خلاصه.docx "01_کهباد\خلاصه.docx"</code></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>انتقال فایل با move</strong>
+              <p><code style="background:#0c0c0c;color:#0f0;padding:2px 8px;border-radius:5px;font-family:monospace;">move notes.txt "02_گلِ_شور\"</code></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>تغییر نام با ren</strong>
+              <p><code style="background:#0c0c0c;color:#0f0;padding:2px 8px;border-radius:5px;font-family:monospace;">ren خلاصه.docx خلاصه_رمان.docx</code></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>حذف فایل با del</strong>
+              <p><code style="background:#0c0c0c;color:#0f0;padding:2px 8px;border-radius:5px;font-family:monospace;">del notes.txt</code> — برای حذف پوشه از <strong>rmdir</strong> استفاده کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>نمایش محتوای فایل با type</strong>
+              <p><code style="background:#0c0c0c;color:#0f0;padding:2px 8px;border-radius:5px;font-family:monospace;">type notes.txt</code> محتوای فایل متنی را نشان می‌دهد.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint warn">
+          <span class="hint-icon">⚠️</span>
+          <div><strong>هشدار:</strong> دستورات <strong>del</strong> و <strong>rmdir</strong> فایل‌ها را برای همیشه حذف می‌کنند و به Recycle Bin نمی‌روند. قبل از اجرا مطمئن شوید.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 9 -->
+    <div class="project">
+      <div class="project-header cmd">
+        <div class="project-num">۹</div>
+        <div class="project-title">
+          <h3>جستجو و اطلاعات سیستم با CMD</h3>
+          <div class="meta">
+            <span>⏱ ۳۵ دقیقه</span>
+            <span>📊 سطح: متوسط</span>
+            <span>🎯 هدف: systeminfo, ipconfig, ping</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>systeminfo</span><span>ipconfig</span><span>ping</span><span>tasklist</span><span>find</span>
+        </div>
+
+        <div class="cmd-table-wrap">
+          <table class="cmd-table">
+            <thead>
+              <tr>
+                <th>دستور</th>
+                <th>کاربرد</th>
+                <th>مثال</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>systeminfo</code></td>
+                <td>نمایش اطلاعات کامل سیستم</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><code>hostname</code></td>
+                <td>نمایش نام کامپیوتر</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><code>whoami</code></td>
+                <td>نمایش نام کاربری جاری</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><code>ipconfig</code></td>
+                <td>نمایش اطلاعات شبکه</td>
+                <td><code>ipconfig /all</code></td>
+              </tr>
+              <tr>
+                <td><code>ping</code></td>
+                <td>تست اتصال به سرور</td>
+                <td><code>ping google.com</code></td>
+              </tr>
+              <tr>
+                <td><code>tasklist</code></td>
+                <td>لیست برنامه‌های در حال اجرا</td>
+                <td><code>tasklist | find "word"</code></td>
+              </tr>
+              <tr>
+                <td><code>find</code></td>
+                <td>جستجو در خروجی دستور قبلی</td>
+                <td><code>dir | find ".docx"</code></td>
+              </tr>
+              <tr>
+                <td><code>tree</code></td>
+                <td>نمایش ساختار درختی پوشه‌ها</td>
+                <td><code>tree /f</code></td>
+              </tr>
+              <tr>
+                <td><code>date /t</code></td>
+                <td>نمایش تاریخ امروز</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><code>time /t</code></td>
+                <td>نمایش ساعت</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cmd-terminal">
+          <div class="cmd-titlebar">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="title">Command Prompt — System Info</span>
+          </div>
+          <div class="cmd-body">
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">tree /f</span>
+            </div>
+            <div class="cmd-line"><span class="cmd-output">Folder PATH listing for volume OS</span></div>
+            <div class="cmd-line"><span class="cmd-output">C:.</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">├───01_کهباد</span></div>
+            <div class="cmd-line"><span class="cmd-output">│       خلاصه_رمان.docx</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">├───02_گلِ_شور</span></div>
+            <div class="cmd-line"><span class="cmd-output">│       نان_و_آب.txt</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">├───03_شیل‌هی‌تی</span></div>
+            <div class="cmd-line"><span class="cmd-output">│       چنگ_نیکا.docx</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">├───04_اشکفت‌سلمان</span></div>
+            <div class="cmd-line"><span class="cmd-output">│       شورای_خشت‌ها.docx</span></div>
+            <div class="cmd-line"><span class="cmd-highlight">└───05_خونگ‌آژدر</span></div>
+            <div class="cmd-line"><span class="cmd-output">        یادداشت_آتا.txt</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">dir /s /b *.docx</span>
+            </div>
+            <div class="cmd-line"><span class="cmd-output">C:\Projects\Zamin_Khahad_Shenid\01_کهباد\خلاصه_رمان.docx</span></div>
+            <div class="cmd-line"><span class="cmd-output">C:\Projects\Zamin_Khahad_Shenid\03_شیل‌هی‌تی\چنگ_نیکا.docx</span></div>
+            <div class="cmd-line"><span class="cmd-output">C:\Projects\Zamin_Khahad_Shenid\04_اشکفت‌سلمان\شورای_خشت‌ها.docx</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cmd-input">systeminfo | find "OS Name"</span>
+            </div>
+            <div class="cmd-line"><span class="cmd-output">OS Name:    Microsoft Windows 11 Pro</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">C:\Projects\Zamin_Khahad_Shenid</span><span class="cmd-symbol">&gt;</span>
+              <span class="cursor"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint info">
+          <span class="hint-icon">🔍</span>
+          <div><strong>ترفند حرفه‌ای:</strong> با علامت <code style="background:#0c0c0c;color:#0f0;padding:2px 6px;border-radius:4px;font-family:monospace;">|</code> (پایپ) می‌توانید خروجی یک دستور را به دستور دیگر بدهید. مثلاً <code style="background:#0c0c0c;color:#0f0;padding:2px 6px;border-radius:4px;font-family:monospace;">dir | find ".docx"</code> فقط فایل‌های Word را نشان می‌دهد.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 10 -->
+    <div class="project">
+      <div class="project-header cmd">
+        <div class="project-num">۱۰</div>
+        <div class="project-title">
+          <h3>پروژه‌ی نهایی CMD — اتوماسیون با Batch</h3>
+          <div class="meta">
+            <span>⏱ ۶۰ دقیقه</span>
+            <span>📊 سطح: پیشرفته</span>
+            <span>🎯 هدف: ساخت فایل .bat</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="skills">
+          <span>Batch File</span><span>echo</span><span>@echo off</span><span>pause</span><span>start</span>
+        </div>
+
+        <div class="info hint">
+          <span class="hint-icon">🤖</span>
+          <div><strong>سناریو:</strong> می‌خواهیم یک فایل خودکار (Batch) بسازیم که با یک کلیک، تمام پوشه‌های آبادی‌های رمان را ایجاد کند و فایل‌های متنی اولیه را در آن‌ها قرار دهد.</div>
+        </div>
+
+        <div class="cmd-terminal">
+          <div class="cmd-titlebar">
+            <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <span class="title">Notepad — setup_zamin.bat</span>
+          </div>
+          <div class="cmd-body">
+            <div class="cmd-line"><span class="cmd-comment">@echo off</span></div>
+            <div class="cmd-line"><span class="cmd-comment">:: اسکریپت ساخت پروژه‌ی رمان زمین خواهد شنید</span></div>
+            <div class="cmd-line"><span class="cmd-comment">:: نویسنده: آموزشگاه تیروتیر</span></div>
+            <div class="cmd-line"><span class="cmd-comment">:: تاریخ: ۱۴۰۵</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line"><span class="cmd-input">cls</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo ============================================</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo   پروژه‌ی رمان «زمین خواهد شنید»</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo   ساخته شده در آموزشگاه تیروتیر</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo ============================================</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo.</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line"><span class="cmd-comment">:: رفتن به درایو D</span></div>
+            <div class="cmd-line"><span class="cmd-input">D:</span></div>
+            <div class="cmd-line"><span class="cmd-input">cd \</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line"><span class="cmd-comment">:: ساخت پوشه‌ی اصلی</span></div>
+            <div class="cmd-line"><span class="cmd-input">if not exist "Zamin_Project" mkdir "Zamin_Project"</span></div>
+            <div class="cmd-line"><span class="cmd-input">cd Zamin_Project</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line"><span class="cmd-comment">:: ساخت پوشه‌های آبادی‌ها</span></div>
+            <div class="cmd-line"><span class="cmd-input">for %%F in (کهباد گلِ_شور شیل‌هی‌تی اشکفت‌سلمان خونگ‌آژدر آیاپیر دزپارت) do (</span></div>
+            <div class="cmd-line"><span class="cmd-input">    mkdir "%%F"</span></div>
+            <div class="cmd-line"><span class="cmd-input">    echo نام آبادی: %%F &gt; "%%F\README.txt"</span></div>
+            <div class="cmd-line"><span class="cmd-input">    echo این پوشه مربوط به آبادی %%F در رمان است. &gt;&gt; "%%F\README.txt"</span></div>
+            <div class="cmd-line"><span class="cmd-input">)</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line"><span class="cmd-comment">:: ساخت فایل راهنما</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo پروژه‌ی رمان زمین خواهد شنید &gt; "درباره.txt"</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo نوشته‌ی داریوش علیپور &gt;&gt; "درباره.txt"</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo ساخته شده در تیروتیر &gt;&gt; "درباره.txt"</span></div>
+            <div class="cmd-line">&nbsp;</div>
+            <div class="cmd-line"><span class="cmd-input">echo.</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo ✓ پروژه با موفقیت ساخته شد!</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo ✓ ۷ پوشه‌ی آبادی ایجاد شد.</span></div>
+            <div class="cmd-line"><span class="cmd-input">echo.</span></div>
+            <div class="cmd-line"><span class="cmd-input">pause</span></div>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-content">
+              <strong>ساخت فایل Batch</strong>
+              <p>Notepad را باز کنید و کد بالا را در آن کپی کنید. سپس از <span class="path">File <span class="sep">›</span> Save As</span> با نام <strong>setup_zamin.bat</strong> و نوع فایل <strong>All Files</strong> ذخیره کنید.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>اجرای فایل Batch</strong>
+              <p>روی فایل <strong>setup_zamin.bat</strong> دوبار کلیک کنید. یک پنجره‌ی CMD باز می‌شود و اسکریپت اجرا می‌شود.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>بررسی نتیجه</strong>
+              <p>به درایو D بروید و پوشه‌ی <strong>Zamin_Project</strong> را ببینید. داخل آن ۷ پوشه‌ی آبادی و فایل README در هر کدام وجود دارد.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>توضیح دستورات</strong>
+              <p><strong>@echo off</strong>: نمایش دستورات را خاموش می‌کند. <strong>echo</strong>: متن نمایش می‌دهد یا در فایل می‌نویسد. <strong>&gt;</strong>: نوشتن در فایل (جایگزینی). <strong>&gt;&gt;</strong>: افزودن به فایل. <strong>pause</strong>: منتظر فشردن کلید می‌ماند.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-content">
+              <strong>حلقه‌ی for</strong>
+              <p>دستور <strong>for %%F in (لیست)</strong> برای هر آیتم در لیست، دستورات داخل پرانتز را اجرا می‌کند. این کار ساخت ۷ پوشه را در یک خط ممکن می‌کند.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hint warn">
+          <span class="hint-icon">⚠️</span>
+          <div><strong>هشدار امنیتی:</strong> هرگز فایل‌های <strong>.bat</strong> ناشناس را از اینترنت دانلود و اجرا نکنید. فایل‌های Batch می‌توانند دستورات خطرناکی مثل پاک کردن فایل‌ها را اجرا کنند.</div>
+        </div>
+
+        <div class="hint success">
+          <span class="hint-icon">🏆</span>
+          <div><strong>تبریک!</strong> اگر این پروژه را کامل کردید، به سطح پیشرفته‌ی CMD رسیده‌اید و می‌توانید کارهای تکراری را با Batch File خودکار کنید.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================================================== -->
+  <!-- ============ SUMMARY ============================== -->
+  <!-- ==================================================== -->
+  <section id="summary">
+    <div class="section-header">
+      <div class="level-badge" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));">📋</div>
+      <div>
+        <h2>جمع‌بندی — نقشه‌ی راه یادگیری</h2>
+        <div class="sub">مرور کلی ۱۰ پروژه و مهارت‌های کسب‌شده</div>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h4>🪟 مهارت‌های ویندوز (۱-۳)</h4>
+        <ul>
+          <li>دسکتاپ و Taskbar</li>
+          <li>منوی Start و جستجو</li>
+          <li>تنظیمات سیستم</li>
+          <li>شخصی‌سازی</li>
+          <li>تاریخ و ساعت</li>
+          <li>۱۲ میانبر کلیدی</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>📁 مدیریت فایل (۴-۶)</h4>
+        <ul>
+          <li>ساخت پوشه</li>
+          <li>قواعد نام‌گذاری</li>
+          <li>Copy و Cut</li>
+          <li>Recycle Bin</li>
+          <li>جستجو و مرتب‌سازی</li>
+          <li>فشرده‌سازی ZIP</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>⌨️ خط فرمان CMD (۷-۱۰)</h4>
+        <ul>
+          <li>dir, cd, cls, exit</li>
+          <li>mkdir, copy, move</li>
+          <li>del, ren, type</li>
+          <li>systeminfo, ipconfig</li>
+          <li>find, tree</li>
+          <li>فایل‌های Batch</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>🎯 مهارت‌های کلیدی</h4>
+        <ul>
+          <li>سازمان‌دهی فایل‌ها</li>
+          <li>پشتیبان‌گیری</li>
+          <li>اتوماسیون کارها</li>
+          <li>امنیت فایل‌ها</li>
+          <li>سرعت با کیبورد</li>
+          <li>رفع مشکلات</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hint info" style="margin-top:30px;padding:25px 30px;">
+      <span class="hint-icon" style="font-size:1.8rem;">🎯</span>
+      <div>
+        <strong style="font-size:1.05rem;">نتیجه:</strong>
+        با انجام این ۱۰ پروژه، از یک کاربر مبتدی ویندوز به یک کاربر ماهر تبدیل می‌شوید.
+        تمام مهارت‌ها با محتوای رمان «زمین خواهد شنید» تمرین شده‌اند تا یادگیری شما هم آموزشی و هم لذت‌بخش باشد.
+        در پایان، یک ساختار پوشه‌بندی منظم برای پروژه‌ی رمان در دست دارید و می‌توانید کارهای تکراری را با Batch File خودکار کنید.
+      </div>
+    </div>
+
+    <div class="cmd-terminal" style="margin-top:35px;">
+      <div class="cmd-titlebar">
+        <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+        <span class="title">پایان پروژه — C:\Projects</span>
+      </div>
+      <div class="cmd-body" style="text-align:center;padding:35px 20px;">
+        <div class="cmd-line" style="color:var(--cmd-green);font-size:1.3rem;font-weight:700;">
+          ✓ پروژه با موفقیت تکمیل شد
+        </div>
+        <div class="cmd-line" style="color:var(--cmd-cyan);margin-top:10px;">
+          C:\&gt; echo «آب راهش را پیدا می‌کند؛ مهارت هم.»
+        </div>
+        <div class="cmd-line" style="color:#fff;font-size:1.05rem;margin-top:15px;">
+          «آب راهش را پیدا می‌کند؛ مهارت هم.»
+        </div>
+        <div class="cmd-line" style="color:var(--cmd-green);margin-top:15px;">
+          C:\&gt; <span class="cursor"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="brand">آموزشگاه هوش مصنوعی تیروتیر</div>
+  <p class="tagline">
+    آموزش مهارت‌های دیجیتال با الهام از تاریخ و ادبیات ایران<br>
+    بر اساس رمان «زمین خواهد شنید» نوشته‌ی داریوش علیپور
+  </p>
+  <a href="https://tirotir.ir" class="site-link" target="_blank" rel="noopener">
+    🌐 tirotir.ir
+  </a>
+  <div class="divider"></div>
+  <p class="copyright">© ۱۴۰۵ — تمامی حقوق برای آموزشگاه تیروتیر محفوظ است.</p>
+</footer>
+
+</body>
+</html>

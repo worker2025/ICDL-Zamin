@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پاورپوینت‌های آماده — زمین خواهد شنید | آموزشگاه هوش مصنوعی تیروتیر</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --earth: #8b5e3c;
+    --earth-light: #b8865b;
+    --earth-dark: #5c3b22;
+    --water: #2a9d8f;
+    --water-light: #4ecdc4;
+    --water-dark: #1a6b62;
+    --brick: #c17a4d;
+    --sand: #f5e9d7;
+    --sand-light: #fbf6ee;
+    --ink: #2b2118;
+    --gold: #d4a24c;
+    --gold-dark: #a67c1f;
+    --orange: #e76f51;
+    --orange-dark: #c05239;
+    --shadow: 0 10px 40px rgba(92, 59, 34, 0.15);
+  }
+
+  body {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    background: linear-gradient(135deg, #fbf6ee 0%, #f0e4d0 100%);
+    color: var(--ink);
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--orange-dark) 50%, var(--earth-dark) 100%);
+    color: #fff;
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(212, 162, 76, 0.4), transparent 70%);
+    border-radius: 50%;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(231, 111, 81, 0.35), transparent 70%);
+    border-radius: 50%;
+  }
+
+  header .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+  }
+
+  header h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 3px 15px rgba(0,0,0,0.3);
+  }
+
+  header h1 span { color: #ffe9b3; }
+
+  header p {
+    font-size: 1.15rem;
+    opacity: 0.95;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    font-weight: 300;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1200px;
+    margin: -40px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ===== INTRO SECTION ===== */
+  .intro {
+    background: #fff;
+    border-radius: 20px;
+    padding: 35px 30px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(139, 94, 60, 0.08);
+    text-align: center;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .intro p {
+    font-size: 1.05rem;
+    color: #4a3d30;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* ===== SECTION ===== */
+  section {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 35px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(139, 94, 60, 0.08);
+    animation: fadeUp 0.7s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Colored top bar per section */
+  section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 6px;
+  }
+
+  section.p1::before { background: linear-gradient(90deg, var(--earth), var(--water)); }
+  section.p2::before { background: linear-gradient(90deg, #2d6a4f, #95d5b2); }
+  section.p3::before { background: linear-gradient(90deg, #1d5b79, #6fb3d9); }
+  section.p4::before { background: linear-gradient(90deg, var(--gold), var(--brick)); }
+
+  section h2 {
+    font-size: 1.7rem;
+    color: var(--earth-dark);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  section h2 .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    color: #fff;
+    border-radius: 14px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  section.p1 h2 .icon { background: linear-gradient(135deg, var(--earth), var(--water)); box-shadow: 0 5px 18px rgba(139, 94, 60, 0.35); }
+  section.p2 h2 .icon { background: linear-gradient(135deg, #2d6a4f, #40916c); box-shadow: 0 5px 18px rgba(45, 106, 79, 0.35); }
+  section.p3 h2 .icon { background: linear-gradient(135deg, #1d5b79, #2a9d8f); box-shadow: 0 5px 18px rgba(29, 91, 121, 0.35); }
+  section.p4 h2 .icon { background: linear-gradient(135deg, var(--gold), var(--brick)); box-shadow: 0 5px 18px rgba(212, 162, 76, 0.35); }
+
+  section h2 .title-wrap { display: flex; flex-direction: column; gap: 2px; }
+  section h2 .title-wrap small {
+    font-size: 0.82rem;
+    color: #8a7a68;
+    font-weight: 400;
+  }
+
+  section h3 {
+    font-size: 1.15rem;
+    color: var(--earth);
+    margin: 25px 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  section h3::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 0.8rem;
+  }
+
+  p { margin-bottom: 15px; color: #4a3d30; }
+
+  /* ===== META INFO CARDS ===== */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 20px 0 25px;
+  }
+
+  .meta-card {
+    background: linear-gradient(135deg, var(--sand-light), #fff);
+    border: 1px solid rgba(139, 94, 60, 0.15);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+  }
+
+  .meta-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(139, 94, 60, 0.15);
+    border-color: var(--gold);
+  }
+
+  .meta-card .m-icon {
+    font-size: 1.7rem;
+    flex-shrink: 0;
+  }
+
+  .meta-card .m-label {
+    font-size: 0.78rem;
+    color: #8a7a68;
+    display: block;
+  }
+
+  .meta-card .m-value {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--earth-dark);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ===== SLIDE LIST ===== */
+  .slide-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    counter-reset: slide;
+  }
+
+  .slide-item {
+    counter-increment: slide;
+    position: relative;
+    padding: 20px 75px 20px 22px;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, var(--sand-light), #fff);
+    border-radius: 14px;
+    border-right: 5px solid;
+    transition: all 0.3s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  section.p1 .slide-item { border-right-color: var(--earth); }
+  section.p2 .slide-item { border-right-color: #40916c; }
+  section.p3 .slide-item { border-right-color: #2a9d8f; }
+  section.p4 .slide-item { border-right-color: var(--gold); }
+
+  .slide-item:hover {
+    transform: translateX(-6px);
+    box-shadow: 0 12px 30px rgba(92, 59, 34, 0.15);
+    background: linear-gradient(135deg, #fff, var(--sand-light));
+  }
+
+  .slide-item::before {
+    content: counter(slide);
+    position: absolute;
+    right: 18px;
+    top: 22px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.05rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  }
+
+  section.p1 .slide-item::before { background: linear-gradient(135deg, var(--earth), var(--water)); }
+  section.p2 .slide-item::before { background: linear-gradient(135deg, #2d6a4f, #40916c); }
+  section.p3 .slide-item::before { background: linear-gradient(135deg, #1d5b79, #2a9d8f); }
+  section.p4 .slide-item::before { background: linear-gradient(135deg, var(--gold), var(--brick)); }
+
+  .slide-item .s-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--earth-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .slide-item .s-content {
+    font-size: 0.95rem;
+    color: #5a4a38;
+    line-height: 1.85;
+  }
+
+  .slide-item .s-image {
+    font-size: 0.85rem;
+    color: var(--water-dark);
+    background: rgba(78, 205, 196, 0.12);
+    padding: 8px 14px;
+    border-radius: 8px;
+    border-right: 3px solid var(--water);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    width: fit-content;
+    font-weight: 500;
+  }
+
+  .slide-item .s-image::before {
+    content: '🖼️';
+    font-size: 1rem;
+  }
+
+  /* ===== TIP CARDS ===== */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+  }
+
+  .tip-card {
+    background: linear-gradient(135deg, #fff, var(--sand-light));
+    border: 2px solid rgba(212, 162, 76, 0.25);
+    border-radius: 16px;
+    padding: 22px;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .tip-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(212, 162, 76, 0.2);
+  }
+
+  .tip-card .tip-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--gold), var(--brick));
+    color: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+    box-shadow: 0 5px 15px rgba(212, 162, 76, 0.35);
+  }
+
+  .tip-card h4 {
+    font-size: 1.05rem;
+    color: var(--earth-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .tip-card p {
+    font-size: 0.92rem;
+    color: #5a4a38;
+    margin: 0;
+  }
+
+  /* ===== SUMMARY TABLE ===== */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(92, 59, 34, 0.1);
+    margin: 20px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 0.95rem;
+    min-width: 550px;
+  }
+
+  thead {
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth));
+    color: #fff;
+  }
+
+  thead th {
+    padding: 16px 12px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.95rem;
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+
+  tbody td {
+    padding: 14px 12px;
+    text-align: center;
+    border-bottom: 1px solid #f0e4d0;
+    transition: background 0.2s;
+  }
+
+  tbody tr:nth-child(even) { background: var(--sand-light); }
+  tbody tr:hover { background: #fdf3e0; }
+  tbody tr:hover td { color: var(--earth-dark); font-weight: 500; }
+
+  tbody td:first-child {
+    font-weight: 700;
+    color: var(--gold-dark);
+    background: rgba(212, 162, 76, 0.08);
+    font-size: 1.05rem;
+  }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    background: linear-gradient(135deg, rgba(212, 162, 76, 0.15), rgba(231, 111, 81, 0.12));
+    border-right: 5px solid var(--gold);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin: 20px 0;
+    font-size: 0.98rem;
+    color: var(--earth-dark);
+  }
+
+  .callout strong { color: var(--gold-dark); }
+  .callout .emoji { font-size: 1.3rem; margin-left: 8px; }
+
+  /* ===== QUOTE ===== */
+  .quote-box {
+    background: linear-gradient(135deg, var(--earth-dark), var(--brick));
+    color: #fff;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 25px 0;
+    position: relative;
+    overflow: hidden;
+    font-size: 1.05rem;
+    line-height: 2;
+    font-weight: 500;
+  }
+
+  .quote-box::before {
+    content: '❝';
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 5rem;
+    opacity: 0.15;
+    color: var(--gold);
+  }
+
+  .quote-box::after {
+    content: '❞';
+    position: absolute;
+    bottom: -30px;
+    left: 20px;
+    font-size: 5rem;
+    opacity: 0.15;
+    color: var(--gold);
+  }
+
+  .quote-box .q-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: linear-gradient(135deg, var(--earth-dark) 0%, #2a1a0f 100%);
+    color: #fff;
+    padding: 50px 20px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--water), var(--orange), var(--water), var(--gold));
+  }
+
+  footer .brand {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--water-light), var(--gold), var(--orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  footer .tagline {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 25px;
+    font-weight: 300;
+  }
+
+  footer .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(212, 162, 76, 0.2);
+    border: 1px solid var(--gold);
+    color: #ffe9b3;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s;
+  }
+
+  footer .site-link:hover {
+    background: var(--gold);
+    color: var(--earth-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(212, 162, 76, 0.4);
+  }
+
+  footer .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 25px auto;
+    border-radius: 2px;
+  }
+
+  footer .copyright {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 15px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    header h1 { font-size: 1.8rem; }
+    header p { font-size: 1rem; }
+    section { padding: 28px 20px; }
+    section h2 { font-size: 1.3rem; }
+    .slide-item { padding: 18px 68px 18px 16px; }
+    .slide-item::before { width: 38px; height: 38px; font-size: 0.95rem; right: 15px; top: 18px; }
+    .container { margin-top: -25px; }
+    .tips-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--sand); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--gold), var(--earth));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--earth-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">📽️ پاورپوینت‌های آماده — رمان «زمین خواهد شنید»</div>
+  <h1>چهار <span>ارائه‌ی</span> آماده</h1>
+  <p>معرفی، شخصیت‌ها، مضامین و تاریخ — برای کلاس ICDL و ارائه‌های ادبی</p>
+</header>
+
+<div class="container">
+
+  <!-- ===== INTRO ===== -->
+  <div class="intro">
+    <p>
+      در ادامه، چهار پاورپوینت با موضوعات مختلف بر اساس رمان <strong>«زمین خواهد شنید»</strong> طراحی شده است.
+      هر پاورپوینت شامل عنوان، تعداد اسلایدها، محتوای هر اسلاید و پیشنهاد تصویر است.
+      می‌توانید از آن‌ها برای ارائه در کلاس ICDL استفاده کنید.
+    </p>
+  </div>
+
+  <!-- ===== P1 ===== -->
+  <section class="p1">
+    <h2>
+      <span class="icon">🎯</span>
+      <span class="title-wrap">
+        پاورپوینت ۱: معرفی و خلاصه‌ی رمان
+        <small>۱۰ اسلاید — ارائه‌ی کلی</small>
+      </span>
+    </h2>
+
+    <div class="meta-grid">
+      <div class="meta-card">
+        <span class="m-icon">📊</span>
+        <div><span class="m-label">تعداد اسلاید</span><span class="m-value">۱۰ اسلاید</span></div>
+      </div>
+      <div class="meta-card">
+        <span class="m-icon">👥</span>
+        <div><span class="m-label">مخاطب</span><span class="m-value">دانش‌آموزان و علاقه‌مندان</span></div>
+      </div>
+      <div class="meta-card">
+        <span class="m-icon">🎨</span>
+        <div><span class="m-label">رنگ‌بندی</span><span class="m-value">قهوه‌ای خاکی، آبی فیروزه‌ای</span></div>
+      </div>
+    </div>
+
+    <ul class="slide-list">
+      <li class="slide-item">
+        <span class="s-title">جلد رمان</span>
+        <span class="s-content">عنوان رمان، نام نویسنده (داریوش علیپور)، سال انتشار (تابستان ۱۴۰۵)</span>
+        <span class="s-image">تصویر جلد کتاب (صفحه ۱ PDF)</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">معرفی کوتاه</span>
+        <span class="s-content">رمانی تاریخی از دوره‌ی ایلام نو، حدود ۲۷۰۰ سال پیش، در منطقه‌ی زاگرس و ایذه</span>
+        <span class="s-image">نقشه‌ی رمان (صفحه ۳ PDF)</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">شخصیت اصلی: نیکا</span>
+        <span class="s-content">نوازنده‌ی چنگ از روستای کُهباد، صدای مردم ستمدیده</span>
+        <span class="s-image">تصویر زنی با چنگ (از اینترنت)</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">شروع ماجرا</span>
+        <span class="s-content">دستگیری نیکا در کول‌فرح به دستور هانی، فرار و مرگ هیش</span>
+        <span class="s-image">سنگ‌نگاره‌ی کول‌فرح (صفحه ۱۴ PDF)</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">گسترش خبر</span>
+        <span class="s-content">پیچیدن خبر فرار نیکا در بازار آیاپیر، خسته شدن هانی از جنگ</span>
+        <span class="s-image">تصویر بازار باستانی (ایذه)</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">مرگ نیکا</span>
+        <span class="s-content">کشته شدن نیکا در شیل‌هی‌تی، رازش به آنی، دفن زیر بلوط</span>
+        <span class="s-image">تصویر بلوط کهن و چشمه</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">آتش‌بس و ترک کاخ</span>
+        <span class="s-content">اعلام آتش‌بس توسط هانی، نارضایتی دربار، ترک کاخ و گم شدن در کوهستان</span>
+        <span class="s-image">تصویر کاخ سنگی زاپوالسیمی</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">شورا و خشت‌ها</span>
+        <span class="s-content">گردهمایی مردم در خونگ‌آژدر و اشکفت‌سلمان، رأی‌گیری با خشت</span>
+        <span class="s-image">تصویر خشت‌های رأی (صفحه ۱۷۹ PDF)</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">کاروان خشت‌ها</span>
+        <span class="s-content">حرکت کاروان برای بردن شیوه‌ی نو به آبادی‌های دیگر، مرگ کورو</span>
+        <span class="s-image">تصویر کاروان (صفحه ۱۷۹ PDF)</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">پایان</span>
+        <span class="s-content">آب همچنان می‌گذرد، زمین به یاد می‌سپارد. جمله‌ی پایانی: «بر سنگ، نام شاهان مانند؛ اما راه را دست‌هایی ساختند که نامی نداشتند.»</span>
+        <span class="s-image">تصویر آب روان</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== P2 ===== -->
+  <section class="p2">
+    <h2>
+      <span class="icon">👥</span>
+      <span class="title-wrap">
+        پاورپوینت ۲: شخصیت‌ها و نمادهای رمان
+        <small>۱۲ اسلاید — تحلیل ادبی</small>
+      </span>
+    </h2>
+
+    <div class="meta-grid">
+      <div class="meta-card">
+        <span class="m-icon">📊</span>
+        <div><span class="m-label">تعداد اسلاید</span><span class="m-value">۱۲ اسلاید</span></div>
+      </div>
+      <div class="meta-card">
+        <span class="m-icon">👥</span>
+        <div><span class="m-label">مخاطب</span><span class="m-value">علاقه‌مندان به تحلیل ادبی</span></div>
+      </div>
+      <div class="meta-card">
+        <span class="m-icon">🎨</span>
+        <div><span class="m-label">رنگ‌بندی</span><span class="m-value">سبز زاگرس، قهوه‌ای چوب</span></div>
+      </div>
+    </div>
+
+    <ul class="slide-list">
+      <li class="slide-item">
+        <span class="s-title">عنوان</span>
+        <span class="s-content">شخصیت‌ها و نمادهای «زمین خواهد شنید»</span>
+        <span class="s-image">نماد چنگ و خشت</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">نیکا</span>
+        <span class="s-content">نوازنده، شجاع، هنرمند، رازدار</span>
+        <span class="s-image">چنگ</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">هانی</span>
+        <span class="s-content">فرمانروای جوان، مردد، خسته از جنگ، در جست‌وجوی عدالت</span>
+        <span class="s-image">تاج و شمشیر</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">هوهین</span>
+        <span class="s-content">همسر هانی، خردمند، مهربان، صدای مردم در کاخ</span>
+        <span class="s-image">زن با لوح</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">شوترورو</span>
+        <span class="s-content">وزیر و کاتب، از فرمان‌نویس شاه به نویسنده‌ی حرف مردم</span>
+        <span class="s-image">قلم و لوح گلی</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">موراد</span>
+        <span class="s-content">رهبر مقاومت، وفادار، خستگی‌ناپذیر</span>
+        <span class="s-image">نیزه و کوه</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">مانزات</span>
+        <span class="s-content">پسرک با قایق برگ‌بلوطی، نماد امید و آینده</span>
+        <span class="s-image">قایق برگ بلوط</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">کورو</span>
+        <span class="s-content">سنگ‌تراش و سرباز، به مردم می‌پیوندد، کشته می‌شود</span>
+        <span class="s-image">سنگ و تیشه</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">کوراش</span>
+        <span class="s-content">ارابه‌دار، شوخ‌طبع، همراه مردم</span>
+        <span class="s-image">ارابه و قاطر</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">نمادهای کلیدی</span>
+        <span class="s-content">آب (زندگی)، خشت (تصمیم جمعی)، چنگ (صدای مردم)، قایق (امید)</span>
+        <span class="s-image">ترکیب نمادها</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">جدول مقایسه‌ای شخصیت‌ها</span>
+        <span class="s-content">جدول ویژگی‌ها و نقش‌ها</span>
+        <span class="s-image">جدول</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">جمع‌بندی</span>
+        <span class="s-content">شخصیت‌ها نمایندگان اقشار مختلف جامعه‌اند: فرمانروا، کاتب، زن، کودک، سرباز، کشاورز</span>
+        <span class="s-image">تصویر گروهی از مردم</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== P3 ===== -->
+  <section class="p3">
+    <h2>
+      <span class="icon">🌊</span>
+      <span class="title-wrap">
+        پاورپوینت ۳: مضامین و پیام‌های رمان
+        <small>۱۰ اسلاید — علوم اجتماعی</small>
+      </span>
+    </h2>
+
+    <div class="meta-grid">
+      <div class="meta-card">
+        <span class="m-icon">📊</span>
+        <div><span class="m-label">تعداد اسلاید</span><span class="m-value">۱۰ اسلاید</span></div>
+      </div>
+      <div class="meta-card">
+        <span class="m-icon">👥</span>
+        <div><span class="m-label">مخاطب</span><span class="m-value">دانش‌آموزان و دانشجویان</span></div>
+      </div>
+      <div class="meta-card">
+        <span class="m-icon">🎨</span>
+        <div><span class="m-label">رنگ‌بندی</span><span class="m-value">آبی روشن، خاکستری</span></div>
+      </div>
+    </div>
+
+    <ul class="slide-list">
+      <li class="slide-item">
+        <span class="s-title">عنوان</span>
+        <span class="s-content">مضامین و پیام‌های «زمین خواهد شنید»</span>
+        <span class="s-image">نماد آب و خشت</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">شورا و تصمیم جمعی</span>
+        <span class="s-content">جایگزینی فرمان یک‌نفره با رأی جمعی، خشت‌های رأی</span>
+        <span class="s-image">تصویر شورا</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">عدالت آب</span>
+        <span class="s-content">تقسیم عادلانه‌ی آب، پایان انحصار</span>
+        <span class="s-image">جوی آب</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">صدای مردم</span>
+        <span class="s-content">صدای نیکا نماد صدای خاموش‌شدگان است</span>
+        <span class="s-image">چنگ</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">تاریخ از پایین</span>
+        <span class="s-content">نقش مردم عادی در ساختن تاریخ، نه فقط شاهان</span>
+        <span class="s-image">سنگ‌نگاره با اسیران گمنام</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">زن، زندگی، آزادی</span>
+        <span class="s-content">نقش زنان در داستان: نیکا، هوهین، آنی، مامورو</span>
+        <span class="s-image">تصویر زنان</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">امید و آینده</span>
+        <span class="s-content">مانزات و قایق برگ‌بلوطی نماد نسل بعدی</span>
+        <span class="s-image">قایق روی آب</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">حافظه‌ی زمین</span>
+        <span class="s-content">«زمین به یاد می‌سپارد» — بلوط، سنگ‌نگاره، خشت</span>
+        <span class="s-image">بلوط کهن</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">چرخه‌ی قدرت</span>
+        <span class="s-content">از فرمان تا شورا، از جنگ تا صلح</span>
+        <span class="s-image">چرخ</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">پیام نهایی</span>
+        <span class="s-content">«آب راه خود را پیدا می‌کند.»</span>
+        <span class="s-image">آب روان</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== P4 ===== -->
+  <section class="p4">
+    <h2>
+      <span class="icon">🏛️</span>
+      <span class="title-wrap">
+        پاورپوینت ۴: تاریخ، مکان‌ها و سنگ‌نگاره‌ها
+        <small>۱۰ اسلاید — تاریخ و باستان‌شناسی</small>
+      </span>
+    </h2>
+
+    <div class="meta-grid">
+      <div class="meta-card">
+        <span class="m-icon">📊</span>
+        <div><span class="m-label">تعداد اسلاید</span><span class="m-value">۱۰ اسلاید</span></div>
+      </div>
+      <div class="meta-card">
+        <span class="m-icon">👥</span>
+        <div><span class="m-label">مخاطب</span><span class="m-value">علاقه‌مندان به تاریخ</span></div>
+      </div>
+      <div class="meta-card">
+        <span class="m-icon">🎨</span>
+        <div><span class="m-label">رنگ‌بندی</span><span class="m-value">خاکی، طلایی</span></div>
+      </div>
+    </div>
+
+    <ul class="slide-list">
+      <li class="slide-item">
+        <span class="s-title">عنوان</span>
+        <span class="s-content">تاریخ، مکان‌ها و سنگ‌نگاره‌ها</span>
+        <span class="s-image">نماد ایلام</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">ایلام نو</span>
+        <span class="s-content">دوره‌ی تاریخی حدود ۲۷۰۰ سال پیش، تضعیف قدرت مرکزی</span>
+        <span class="s-image">نقشه‌ی ایلام</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">آیاپیر (ایذه)</span>
+        <span class="s-content">مرکز حکمرانی هانی، کاخ سنگی زاپوالسیمی</span>
+        <span class="s-image">تصویر ایذه</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">کول‌فرح</span>
+        <span class="s-content">نیایشگاه نارسینا، سنگ‌نگاره‌ی هانی و اسیران</span>
+        <span class="s-image">عکس کول‌فرح (صفحه ۱۴ PDF)</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">اشکفت‌سلمان</span>
+        <span class="s-content">نیایشگاه تاریشا، حضور هوهین در کنار هانی</span>
+        <span class="s-image">عکس اشکفت‌سلمان</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">خونگ‌آژدر</span>
+        <span class="s-content">سنگ‌نگاره‌ی آیین واگذاری قدرت، محل شورا</span>
+        <span class="s-image">عکس خونگ‌آژدر</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">شیل‌هی‌تی</span>
+        <span class="s-content">منطقه‌ای در زاگرس، محل شهادت نیکا</span>
+        <span class="s-image">تصویر کوهستان</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">گلِ شور</span>
+        <span class="s-content">کاروان‌سرا، محل گفت‌وگوهای مردم</span>
+        <span class="s-image">تصویر کاروان‌سرا</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">خدایان ایلامی</span>
+        <span class="s-content">هومبان، تیروتیر، نارسینا، تاریشا، مانزات، ناپیر</span>
+        <span class="s-image">جدول خدایان (صفحه ۱۷۴ PDF)</span>
+      </li>
+      <li class="slide-item">
+        <span class="s-title">جمع‌بندی</span>
+        <span class="s-content">رمان تلفیقی از تاریخ واقعی و تخیل داستانی است</span>
+        <span class="s-image">تصویر سنگ‌نگاره</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== TIPS ===== -->
+  <section class="p4">
+    <h2>
+      <span class="icon">🎨</span>
+      <span class="title-wrap">
+        نکات طراحی پاورپوینت
+        <small>راهنمای عملی برای ارائه‌ی حرفه‌ای</small>
+      </span>
+    </h2>
+
+    <div class="tips-grid">
+
+      <div class="tip-card">
+        <div class="tip-icon">🔤</div>
+        <h4>فونت</h4>
+        <p>از فونت‌های فارسی مثل «B Nazanin» یا «IRANSans» استفاده کنید تا متن‌ها خوانا و زیبا باشند.</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-icon">🎨</div>
+        <h4>رنگ‌ها</h4>
+        <p>از پالت رنگی خاکی، آبی و سبز استفاده کنید تا حس تاریخ و طبیعت را منتقل کند.</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-icon">🖼️</div>
+        <h4>تصاویر</h4>
+        <p>از تصاویر موجود در PDF رمان (صفحات ۱، ۳، ۱۴، ۱۷۹) یا تصاویر مشابه از اینترنت استفاده کنید.</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-icon">✨</div>
+        <h4>انیمیشن</h4>
+        <p>از انیمیشن‌های ساده مثل «Fade» برای ورود اسلایدها استفاده کنید تا ارائه یکنواخت نباشد.</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-icon">❝</div>
+        <h4>نقل قول</h4>
+        <p>جمله‌های کلیدی رمان را در اسلایدها برجسته کنید، مثل «آب راهش را پیدا می‌کند.»</p>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-icon">📊</div>
+        <h4>جدول</h4>
+        <p>برای مقایسه شخصیت‌ها یا خدایان از جدول استفاده کنید تا اطلاعات منظم‌تر دیده شوند.</p>
+      </div>
+
+    </div>
+
+    <div class="quote-box">
+      <div class="q-text">
+        «آب راهش را پیدا می‌کند.»
+        <br>
+        <small style="opacity:0.8; font-size:0.9rem;">— جمله‌ی کلیدی رمان «زمین خواهد شنید»</small>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== SUMMARY ===== -->
+  <section class="p4">
+    <h2>
+      <span class="icon">✅</span>
+      <span class="title-wrap">
+        جمع‌بندی چهار پاورپوینت
+        <small>مرور سریع</small>
+      </span>
+    </h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>پاورپوینت</th>
+            <th>موضوع</th>
+            <th>تعداد اسلاید</th>
+            <th>مناسب برای</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>۱</td><td>معرفی و خلاصه</td><td>۱۰</td><td>ارائه‌ی کلی</td></tr>
+          <tr><td>۲</td><td>شخصیت‌ها و نمادها</td><td>۱۲</td><td>تحلیل ادبی</td></tr>
+          <tr><td>۳</td><td>مضامین و پیام‌ها</td><td>۱۰</td><td>علوم اجتماعی</td></tr>
+          <tr><td>۴</td><td>تاریخ و مکان‌ها</td><td>۱۰</td><td>تاریخ و باستان‌شناسی</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <span class="emoji">💡</span>
+      <strong>پیشنهاد:</strong> می‌توانید این چهار پاورپوینت را در یک ارائه‌ی واحد ترکیب کنید یا هر کدام را به صورت جداگانه برای یک گروه سنی خاص ارائه دهید.
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="brand">آموزشگاه هوش مصنوعی تیروتیر</div>
+  <p class="tagline">آموزش مهارت‌های دیجیتال با الهام از تاریخ و ادبیات ایران</p>
+  <a href="https://tirotir.ir" class="site-link" target="_blank" rel="noopener">
+    🌐 tirotir.ir
+  </a>
+  <div class="divider"></div>
+  <p class="copyright">© ۱۴۰۵ — تمامی حقوق برای آموزشگاه تیروتیر محفوظ است.</p>
+</footer>
+
+</body>
+</html>
