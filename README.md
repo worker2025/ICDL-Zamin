@@ -1,17 +1,28 @@
 <div align="center">
 
-<img src="logo.jpg" alt="لوگوی آموزشگاه هوش مصنوعی تیروتیر" width="120" height="120" style="border-radius: 50%;">
+<img src="logo.jpg" alt="لوگوی آموزشگاه هوش مصنوعی تیروتیر" width="130" height="130" style="border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
 
 # 📚 ICDL با رمان «زمین خواهد شنید»
 
 ### آموزشگاه هوش مصنوعی تیروتیر
 
-**مجموعه‌ی کامل تمرین‌های مهارت‌های هفت‌گانه‌ی ICDL بر اساس رمان «زمین خواهد شنید»**
+**مجموعه‌ی کامل تمرین‌های مهارت‌های هفت‌گانه‌ی ICDL بر اساس رمان «زمین خواهد شنید» نوشته‌ی داریوش علیپور**
 
-[![Website](https://img.shields.io/badge/🌐_وب‌سایت-tirotir.ir-2a9d8f?style=for-the-badge)](https://tirotir.ir)
-[![GitHub](https://img.shields.io/badge/🐙_GitHub-worker2025-181717?style=for-the-badge)](https://github.com/worker2025)
-[![License](https://img.shields.io/badge/📜_مجوز-CC_BY--NC_4.0-d4a24c?style=for-the-badge)](https://creativecommons.org/licenses/by-nc/4.0/)
+<br>
+
+[![Website](https://img.shields.io/badge/🌐_مشاهده‌ی_آنلاین-worker2025.github.io-2a9d8f?style=for-the-badge&logo=githubpages&logoColor=white)](https://worker2025.github.io/ICDL-Zamin/)
+[![GitHub](https://img.shields.io/badge/🐙_GitHub-ICDL--Zamin-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/worker2025/ICDL-Zamin)
+[![Tirotir](https://img.shields.io/badge/🏫_وب‌سایت-tirotir.ir-d4a24c?style=for-the-badge)](https://tirotir.ir)
+[![License](https://img.shields.io/badge/📜_مجوز-CC_BY--NC_4.0-8b5e3c?style=for-the-badge)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![رمان](https://img.shields.io/badge/📖_رمان-زمین_خواهد_شنید-8b5e3c?style=for-the-badge)](zamin-tir-1405.pdf)
+
+<br>
+
+### 🚀 [**مشاهده‌ی نسخه‌ی آنلاین پروژه**](https://worker2025.github.io/ICDL-Zamin/)
+
+**👉 [https://worker2025.github.io/ICDL-Zamin/](https://worker2025.github.io/ICDL-Zamin/) 👈**
+
+<sub>✨ همه‌ی ماژول‌های آموزشی به صورت آنلاین و بدون نیاز به نصب در دسترس هستند ✨</sub>
 
 </div>
 
